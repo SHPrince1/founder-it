@@ -29,15 +29,14 @@ const BuildBusiness = () => {
             <div className={style.card}>
             <div className={style.ideaInward}>
               <img src={Idea} alt=""/>
-              <p className={style.look}>Looking Inwards</p>
+              <p className={style.look}>Looking Outward</p>
             </div>
             <div>
-              <h6>Finding Ideas Through Self-Discovery</h6>
+              <h6>VALIDATING BUSINESS IDEAS IN THE MARKET</h6>
             </div>
             <div className={style.uncover}>
               <p>
-                uncover your strength, passion and personal goals to build a
-                business around your lifestyle- not just your wallet
+                Become a market detective-spot opportunities, study trends and uncover what customers truly want
               </p>
             </div>
           </div>
@@ -45,15 +44,14 @@ const BuildBusiness = () => {
             <div className={style.card}>
             <div className={style.ideaInward}>
               <img src={Idea} alt="" />
-              <p className={style.look}>Looking Inwards</p>
+              <p className={style.look}>Narrowing and testing</p>
             </div>
             <div>
-              <h6>Finding Ideas Through Self-Discovery</h6>
+              <h6>Launch with confidence</h6>
             </div>
             <div className={style.uncover}>
               <p>
-                uncover your strength, passion and personal goals to build a
-                business around your lifestyle- not just your wallet
+                Use a proven ranking  system and a 28 day plan to test and launch your best idea -like a pro
               </p>
             </div>
           </div>

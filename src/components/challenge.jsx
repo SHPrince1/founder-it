@@ -25,31 +25,25 @@ const Challenge = () => {
             <div className={style.imgText}>
               <img src={Arm} alt="" />
               <div className={style.text}>
-                <h4>Week1:</h4>
-                <p>Discover your strength passion and resources</p>
+                <h4>Week2:</h4>
+                <p>Brainstorm and refine ideas using a smart ranking method</p>
               </div>
             </div>
             <div className={style.imgText}>
               <img src={Arm} alt=""/>
               <div className={style.text}>
-                <h4>Week1:</h4>
-                <p>Discover your strength passion and resources</p>
+                <h4>Week3:</h4>
+                <p>Validate ideas-interview real people, research demand.</p>
               </div>
             </div>
             <div className={style.imgText}>
               <img src={Arm} alt=""/>
               <div className={style.text}>
-                <h4>Week1:</h4>
-                <p>Discover your strength passion and resources</p>
+                <h4>Week4:</h4>
+                <p>Finalize your idea, crunch numbers and launch</p>
               </div>
             </div>
-            <div className={style.imgText}>
-              <img src={Arm} alt="" />
-              <div className={style.text}>
-                <h4>Week1:</h4>
-                <p>Discover your strength passion and resources</p>
-              </div>
-            </div>
+            
             <button>Join the 28 Day Challenge</button>
           </div>
         </div>
@@ -65,7 +59,7 @@ const Challenge = () => {
 
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt=""/>
-                <p>Founded and exited 3 tech startup by age 30</p>
+                <p>Background in engineering, finance and venture capital</p>
               </div>
 
               <div className={style.tickText}>

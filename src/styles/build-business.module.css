@@ -130,6 +130,12 @@ margin: 0 auto;
 /* Medium devices (landscape tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
   /* styles for tablets */
+  .cardDiv{
+    width:100%
+  }
+  .buttonDiv{
+    margin: -70px auto;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */

@@ -23,12 +23,12 @@ const HompageBanner = () => {
           </div>
 
           <div className={style.buttonDiv}>
-            <button className={style.amazon}><img src={Amazon} width={30} />Buy on Amazon</button> <button className={style.apple}> <img src={AppleBook} width={30} />Buy on Apple</button>
+            <button className={style.amazon}><img src={Amazon} width={30} alt="" />Buy on Amazon</button> <button className={style.apple}> <img src={AppleBook} width={30} alt="" />Buy on Apple</button>
           </div>
         </div>
 
         <div className={style.box2}>
-            <img src={Book} />
+            <img src={Book} alt="" />
         </div>
       </div>
     </>

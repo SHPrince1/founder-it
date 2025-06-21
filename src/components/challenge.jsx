@@ -10,41 +10,41 @@ const Challenge = () => {
     <>
       <div className={style.container}>
         <div className={style.Subcontainer}>
-          <div>
-            <img src={Book2} />
+          <div className={style.book2}>
+            <img src={Book2} alt="" />
           </div>
 
           <div className={style.box2}>
             <div className={style.imgText}>
-              <img src={Arm} />
+              <img src={Arm} alt=""/>
               <div className={style.text}>
                 <h4>Week1:</h4>
                 <p>Discover your strength passion and resources</p>
               </div>
             </div>
             <div className={style.imgText}>
-              <img src={Arm} />
+              <img src={Arm} alt="" />
               <div className={style.text}>
                 <h4>Week1:</h4>
                 <p>Discover your strength passion and resources</p>
               </div>
             </div>
             <div className={style.imgText}>
-              <img src={Arm} />
+              <img src={Arm} alt=""/>
               <div className={style.text}>
                 <h4>Week1:</h4>
                 <p>Discover your strength passion and resources</p>
               </div>
             </div>
             <div className={style.imgText}>
-              <img src={Arm} />
+              <img src={Arm} alt=""/>
               <div className={style.text}>
                 <h4>Week1:</h4>
                 <p>Discover your strength passion and resources</p>
               </div>
             </div>
             <div className={style.imgText}>
-              <img src={Arm} />
+              <img src={Arm} alt="" />
               <div className={style.text}>
                 <h4>Week1:</h4>
                 <p>Discover your strength passion and resources</p>
@@ -59,17 +59,17 @@ const Challenge = () => {
             <h1>MEET IKE EZE - ENTREPRENEUR, MENTOR, VISIONARY</h1>
             <div className={style.tickTextDiv}>
               <div className={style.tickText}>
-                <img src={Ellipse} width={20} />
+                <img src={Ellipse} width={20} alt="" />
                 <p>Founded and exited 3 tech startup by age 30</p>
               </div>
 
               <div className={style.tickText}>
-                <img src={Ellipse} width={20} />
+                <img src={Ellipse} width={20} alt=""/>
                 <p>Founded and exited 3 tech startup by age 30</p>
               </div>
 
               <div className={style.tickText}>
-                <img src={Ellipse} width={20} />
+                <img src={Ellipse} width={20} alt="" />
                 <p>Founded and exited 3 tech startup by age 30</p>
               </div>
 

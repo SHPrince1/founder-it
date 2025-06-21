@@ -13,7 +13,7 @@ function App() {
       <HompageBanner />
       <BuildBusiness />
       <Challenge />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

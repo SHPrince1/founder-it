@@ -108,6 +108,24 @@ button {
 /* Medium devices (landscape tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
   /* styles for tablets */
+  .book2{
+    width: 100%;
+  }
+  .book2 img{
+    width: 50%;
+  }
+  .rightText{
+    width: 40%;
+  }
+  .MeetSection{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+  }
+  .imageSection img{
+    width: 100%;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */

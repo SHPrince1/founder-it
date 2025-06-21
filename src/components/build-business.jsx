@@ -13,7 +13,7 @@ const BuildBusiness = () => {
         <div className={style.cardDiv}>
           <div className={style.card}>
             <div className={style.ideaInward}>
-              <img src={Idea} />
+              <img src={Idea} alt="" />
               <p className={style.look}>Looking Inwards</p>
             </div>
             <div>
@@ -28,7 +28,7 @@ const BuildBusiness = () => {
           </div>
             <div className={style.card}>
             <div className={style.ideaInward}>
-              <img src={Idea} />
+              <img src={Idea} alt=""/>
               <p className={style.look}>Looking Inwards</p>
             </div>
             <div>
@@ -44,7 +44,7 @@ const BuildBusiness = () => {
           {/* last card */}
             <div className={style.card}>
             <div className={style.ideaInward}>
-              <img src={Idea} />
+              <img src={Idea} alt="" />
               <p className={style.look}>Looking Inwards</p>
             </div>
             <div>
@@ -59,7 +59,7 @@ const BuildBusiness = () => {
           </div>
         </div>
          <div className={style.buttonDiv}>
-            <button className={style.amazon}><img src={Amazon} width={30} />Buy on Amazon</button> <button className={style.apple}> <img src={AppleBook} width={30} />Buy on Apple</button>
+            <button className={style.amazon}><img src={Amazon} width={30} alt=""/>Buy on Amazon</button> <button className={style.apple}> <img src={AppleBook} alt='' width={30} />Buy on Apple</button>
           </div>
       </div>
     </>

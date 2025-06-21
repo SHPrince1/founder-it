@@ -16,7 +16,7 @@ const Challenge = () => {
 
           <div className={style.box2}>
             <div className={style.imgText}>
-              <img src={Arm} alt=""/>
+              <img src={Arm} alt="" />
               <div className={style.text}>
                 <h4>Week1:</h4>
                 <p>Discover your strength passion and resources</p>
@@ -30,20 +30,20 @@ const Challenge = () => {
               </div>
             </div>
             <div className={style.imgText}>
-              <img src={Arm} alt=""/>
+              <img src={Arm} alt="" />
               <div className={style.text}>
                 <h4>Week3:</h4>
                 <p>Validate ideas-interview real people, research demand.</p>
               </div>
             </div>
             <div className={style.imgText}>
-              <img src={Arm} alt=""/>
+              <img src={Arm} alt="" />
               <div className={style.text}>
                 <h4>Week4:</h4>
                 <p>Finalize your idea, crunch numbers and launch</p>
               </div>
             </div>
-            
+
             <button>Join the 28 Day Challenge</button>
           </div>
         </div>
@@ -58,18 +58,22 @@ const Challenge = () => {
               </div>
 
               <div className={style.tickText}>
-                <img src={Ellipse} width={20} alt=""/>
+                <img src={Ellipse} width={20} alt="" />
                 <p>Background in engineering, finance and venture capital</p>
               </div>
 
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>Founded and exited 3 tech startup by age 30</p>
+                <p>MBA from Wharton, advisor, and startup mentor</p>
               </div>
 
               <div className={style.tickText}>
-                <img src={Ellipse} width={20}  alt=""/>
-                <p>Founded and exited 3 tech startup by age 30</p>
+                <img src={Ellipse} width={20} alt="" />
+                <p>Leads with strategy, insight and real-world experience</p>
+              </div>
+              <div className={style.want}>
+                <h4>WANT MORE INSIGHT FROM IKE?</h4>
+                <button>JOIN IKE'S SUBSTACK NEWSLETTER</button>
               </div>
             </div>
           </div>

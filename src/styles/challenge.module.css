@@ -63,6 +63,15 @@ button {
 .tickTextDiv{
     line-height: 1;
 }
+.want{
+    line-height: 0.5;
+}
+.want button{
+    font-size: 12px;
+    width: 260px;
+    margin-top: 0px;
+    border: 1px solid #fabb14;
+}
 
 
 

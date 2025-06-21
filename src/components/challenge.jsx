@@ -74,7 +74,7 @@ const Challenge = () => {
               </div>
 
               <div className={style.tickText}>
-                <img src={Ellipse} width={20} />
+                <img src={Ellipse} width={20}  alt=""/>
                 <p>Founded and exited 3 tech startup by age 30</p>
               </div>
             </div>

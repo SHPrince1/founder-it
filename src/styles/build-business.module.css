@@ -1,0 +1,143 @@
+.container{
+    background-color: #1e1e1e;
+    width: 100%;
+    height: 90vh;
+    margin-top:40px ;
+    padding-top: 80px;
+}
+
+.box1{
+    margin-top: 60px;
+    width: 30%;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+}
+.cardDiv{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    /* align-items: center; */
+}
+.card{
+    /* border: 1px solid red; */
+    /* width: 300px; */
+    background-color: #3c3c3c;
+    color: #fff;
+    padding: 20px;
+    font: poppins;
+}
+.ideaInward{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.look{
+    /* border: 1px solid red; */
+    height: 24px;
+    border-radius: 20px;
+    width: 140px;
+    padding: 5px 0px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #636363;
+    
+}
+.look p{
+    text-align: center;
+    align-items: center;
+}
+.uncover{
+    margin-top: -15px;
+
+}
+
+.buttonDiv{
+    /* border: 1px solid red; */
+display: flex;
+align-items: center;
+gap: 20px;
+width: 35%;
+margin: 0 auto;
+}
+.buttonDiv button{
+    width:220px;
+    border-radius: 20px;
+    height: 45px;
+    margin-top: 100px;
+    
+}
+.amazon{
+    background-color: #fff;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    color: #000;
+    align-items: center;
+    text-align: center;
+    height: 34px;
+    width: 166px;
+    border-radius: 30px;}
+.apple{
+    background-color: #fc8510;
+    border: #fc8510;
+    color: #fff;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    color: #fff;
+    align-items: center;
+    text-align: center;
+    height: 34px;
+    width: 176px;
+    border-radius: 30px;
+}
+
+
+/* MEDIA QUERRY */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .container{
+    height: 200px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .cardDiv{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 160px;
+  }
+  .box1{
+    width: 100%;
+  }
+  .buttonDiv{
+    width: 90%;
+    margin: -60px auto;
+  }
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+}

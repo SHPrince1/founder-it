@@ -1,0 +1,121 @@
+.Subcontainer {
+  /* width: 90%; */
+  background-color: #f4f4f4;
+  margin: 0 auto;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.imgText {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  /* line-height: 2; */
+  /* text-align: center; */
+}
+.text {
+  line-height: 1;
+}
+
+button {
+  width: 200px;
+  height: 40px;
+  background-color: #fabb14;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.MeetSection {
+  width: 70%;
+  margin: 60px auto;
+  align-items: center;
+  display: flex;
+}
+.tickTextDiv{
+    line-height: 0.1;
+}
+
+.tickText{
+    display: flex;
+    gap: 15px;
+    /* line-height: 1; */
+}
+
+.journey{
+    background-image: url(../assets/framebg.jpg);
+    height: 350px;
+}
+.rightText{
+    color: #fff;
+    width: 350px;
+    padding-top: 40px;
+    margin: 20px 60%;
+    /* text-align: ; */
+    justify-content: right;
+    align-items: right;
+}.rightText h1{
+    font-size: 30px;
+}
+.tickTextDiv{
+    line-height: 1;
+}
+
+
+
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .Subcontainer{
+    flex-direction: column;
+    margin-top: 1000px;
+  }
+  .Subcontainer img{
+    width:290px;
+  }
+  .box2{
+    width: 90%;
+  }
+  .imgText img{
+    width: 10%;
+  }
+  .MeetSection{
+    flex-direction: column;
+  }
+  .rightText{
+    color: #fff;
+    width: 90%;
+    padding-top: 40px;
+    margin: 8px 6%;
+    justify-content: right;
+    align-items: right;
+  }
+  .imageSection img{
+    width: 100%;
+  }
+
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+}

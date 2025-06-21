@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sMedia{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.mediaHandle{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

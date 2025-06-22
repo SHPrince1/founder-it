@@ -3,16 +3,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 85%;
     height: 50px;
-    background-color: #fff;
+    background-color: #f4f4f4;
     color: #000;
     font: poppins;
-    margin: 10px auto;
+    margin: 2px auto;
+    padding: 4px 10px;
+}
+.order{
+  display: flex;
+  width: 100px !important;
+
 }
 .order a{
     text-decoration: none;
     color: #000;
+    background-color: #fabb14;
+    padding: 6px;
+    font-size: 14px;
+    width: 90px;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+   
 }
 
 

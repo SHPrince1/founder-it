@@ -10,7 +10,7 @@ const Footer = () => {
     <>
       <div className={style.container}>
         <div>
-          <p>Copyright &copy; 2025, all right Reserved</p>
+          <p>Copyright &copy; <span style={{color: '#f7b084' }}>2025, All Right Reserved</span></p>
         </div>
         <div className={style.sMedia}>
           <div>

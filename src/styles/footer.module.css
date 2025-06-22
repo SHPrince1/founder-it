@@ -1,7 +1,10 @@
 .container{
     display: flex;
     width: 80%;
-    margin: 0 auto;
+    height: 40px;
+    background-color: #f4f4f4;
+    margin: 40px auto auto auto;
+    padding: 10px;
     align-items: center;
     justify-content: space-between;
 }

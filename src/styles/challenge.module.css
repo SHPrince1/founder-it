@@ -60,6 +60,9 @@ button {
 }.rightText h1{
     font-size: 30px;
 }
+.rightText p{
+color: #868787;
+}
 .tickTextDiv{
     line-height: 1;
 }
@@ -102,6 +105,9 @@ button {
     margin: 8px 6%;
     justify-content: right;
     align-items: right;
+  }
+  .rightText p{
+    color: #868787;
   }
   .imageSection img{
     width: 100%;

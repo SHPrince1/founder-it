@@ -1,8 +1,11 @@
 .container{
     background-color: #1e1e1e;
+    clip-path: polygon(
+         5px 0, 10px 10px, 15px 0, 20px 10px, 100% 10px, 100% 100%, 0 100%
+    );
     width: 100%;
     height: 90vh;
-    margin-top:40px ;
+    /* margin-top:40px ; */
     padding-top: 80px;
 }
 
@@ -22,12 +25,17 @@
     /* align-items: center; */
 }
 .card{
-    /* border: 1px solid red; */
-    /* width: 300px; */
-    background-color: #3c3c3c;
+    /*border: 1px solid red;
+    *//*width: 300px;
+    */background-color: #3c3c3c;
+    border-radius:10px;
     color: #fff;
     padding: 20px;
     font: poppins;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
 }
 .ideaInward{
     display: flex;
@@ -37,10 +45,11 @@
 }
 .look{
     /* border: 1px solid red; */
-    font-size: 12px;
-    height: 24px;
+    font-size: 11px;
+    text-transform: uppercase;
+    height: 20px;
     border-radius: 20px;
-    width: 150px;
+    width: 170px;
     padding: 5px 0px;
     text-align: center;
     align-items: center;
@@ -51,6 +60,7 @@
 .look p{
     text-align: center;
     align-items: center;
+    text-transform: uppercase;
     /* font-size: 8px; */
 }
 .uncover{

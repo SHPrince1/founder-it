@@ -25,6 +25,7 @@ button {
   width: 200px;
   height: 40px;
   background-color: #fabb14;
+  border: 1px solid #fabb14;
   border-radius: 20px;
   margin-top: 20px;
 }

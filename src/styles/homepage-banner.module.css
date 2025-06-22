@@ -20,8 +20,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 10px;
+    font-size: 14px;
     color: #fbc331;
+    font-weight: bold;
     font: poppins;
 }
 .ready{

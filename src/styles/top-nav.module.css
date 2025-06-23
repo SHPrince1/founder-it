@@ -5,7 +5,7 @@
     justify-content: space-between;
     width: 85%;
     height: 50px;
-    background-color: #f4f4f4;
+    background-color: #fff;
     color: #000;
     font: poppins;
     margin: 2px auto;
@@ -36,6 +36,7 @@
   /* styles for phones */
   .container{
     display: flex;
+    background-color: #f4f4f4;
     /* flex-direction: column; */
   }
 }

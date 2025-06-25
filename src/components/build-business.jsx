@@ -5,9 +5,13 @@ import Light from "../assets/lamp.svg";
 import Winner from "../assets/win.svg";
 import Amazon from "../assets/amazin.png";
 import AppleBook from "../assets/applebook.jpg";
+import Top from "../assets/shapetop.jpg";
 const BuildBusiness = () => {
   return (
     <>
+      <div className={style.zigzagImage}>
+        <img src={Top} alt="" />
+      </div>
       <div className={style.container}>
         {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
@@ -78,6 +82,9 @@ const BuildBusiness = () => {
             Buy on Apple
           </button>
         </div>
+      </div>
+      <div className={style.zigzagImage}>
+        <img src={Top} alt="" />
       </div>
     </>
   );

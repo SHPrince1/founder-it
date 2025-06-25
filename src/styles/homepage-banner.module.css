@@ -133,6 +133,9 @@ gap: 20px;
   .box2 img{
     width:100%
   }
+  .ready{
+    font-size: 22px;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */

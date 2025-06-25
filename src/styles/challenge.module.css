@@ -124,14 +124,26 @@ color: #868787;
 /* Medium devices (landscape tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
   /* styles for tablets */
+  .Subcontainer{
+    width: 80%;
+    background-color: #f4f4f4;
+    margin: 0 auto;
+    padding-top: 30px;
+    display: flex
+;
+    align-items: center;
+    justify-content: space-evenly;
+  }
   .book2{
     width: 100%;
   }
   .book2 img{
-    width: 50%;
+    width: 80%;
   }
   .rightText{
-    width: 40%;
+    width: 45%;
+    margin: 0 50%;
+    color: #fff !important;
   }
   .MeetSection{
     display: flex;

@@ -44,6 +44,11 @@ button {
   align-items: center;
   display: flex;
 }
+.textSection h1{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 50px;
+  width: 85%;
+}
 .tickTextDiv{
     line-height: 0.1;
 }

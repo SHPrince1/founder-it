@@ -122,6 +122,8 @@ color: #868787;
   /* styles for phones */
   .Subcontainer{
     flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
     /* margin-top: 1000px; */
   }
   .Subcontainer img{
@@ -136,6 +138,7 @@ color: #868787;
   }
   .MeetSection{
     flex-direction: column;
+    width: 90%;
   }
   .rightText{
     color: #fff;
@@ -150,6 +153,13 @@ color: #868787;
   }
   .imageSection img{
     width: 100%;
+  }
+  .journey{
+    width: 98%;
+    margin: 0 auto;
+  }
+  .tickText{
+    font-size: 14px;
   }
 
 }

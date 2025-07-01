@@ -3,7 +3,7 @@ import style from "../styles/build-business.module.css";
 import Idea from "../assets/arm.svg";
 import Light from "../assets/lamp.svg";
 import Winner from "../assets/win.svg";
-import Amazon from "../assets/amazin.png";
+import Amazon from "../assets/black amazon logo.png";
 import AppleBook from "../assets/applebook.jpg";
 import Top from "../assets/shapetop.jpg";
 const BuildBusiness = () => {
@@ -21,7 +21,7 @@ const BuildBusiness = () => {
           ></path>
         </svg> */}
         <div className={style.box1}>
-          <h2>BUILD A BUSINESS THAT FITS YOUR LIFE AND THRIVES</h2>
+          <h2>BUILD A BUSINESS THAT FITS YOUR LIFE-AND THRIVES</h2>
         </div>
         <div className={style.cardDiv}>
           <div className={style.card}>
@@ -79,7 +79,7 @@ const BuildBusiness = () => {
           <button className={style.apple}>
             {" "}
             <img src={AppleBook} alt="" width={30} />
-            Buy on Apple
+            Buy on Apple Books
           </button>
         </div>
       </div>

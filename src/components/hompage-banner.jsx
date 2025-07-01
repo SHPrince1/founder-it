@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../styles/homepage-banner.module.css";
-import Book from '../assets/book.png'
+import Book from '../assets/book123.png'
 import Amazon from '../assets/amazin.png'
 import AppleBook from '../assets/applebook.jpg'
 const HompageBanner = () => {
@@ -14,6 +14,7 @@ const HompageBanner = () => {
           </div>
           <div className={style.ready}>
             <h2>READY TO TURN YOUR DREAM BUSINESS INTO REALITY?</h2>
+            
           </div>
           <div className={style.discover}>
             <p>
@@ -23,7 +24,13 @@ const HompageBanner = () => {
           </div>
 
           <div className={style.buttonDiv}>
-            <button className={style.amazon}><img src={Amazon} width={30} alt="" />Buy on Amazon</button> <button className={style.apple}> <img src={AppleBook} width={30} alt="" />Buy on Apple</button>
+            <button className={style.amazon}>
+              
+              <img src={Amazon} width={30} alt="" />
+            
+            
+           <p>Buy on Amazon</p> 
+            </button> <button className={style.apple}> <img src={AppleBook} width={30} alt="" />Buy on Apple Books</button>
           </div>
         </div>
 

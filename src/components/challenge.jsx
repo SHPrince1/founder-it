@@ -5,7 +5,8 @@ import Piece from '../assets/piece.svg';
 import Team from '../assets/team.svg';
 import Growth from '../assets/growth.svg'
 import Author from "../assets/author.jpg";
-import Ellipse from "../assets/Ellipse 38893.svg";
+import Ellipse from "../assets/tickBackground.png";
+import Arrow from '../assets/arrow-right-02.png'
 import style from "../styles/challenge.module.css";
 
 const Challenge = () => {
@@ -47,7 +48,7 @@ const Challenge = () => {
               </div>
             </div>
 
-            <button>Join the 28 Day Challenge</button>
+            <button>Join the 28 Day Challenge <img src={Arrow} alt="" size={5} className={style.arrow}/></button>
           </div>
         </div>
 
@@ -76,7 +77,7 @@ const Challenge = () => {
               </div>
               <div className={style.want}>
                 <h4>WANT MORE INSIGHT FROM IKE?</h4>
-                <button>JOIN IKE'S SUBSTACK NEWSLETTER</button>
+                <button>JOIN IKE'S SUBSTACK NEWSLETTER <img src={Arrow} alt="" size={2  }/></button>
               </div>
             </div>
           </div>
@@ -92,7 +93,7 @@ const Challenge = () => {
               Join Thousands of aspiring entreneurs who've turned uncertainty
               into unstoppable momentum. your dream business is one step away
             </p>
-            <button>Join the 28 Day Challenge</button>
+            <button>Join the 28 Day Challenge <img src={Arrow} alt="" size={5}/></button>
           </div>
         </div>
       </div>

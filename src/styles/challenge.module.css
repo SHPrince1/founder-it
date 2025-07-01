@@ -7,6 +7,11 @@
   align-items: center;
   justify-content: space-evenly;
 }
+.box2 .arrow{
+width: 15px;
+margin-top: -6px;
+padding: 5px;
+}
 
 .imgText {
   /* border: 1px solid red; */
@@ -28,6 +33,9 @@ button {
   border: 1px solid #fabb14;
   border-radius: 20px;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .MeetSection {
@@ -55,17 +63,41 @@ button {
     width: 350px;
     padding-top: 40px;
     margin: 20px 60%;
-    /* text-align: ; */
+    /* text-align: center; */
     justify-content: right;
     align-items: right;
 }.rightText h1{
     font-size: 30px;
+}
+.rightText img{
+  width: 18px;
+  margin-top: -8px;
 }
 .rightText p{
 color: #868787;
 }
 .tickTextDiv{
     line-height: 1;
+}
+.tickText{
+  /*justify-content: center;
+  */align-items: center;
+  font-family: Helvetica;
+  /* border: 1px solid red; */
+  background-color: #f2f4f6;
+  border-radius: 30px;
+  margin-top: 8px;
+  height: 30px;
+  width: fit-content;
+  padding: 8px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+.tickText img{
+  width: 20px;
+  height: 20px;
 }
 .want{
     line-height: 0.5;
@@ -75,6 +107,11 @@ color: #868787;
     width: 260px;
     margin-top: 0px;
     border: 1px solid #fabb14;
+}
+.want img{
+  width: 18px;
+  margin-top: -8px;
+  padding: 5px;
 }
 
 

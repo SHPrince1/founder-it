@@ -1,46 +1,68 @@
-.container{
-    /* border: 1px solid #000; */
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 98%;
-    height: 50px;
-    background-color: #000000;
-    color: #fff;
-    font: poppins;
-    margin: 0px auto;
-    padding: 4px 10px;
+.container {
+  /*border: 1px solid #000;
+    */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 50px;
+  border-radius: 15px;
+  background-color: #000000;
+  margin: 10px auto;
+  padding: 4px 10px;
 }
-.order{
+.contentDiv {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  border-radius: 15px;
+  background-color: #000;
+  color: #fff;
+  font: poppins;
+  margin: 0px auto;
+  padding: 4px 10px;
+}
+.imgDiv img {
+  width: 100px;
+}
+.order {
   display: flex;
   width: 100px !important;
-
 }
-.order a{
-    text-decoration: none;
-    color: #000;
-    background-color: #fabb14;
-    padding: 6px;
-    font-size: 14px;
-    width: 90px;
-    align-items: center;
-    text-align: center;
-    border-radius: 20px;
-   
+.order a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 6px;
+  font-size: 14px;
+  width: 90px;
+  height: 30px;
+  align-items: center;
+  text-align: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
 }
-
-
 
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 475.98px) {
   /* styles for phones */
-  .container{
-    width: 96%;
-    margin: 0 auto;
+  .container {
+    width: 90%;
+    margin: 10px auto;
     display: flex;
     background-color: #000;
     /* flex-direction: column; */
   }
+
+  .imgDiv img {
+  width: 85px;
+}
 }
 
 /* Small devices (portrait tablets, 576px and up) */
@@ -59,6 +81,9 @@
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+@media (min-width: 2560px) {
   /* styles for large screens */
+  .container{
+    width: 80%;
+  }
 }

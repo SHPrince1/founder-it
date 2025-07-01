@@ -173,6 +173,15 @@ gap: 20px;
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
+@media (min-width: 2560px) {
   /* styles for large screens */
+  .ready{
+    font-size: 100px;
+  }
+  .discover{
+    font-size: 40px;
+  }
+  .availableDiv p{
+    font-size: 20px;
+  }
 }

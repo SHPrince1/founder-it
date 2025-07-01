@@ -2,7 +2,7 @@ import React from "react";
 import style from "../styles/homepage-banner.module.css";
 import Book from '../assets/book123.png'
 import Amazon from '../assets/amazin.png'
-import AppleBook from '../assets/applebook.jpg'
+import AppleBook from '../assets/apple-book-Frame.png'
 const HompageBanner = () => {
   return (
     <>
@@ -18,7 +18,7 @@ const HompageBanner = () => {
           </div>
           <div className={style.discover}>
             <p>
-              Discover, Validate and launch the perfect business idea with a
+              Discover, validate and launch the perfect business idea with a
               proven step-by-step guide
             </p>
           </div>

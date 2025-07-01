@@ -1,5 +1,5 @@
 import React from "react";
-import Book2 from "../assets/book2.jpg";
+import Book2 from "../assets/founder-book2.png";
 import Arm from "../assets/arm.svg";
 import Piece from '../assets/piece.svg';
 import Team from '../assets/team.svg';

@@ -1,7 +1,8 @@
+
 .container {
   background-color: #1e1e1e;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   margin-top: 40px;
   padding-top: 80px;
 }
@@ -126,18 +127,40 @@
   border-radius: 30px;
 }
 .zigzagImage{
-    width: 99%;
-    margin: 0 auto;
+  /* position: relative; */
+    width: 95%;
+    border: 1px solid #fff;
+    margin: 10px auto;
     /* border: 1px solid red; */
     /* margin-top: 10px; */
     
   }
   .zigzagImage img{
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 95%;
+    width: 96%;
     margin: 0 auto;
+  }
+
+  .zigzagImageBotom{
+    position: relative;
+    width: 97%;
+    border: 1px solid #fff;
+    margin: 0px auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  
+  }
+   .zigzagImageBotom img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -44px auto;
   }
 
 /* MEDIA QUERRY */
@@ -163,6 +186,45 @@
   .buttonDiv {
     width: 90%;
     margin: -60px auto;
+  }
+
+  .zigzagImage{
+  position: relative;
+    width: 100%;
+    border: 1px solid #fff;
+    /* margin: 10px auto; */
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  }
+  .zigzagImage img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -8px auto;
+  }
+
+  .zigzagImageBotom{
+    position: relative;
+    width: 90%;
+    /* background-color: #000; */
+    border: 1px solid #fff;
+    margin: 10px auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  
+  }
+   .zigzagImageBotom img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -24px auto;
+    /* border: 1px solid#000; */
   }
 }
 
@@ -232,4 +294,23 @@
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /* styles for large screens */
+  .buttonDiv{
+    /* border: 1px solid red;  */
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* width: 20%; */
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /* height: 100px; */
+    /* justify-content: space-evenly; */
+    margin: 0 auto;
+    font-size: 18px;
+    gap: 50px;
+  }
+  .cardDiv{
+    /* width: 50%; */
+  }
 }

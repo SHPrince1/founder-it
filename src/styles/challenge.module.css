@@ -1,7 +1,7 @@
 .Subcontainer {
   /* width: 90%; */
   background-color: #f4f4f4;
-  margin: 0 auto;
+  margin: 10px auto;
   padding-top: 30px;
   display: flex;
   align-items: center;
@@ -201,4 +201,10 @@ color: #868787;
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /* styles for large screens */
+  .MeetSection{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
 }

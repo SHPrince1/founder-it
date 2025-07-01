@@ -5,7 +5,7 @@ import Light from "../assets/lamp.svg";
 import Winner from "../assets/win.svg";
 import Amazon from "../assets/black amazon logo.png";
 import AppleBook from "../assets/applebook.jpg";
-import Top from "../assets/shapetop.jpg";
+import Top from "../assets/zigzag.png";
 const BuildBusiness = () => {
   return (
     <>
@@ -83,7 +83,7 @@ const BuildBusiness = () => {
           </button>
         </div>
       </div>
-      <div className={style.zigzagImage}>
+      <div className={style.zigzagImageBotom}>
         <img src={Top} alt="" />
       </div>
     </>

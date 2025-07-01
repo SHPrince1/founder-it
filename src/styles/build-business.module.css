@@ -1,4 +1,10 @@
+button{
+  cursor: pointer;
+}
 
+/* button:hover{
+  
+} */
 .container {
   background-color: #1e1e1e;
   width: 100%;

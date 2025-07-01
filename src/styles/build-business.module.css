@@ -40,6 +40,10 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
+.card h6{
+  text-transform: uppercase;
+  font-family: sans-serif;
+}
 .ideaInward {
   /* border: 1px solid red; */
   display: flex;
@@ -161,6 +165,8 @@
     justify-content: center;
     width: 100%;
     margin: -44px auto;
+    /* box-shadow: 3px 3px 1px #707070; */
+
   }
 
 /* MEDIA QUERRY */
@@ -208,7 +214,7 @@
 
   .zigzagImageBotom{
     position: relative;
-    width: 90%;
+    width: 100%;
     /* background-color: #000; */
     border: 1px solid #fff;
     margin: 10px auto;
@@ -223,7 +229,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: -24px auto;
+    margin: -44px auto;
+      /* box-shadow: 3px 3px 1px #707070; */
     /* border: 1px solid#000; */
   }
 }

@@ -6,6 +6,7 @@ import Winner from "../assets/win.svg";
 import Amazon from "../assets/black amazon logo.png";
 import AppleBook from "../assets/applebook.jpg";
 import Top from "../assets/zigzag.png";
+import Bottom from "../assets/zigzagdown.png";
 const BuildBusiness = () => {
   return (
     <>
@@ -84,7 +85,7 @@ const BuildBusiness = () => {
         </div>
       </div>
       <div className={style.zigzagImageBotom}>
-        <img src={Top} alt="" />
+        <img src={Bottom} alt="" />
       </div>
     </>
   );

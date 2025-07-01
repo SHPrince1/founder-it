@@ -122,7 +122,7 @@ color: #868787;
   /* styles for phones */
   .Subcontainer{
     flex-direction: column;
-    margin-top: 1000px;
+    /* margin-top: 1000px; */
   }
   .Subcontainer img{
     width:290px;

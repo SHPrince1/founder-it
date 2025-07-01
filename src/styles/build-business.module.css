@@ -174,15 +174,15 @@
 @media (max-width: 575.98px) {
   /* styles for phones */
   .container {
-    height: 200px;
-    width: 90%;
+    height: 1130px;
+    width: 98%;
     margin: 0 auto;
   }
   .cardDiv {
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin-top: 160px;
+    margin-top: 10px;
   }
   .box1 {
     width: 100%;
@@ -193,6 +193,16 @@
     width: 90%;
     margin: -60px auto;
   }
+  .buttonDiv button {
+  text-transform: uppercase;
+  border: 1px solid #000;
+  width: 180px;
+  border-radius: 30px;
+  height: 45px;
+  font-size: 9.5px;
+  margin-top: 100px;
+  
+}
 
   .zigzagImage{
   position: relative;
@@ -209,7 +219,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: -8px auto;
+    margin: -4px auto;
   }
 
   .zigzagImageBotom{
@@ -229,7 +239,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: -44px auto;
+    margin: -29px auto;
       /* box-shadow: 3px 3px 1px #707070; */
     /* border: 1px solid#000; */
   }

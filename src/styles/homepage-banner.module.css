@@ -127,6 +127,9 @@ gap: 20px;
     margin-top: -80px;
     font-size: 12px;
 }
+.buttonDiv button{
+  font-size: 12px;
+}
 .box2 img{
   height: auto;
   width: 100%;

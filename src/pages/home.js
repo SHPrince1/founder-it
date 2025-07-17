@@ -1,11 +1,11 @@
 import React from 'react';
-import TopNav from '../components/top-nav';
-import BuildBusiness from '../components/build-business';
-import Challenge from '../components/challenge';
-import HompageBanner from '../components/hompage-banner';
-import Footer from '../components/footer'
+import TopNav from '../components/landing-page/top-nav';
+import BuildBusiness from '../components/landing-page/build-business';
+import Challenge from '../components/landing-page/challenge';
+import HompageBanner from '../components/landing-page/hompage-banner';
+import Footer from '../components/landing-page/footer'
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
       <div>
@@ -19,4 +19,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default HomePage;

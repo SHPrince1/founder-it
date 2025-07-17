@@ -1,8 +1,8 @@
 import React from "react";
-import style from "../styles/homepage-banner.module.css";
-import Book from '../assets/book123.png'
-import Amazon from '../assets/amazin.png'
-import AppleBook from '../assets/apple-book-Frame.png'
+import style from "../../styles/homepage-banner.module.css";
+import Book from '../../assets/book123.png'
+import Amazon from '../../assets/amazin.png'
+import AppleBook from '../../assets/apple-book-Frame.png'
 const HompageBanner = () => {
   return (
     <>

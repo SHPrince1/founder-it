@@ -1,12 +1,12 @@
 import React from "react";
-import style from "../styles/build-business.module.css";
-import Idea from "../assets/arm.svg";
-import Light from "../assets/lamp.svg";
-import Winner from "../assets/win.svg";
-import Amazon from "../assets/black amazon logo.png";
-import AppleBook from "../assets/applebook.jpg";
-import Top from "../assets/zigzag.png";
-import Bottom from "../assets/zigzagdown.png";
+import style from "../../styles/build-business.module.css";
+import Idea from '../../assets/arm.svg'
+import Light from "../../assets/lamp.svg";
+import Winner from "../../assets/win.svg";
+import Amazon from "../../assets/black amazon logo.png";
+import AppleBook from "../../assets/applebook.jpg";
+import Top from "../../assets/zigzag.png";
+import Bottom from "../../assets/zigzagdown.png";
 const BuildBusiness = () => {
   return (
     <>

@@ -1,9 +1,9 @@
 import React from "react";
-import Fb from "../assets/fb.svg";
-import X from "../assets/x.svg";
-import Instagram from "../assets/instagram.svg";
+import Fb from "../../assets/fb.svg";
+import X from "../../assets/x.svg";
+import Instagram from "../../assets/instagram.svg";
 
-import style from "../styles/footer.module.css";
+import style from "../../styles/footer.module.css";
 
 const Footer = () => {
   return (

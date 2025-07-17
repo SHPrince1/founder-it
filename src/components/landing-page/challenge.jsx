@@ -1,13 +1,13 @@
 import React from "react";
-import Book2 from "../assets/founder-book2.png";
-import Arm from "../assets/arm.svg";
-import Piece from '../assets/piece.svg';
-import Team from '../assets/team.svg';
-import Growth from '../assets/growth.svg'
-import Author from "../assets/author.jpg";
-import Ellipse from "../assets/tickBackground.png";
-import Arrow from '../assets/arrow-right-02.png'
-import style from "../styles/challenge.module.css";
+import Book2 from "../../assets/founder-book2.png";
+import Arm from "../../assets/arm.svg";
+import Piece from '../../assets/piece.svg';
+import Team from '../../assets/team.svg';
+import Growth from '../../assets/growth.svg'
+import Author from "../../assets/author.jpg";
+import Ellipse from "../../assets/tickBackground.png";
+import Arrow from '../../assets/arrow-right-02.png'
+import style from "../../styles/challenge.module.css";
 
 const Challenge = () => {
   return (

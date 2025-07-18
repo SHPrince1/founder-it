@@ -163,7 +163,7 @@ const WhatToExpect = () => {
 
         <div className={style.journey}>
           <div className={style.rightText}>
-            <h1>DON'T WAIT  START YOUR BUSINESS NOW</h1>
+            <h1>DON'T WAIT-START YOUR BUSINESS NOW</h1>
             <p>
              Your business won't start itself
             </p>

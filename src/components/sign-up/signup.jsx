@@ -8,15 +8,13 @@ import GroupBook from "../../assets/multygroup.png";
 import SingleBook from "../../assets/singlebook.png";
 import SignupIntro from "./signup-intro";
 
-
 const SignUp = () => {
   return (
     <>
       <div className={style.container}>
         <div className={style.contentDiv}>
+          <SignupIntro />
 
-            <SignupIntro />
-         
           <div className={style.signupSection}>
             <div className={style.signupText}>
               <h4>SIGN UP</h4>

@@ -4,7 +4,9 @@ import Arm from "../../assets/arm.svg";
 import Piece from "../../assets/piece.svg";
 import Team from "../../assets/team.svg";
 import Growth from "../../assets/growth.svg";
-import Author from "../../assets/author.jpg";
+import Ladypics from "../../assets/ladypics.png";
+import Manpics from "../../assets/manpics.png";
+import Zag from '../../assets/zag.png'
 import Ellipse from "../../assets/tickBackground.png";
 import Arrow from "../../assets/arrow-right-02.png";
 import style from "../../styles/expect.module.css";
@@ -27,31 +29,43 @@ const WhatToExpect = () => {
               <button>Week 1</button>
               <div className={style.text}>
                 <h4>Discover Your Edge</h4>
-                <p>Discover your strength passion and resources</p>
+                <p>
+                  Uncover your strengths, passions, and resources. Find the idea
+                  that truly fits your life and goals.
+                </p>
               </div>
             </div>
             <div className={style.imgText}>
               {/* <img src={Piece} alt="" /> */}
-                <button>Week 2</button>
+              <button>Week 2</button>
               <div className={style.text}>
-                <h4>Week2:</h4>
-                <p>Brainstorm and refine ideas using a smart ranking method</p>
+                <h4>Generate & Select Winning Ideas</h4>
+                <p>
+                  Brainstorm, rank, and filter ideas for viability, fit, and
+                  real-world potential.
+                </p>
               </div>
             </div>
             <div className={style.imgText}>
               {/* <img src={Team} alt="" /> */}
-                <button>Week 3</button>
+              <button>Week 3</button>
               <div className={style.text}>
-                <h4>Week3:</h4>
-                <p>Validate ideas-interview real people, research demand.</p>
+                <h4>Validate Like a Pro</h4>
+                <p>
+                  Talk to real customers. Test demand. Get feedback—so you know
+                  your idea works before you invest.
+                </p>
               </div>
             </div>
             <div className={style.imgText}>
               {/* <img src={Growth} alt="" /> */}
-                <button>Week 4</button>
+              <button>Week 4</button>
               <div className={style.text}>
-                <h4>Week4:</h4>
-                <p>Finalize your idea, crunch numbers and launch</p>
+                <h4>Build & Launch</h4>
+                <p>
+                  Crunch the numbers, craft your first offer, and launch with
+                  confidence—no more guesswork.
+                </p>
               </div>
             </div>
 
@@ -65,28 +79,33 @@ const WhatToExpect = () => {
           </div>
         </div>
 
+        <div className={style.Zag}>
+            <img src={Zag} alt=""  />
+            {/* <h1>TEST</h1> */}
+        </div>
+
         <div className={style.MeetSection}>
           <div className={style.textSection}>
-            <h1>MEET IKE EZE - ENTREPRENEUR, MENTOR, VISIONARY</h1>
+            <h1>BY DAY 28, YOU'LL HAVE:</h1>
             <div className={style.tickTextDiv}>
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>Founded and exited 3 tech startup by age 30</p>
+                <p>A business idea built on your unique strengths and passions</p>
               </div>
 
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>Background in engineering, finance and venture capital</p>
+                <p>Real-world validation from actual customers</p>
               </div>
 
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>MBA from Wharton, advisor, and startup mentor</p>
+                <p>A launch-ready plan and the momentum to keep going</p>
               </div>
 
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>Leads with strategy, insight and real-world experience</p>
+                <p>The confidence to make it real</p>
               </div>
               <div className={style.want}>
                 <h4>WANT MORE INSIGHT FROM IKE?</h4>
@@ -98,16 +117,55 @@ const WhatToExpect = () => {
             </div>
           </div>
           <div className={style.imageSection}>
-            <img src={Author} width={400} alt="" />
+            <img src={Ladypics} width={400} alt="" />
           </div>
+        </div>
+        <div className={style.MeetSection}>
+
+              <div className={style.imageSection}>
+            <img src={Manpics} width={400} alt="" />
+          </div>
+          <div className={style.textSection}>
+            <h1>WHO IS THIS FOR?</h1>
+            <div className={style.tickTextDiv}>
+              <div className={style.tickText}>
+                <img src={Ellipse} width={20} alt="" />
+                <p>You’ve got a business idea but haven’t started</p>
+              </div>
+
+              <div className={style.tickText}>
+                <img src={Ellipse} width={20} alt="" />
+                <p>You’re tired of overthinking and want a proven process</p>
+              </div>
+
+              <div className={style.tickText}>
+                <img src={Ellipse} width={20} alt="" />
+                <p>You want to avoid costly mistakes and build something real</p>
+              </div>
+
+              <div className={style.tickText}>
+                <img src={Ellipse} width={20} alt="" />
+                <p>You’re ready to stop dreaming and start doing</p>
+              </div>
+              <div className={style.want}>
+                {/* <h4>WANT MORE INSIGHT FROM IKE?</h4> */}
+                <button>
+                  JOIN IKE'S SUBSTACK NEWSLETTER{" "}
+                  <img src={Arrow} alt="" size={2} />
+                </button>
+              </div>
+            </div>
+          </div>
+          {/* <div className={style.imageSection}>
+            <img src={Ladypics} width={400} alt="" />
+          </div> */}
         </div>
 
         <div className={style.journey}>
           <div className={style.rightText}>
-            <h1>YOUR BUSINESS JOURNEY STARTS NOW</h1>
+            <h1>DON'T WAIT  START YOUR BUSINESS NOW</h1>
             <p>
-              Join Thousands of aspiring entreneurs who've turned uncertainty
-              into unstoppable momentum. your dream business is one step away
+             Your business won't start itself
             </p>
             <button>
               Join the 28 Day Challenge <img src={Arrow} alt="" size={5} />

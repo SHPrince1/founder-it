@@ -1,0 +1,332 @@
+button{
+  cursor: pointer;
+}
+
+/* button:hover{
+  
+} */
+.container {
+  background-color: #f4f4f4;
+  width: 100%;
+  height: 100vh;
+  margin-top: 40px;
+  padding-top: 80px;
+}
+
+.box1 {
+  margin-top: 60px;
+  width: 50%;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  color: #000;
+}
+.box1 h2{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px;
+  text-transform: uppercase;
+
+}
+.cardDiv {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  /* align-items: center; */
+}
+.card {
+  /* border: 1px solid red; */
+  /* width: 170px; */
+  background-color: #fff;
+  border-radius: 10px;
+  color: #000;
+  padding: 20px;
+  font: poppins;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.card h3{
+  text-transform: uppercase;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: bolder;
+  font-size: 25px;
+}
+.ideaInward {
+  /* border: 1px solid red; */
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.look p {
+  text-align: center;
+  align-items: center;
+  text-transform: uppercase;
+  /* font-size: 8px; */
+}
+.uncover {
+  margin-top: -15px;
+}
+.uncover p{
+    font-size: 20px;
+    color: #666666;
+    font-family: sans-serif;
+}
+
+.buttonDiv {
+  /* border: 1px solid red; */
+  /* text-transform: uppercase; */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 60%;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.buttonDiv p{
+ font-size: 16px;
+ font-family: sans-serif;
+ font-style: italic;
+}
+.buttonDiv button {
+  /* text-transform: uppercase; */
+  width: 180px;
+  border-radius: 30px;
+  height: 45px;
+  font-size: 11.5px;
+  margin-top: 100px;
+  
+}
+.amazon {
+  border: 1px solid #fff;
+  background-color: #fff;
+  display: flex;
+  
+  gap: 10px;
+  padding: 10px;
+  color: #000;
+  align-items: center;
+  text-align: center;
+  height: 34px;
+  width: 166px;
+  border-radius: 30px;
+}
+.apple {
+  background-color: #fc8510;
+  width: 200px !important;
+  border: #fc8510;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  color: #fff;
+  align-items: center;
+  text-align: center;
+  height: 34px;
+  width: 176px;
+  border-radius: 30px;
+}
+.zigzagImage{
+  /* position: relative; */
+    width: 95%;
+    border: 1px solid #fff;
+    margin: 10px auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  }
+  .zigzagImage img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    margin: 0 auto;
+  }
+
+  .zigzagImageBotom{
+    position: relative;
+    width: 97%;
+    border: 1px solid #fff;
+    margin: 0px auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  
+  }
+   .zigzagImageBotom img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -44px auto;
+    /* box-shadow: 3px 3px 1px #707070; */
+
+  }
+
+/* MEDIA QUERRY */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .container {
+    height: 1130px;
+    width: 98%;
+    margin: 0 auto;
+  }
+  .cardDiv {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 10px;
+  }
+  .box1 {
+    width: 100%;
+    padding: 2px;
+    font-size: 14px;
+  }
+  .buttonDiv {
+    width: 90%;
+    margin: -60px auto;
+  }
+  .buttonDiv button {
+  text-transform: uppercase;
+  border: 1px solid #000;
+  width: 180px;
+  border-radius: 30px;
+  height: 45px;
+  font-size: 9.5px;
+  margin-top: 100px;
+  
+}
+
+  .zigzagImage{
+  position: relative;
+    width: 100%;
+    border: 1px solid #fff;
+    /* margin: 10px auto; */
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  }
+  .zigzagImage img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -4px auto;
+  }
+
+  .zigzagImageBotom{
+    position: relative;
+    width: 100%;
+    /* background-color: #000; */
+    border: 1px solid #fff;
+    margin: 10px auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  
+  }
+   .zigzagImageBotom img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -29px auto;
+      /* box-shadow: 3px 3px 1px #707070; */
+    /* border: 1px solid#000; */
+  }
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+  .card{
+    width: 170px;
+  }
+  .cardDiv {
+    width: 90%;
+    margin: 0 auto;
+    
+  }
+  .buttonDiv {
+    width: 50%;
+    margin: -80px auto;
+  }
+  .amazon, .apple{
+    /* width: 300px; */
+  }
+  .zigzagImage{
+    width: 99%;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  }
+  .zigzagImage img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+  }.look{
+    font-size: 8px;
+    padding: 4px;
+  }
+  .ideaInward{
+    width: 150px;
+    display: flex;
+    gap: 20px;
+  }
+  .ideaInward img{
+    width: 30px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+  .buttonDiv{
+    display: flex
+;
+    align-items: center;
+    gap: 20px;
+    width: 35%;
+    margin: -35px auto;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+  .buttonDiv{
+    /* border: 1px solid red;  */
+    /* text-transform: uppercase; */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* width: 20%; */
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /* height: 100px; */
+    /* justify-content: space-evenly; */
+    margin: 0 auto;
+    font-size: 18px;
+    gap: 50px;
+  }
+  .cardDiv{
+    /* width: 50%; */
+  }
+}

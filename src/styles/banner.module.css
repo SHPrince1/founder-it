@@ -1,0 +1,46 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.box1{
+    /* border: 1px solid red; */
+    width: 70%;
+}
+.turn {
+  font-size: 55px;
+  width: 80%;
+  font-family: "Bebas Neue", sans-serif;
+  line-height: 1;
+}
+.discover{
+    width: 80%;
+    margin-top: -50px;
+}
+.discover h5 {
+  font-size: 22px;
+  /* width: 80%; */
+  font-style: italic;
+  font-family: "Inter", sans-serif;
+  /* margin-top: -40px; */
+}
+.discover p{
+    font-size: 22px;
+    margin-top: -22px;
+    color: #4d4d4d;
+      font-family:  sans-serif;
+    }
+   
+    .amazon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        height: 50px;
+        width: 250px;
+        border-radius: 50px;
+
+}

@@ -1,0 +1,260 @@
+.Subcontainer {
+  /* width: 90%; */
+  background-color: #1a1a1a;
+  margin: 10px auto;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.textHeader{
+    color: #fff;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    column-gap: 3px;
+}
+.textHeader h2{
+    font-size: 55px;
+    width: 70%;
+    font-family: 'Bebas Neue', sans-serif;
+}
+.textHeader p{
+    font-size: 16px;
+    width: 100%;
+    margin-top: -25px;
+    font-family: sans-serif;
+    color: #a3a3a3;
+}
+.box2 .arrow{
+width: 15px;
+margin-top: -6px;
+padding: 5px;
+}
+
+.imgText {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  /* line-height: 2; */
+  /* text-align: center; */
+}
+.text {
+  line-height: 1;
+  color: #fff;
+}
+.text h4{
+    font-size: 25px;
+     font-family: 'Bebas Neue', sans-serif;
+}
+.imgText button{
+    width: 100px;
+  height: 40px;
+  background-color: #fabb14;
+  border: 1px solid #fabb14;
+  border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  width: 200px;
+  height: 40px;
+  background-color: #fabb14;
+  border: 1px solid #fabb14;
+  border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MeetSection {
+  width: 70%;
+  margin: 60px auto;
+  align-items: center;
+  display: flex;
+}
+.textSection h1{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 50px;
+  width: 85%;
+}
+.tickTextDiv{
+    line-height: 0.1;
+}
+
+.tickText{
+    display: flex;
+    gap: 15px;
+    /* line-height: 1; */
+}
+
+.journey{
+    background-image: url(../assets/framebg.jpg);
+    height: 350px;
+}
+.rightText{
+    color: #fff;
+    width: 350px;
+    padding-top: 40px;
+    margin: 20px 60%;
+    /* text-align: center; */
+    justify-content: right;
+    align-items: right;
+}.rightText h1{
+    font-size: 30px;
+}
+.rightText img{
+  width: 18px;
+  margin-top: -8px;
+}
+.rightText p{
+color: #868787;
+}
+.tickTextDiv{
+    line-height: 1;
+}
+.tickText{
+  /*justify-content: center;
+  */align-items: center;
+  font-family: Helvetica;
+  /* border: 1px solid red; */
+  background-color: #f2f4f6;
+  border-radius: 30px;
+  margin-top: 8px;
+  height: 30px;
+  width: fit-content;
+  padding: 8px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+.tickText img{
+  width: 20px;
+  height: 20px;
+}
+.want{
+    line-height: 0.5;
+}
+.want button{
+    font-size: 12px;
+    width: 260px;
+    margin-top: 0px;
+    border: 1px solid #fabb14;
+}
+.want img{
+  width: 18px;
+  margin-top: -8px;
+  padding: 5px;
+}
+
+
+
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .Subcontainer{
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    /* margin-top: 1000px; */
+  }
+  .Subcontainer img{
+    width:290px;
+  }
+  .box2{
+    width: 90%;
+    padding: 25px;
+  }
+  .imgText img{
+    width: 10%;
+  }
+  .MeetSection{
+    flex-direction: column;
+    width: 90%;
+  }
+  .rightText{
+    color: #fff;
+    width: 90%;
+    padding-top: 40px;
+    margin: 8px 6%;
+    justify-content: right;
+    align-items: right;
+  }
+  .rightText p{
+    color: #fff;
+  }
+  .imageSection img{
+    width: 100%;
+  }
+  .journey{
+    width: 98%;
+    margin: 0 auto;
+  }
+  .tickText{
+    font-size: 14px;
+  }
+
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+  .Subcontainer{
+    width: 80%;
+    background-color: #f4f4f4;
+    margin: 0 auto;
+    padding-top: 30px;
+    display: flex
+;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .book2{
+    width: 100%;
+  }
+  .book2 img{
+    width: 80%;
+  }
+  .rightText{
+    width: 45%;
+    margin: 0 50%;
+    color: #fff !important;
+  }
+  .MeetSection{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+  }
+  .imageSection img{
+    width: 100%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+  .MeetSection{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+}

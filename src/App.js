@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import TopNav from './components/top-nav';
 // import Footer from './components/footer'
 import HomePage from './pages/home';
+import IntroPage from "./pages/intro";
 
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
      <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/about" element={<AboutPage />} />
-        <Route path="/products/:id" element={<ProductPage />} /> */}
+         <Route path="/intro" element={<IntroPage />} />
+        {/* <Route path="/products/:id" element={<ProductPage />} />  */}
       </Routes>
     </Router>  );
 }

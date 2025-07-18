@@ -1,6 +1,6 @@
 import React from 'react';
-import style from '../../styles/top-nav.module.css'
-import Logo from '../../assets/logo.png'
+import style from '../styles/top-nav.module.css'
+import Logo from '../assets/logo.png'
 
 const TopNav = () => {
   return (

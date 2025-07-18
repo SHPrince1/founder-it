@@ -115,6 +115,9 @@ padding: 5px;
   display: flex;
   /* background-color: #f4f4f4; */
 }
+.textSection{
+    background-color: #fff;
+}
 .textSection h1{
   font-family: 'Bebas Neue', sans-serif;
   font-size: 50px;
@@ -127,6 +130,7 @@ padding: 5px;
 .tickText{
     display: flex;
     gap: 15px;
+    /* background-color: red; */
     /* line-height: 1; */
 }
 
@@ -161,6 +165,8 @@ color: #868787;
   font-family: Helvetica;
   /* border: 1px solid red; */
   background-color: #f2f4f6;
+
+  
   border-radius: 30px;
   margin-top: 8px;
   height: 30px;

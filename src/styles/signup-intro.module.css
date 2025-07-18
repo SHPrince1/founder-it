@@ -1,0 +1,50 @@
+.bannerSection{
+    /*background-image: url(../assets/blackbg.png);
+    */background-color: #000;
+    border-radius: 10px;
+    position: relative;
+    height: 800px;
+    width: 90%;
+    background-repeat: no-repeat;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.logDiv{
+    padding: 20px;
+    /* color: #fff; */
+}
+.logoTextSection{
+padding: 40px;
+width: 90%;
+}
+
+.logoTextSection h2{
+    color: #fff;
+    font-size: 70px;
+    margin-top: -10px;
+     font-family: 'Bebas Neue', sans-serif !important;
+}
+.logoTextSection p{
+    margin-top: -50px;
+    color: #bababa;
+    font-size: 25px;
+}
+
+.bookSection {
+    /* border: 1px solid red; */
+    width: 100%;
+    margin-right: 10px;
+    position: absolute;
+}
+.bookSectionImg{
+    margin-top: -20px;
+    width: 100%;
+    margin-right: 40px;
+}
+.singleBook{
+    position: relative;
+    margin-left: 435px;
+    margin-top: 120px;
+}

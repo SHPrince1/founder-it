@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../../styles/build-business.module.css";
-import Idea from '../../assets/arm.svg'
+import Idea from "../../assets/arm.svg";
 import Light from "../../assets/lamp.svg";
 import Winner from "../../assets/win.svg";
 import Amazon from "../../assets/black amazon logo.png";

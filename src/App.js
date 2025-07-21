@@ -13,6 +13,7 @@ import ActivityIndexPage from "./pages/activityindex";
 import Day1Part1 from "./pages/day1-part1";
 import Day1Part2 from "./pages/day1-part2";
 import Day2 from "./pages/day2";
+import Day316 from "./pages/day3-16";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/day1-part1" element={<Day1Part1 />} /> 
         <Route path="/day1-part2" element={<Day1Part2 />} /> 
         <Route path="/day2" element={<Day2 />} /> 
+        <Route path="/day3-16" element={<Day316 />} /> 
       </Routes>
     </Router>  );
 }

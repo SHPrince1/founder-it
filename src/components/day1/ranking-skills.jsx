@@ -120,7 +120,7 @@ const RankingSkills = () => {
         />
       </div>
 
-      <QuestionWithOptions />
+      {/* <QuestionWithOptions /> */}
     </div>
   );
 };

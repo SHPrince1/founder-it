@@ -1,0 +1,27 @@
+.help{
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+.emptyDiv{
+    width: 500px;
+    height: 1px;
+    background-color: #616262;
+}
+.btnDiv{
+    /* border: 1px solid red; */
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.btnDiv button{
+    border: 1px solid #999999;
+    background-color: #fff;
+    width: 280px;
+}

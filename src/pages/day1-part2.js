@@ -7,6 +7,7 @@ import style from "../styles/day1part1.module.css";
 import style2 from "../styles/day1part2.module.css";
 import TopNav from "../components/top-nav";
 import Footer from "../components/footer";
+import EditText from "../components/edittext";
 const day1Part2 = () => {
   return (
     <div className={style2.container}>
@@ -34,8 +35,10 @@ const day1Part2 = () => {
 
       <div className={style2.edit}>
         <p>
-          You can edit the list by changing the numbers assigned to the
-          attribute and clicking the "rank for me" button above
+
+            <EditText message=' You can edit the list by changing the numbers assigned to the
+          attribute and clicking the "rank for me" button above' />
+         
         </p>
       </div>
       <TableTitle

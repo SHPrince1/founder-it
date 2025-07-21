@@ -1,0 +1,30 @@
+.helpButton{
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: 0  auto 40px auto;
+    display: flex;
+    gap: 20px;
+}
+.BtnHelp{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #999999;
+    width: 370px;
+    /* height: 20px; */
+    padding: 6px;
+}
+
+.help{
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+.emptyDiv{
+    width: 500px;
+    height: 1px;
+    background-color: #616262;
+}

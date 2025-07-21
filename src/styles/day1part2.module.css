@@ -1,0 +1,23 @@
+.TableContainer {
+  /* background-color: red; */
+  height: 140vh;
+}
+.rank {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+.edit {
+  background-color: #fff;
+  border: 1px solid #999;
+  width: 40%;
+  padding: 10px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 14px;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+}

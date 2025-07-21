@@ -1,0 +1,14 @@
+.tableHeader{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.tableHeaderTitle{
+    display: flex;
+    gap: 10px;
+}
+.tableComponentDiv{
+    width: 80%;
+    margin: 0 auto;
+}

@@ -1,0 +1,58 @@
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.container {
+  padding: 24px;
+  background-color: #f5f5f5;
+}
+
+/* 🟦 Entire table wrapper */
+.customTable :where(.ant-table-wrapper) {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 🟨 Table header */
+.customTable :where(.ant-table-thead > tr > th) {
+  background-color: #e0e0e0;
+  color: #000;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px;
+}
+
+/* ✅ Right-align 3rd header */
+.customTable :where(.ant-table-thead > tr > th:nth-child(3)) {
+  text-align: right;
+}
+
+/* 🟩 Table body cells */
+.customTable :where(.ant-table-tbody > tr > td) {
+  font-size: 15px;
+  color: #333;
+  padding: 12px;
+}
+
+/* ✅ Right-align effectiveness column values */
+.customTable :where(.ant-table-tbody > tr > td:nth-child(3)) {
+  text-align: right;
+}
+
+/* 🎯 Style the input number */
+.inputRight :where(.ant-input-number) {
+  width: 70px;
+  text-align: right;
+}
+
+/* Optional hover */
+.customTable :where(.ant-table-tbody > tr:hover > td) {
+  background-color: #f0f8ff;
+}
+.InputNumber {
+    /* width: 40px; */
+  margin-left: 30px; /* Adjust this value to your preference */
+}

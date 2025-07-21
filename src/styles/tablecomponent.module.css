@@ -1,0 +1,56 @@
+
+.customTable{
+    height: 100vh;
+}
+/* ✅ Center the "ACTIVITY" header (2nd column) */
+.customTable :where(.ant-table-thead > tr > th:nth-child(2)) {
+  text-align: center;
+}
+
+/* ✅ Center the "ACTIVITY" body cells (2nd column) */
+.customTable :where(.ant-table-tbody > tr > td:nth-child(2)) {
+  text-align: center;
+}
+
+/* ✅ Center the activity link text */
+.customTable :where(.ant-table-tbody a) {
+  /* display: inline-block; */
+  width: 100%;
+  /* text-align: center; */
+  color: red !important;
+  text-decoration: none;
+}
+
+.customTable :where(.ant-table-tbody a:hover) {
+  text-decoration: underline;
+}
+/* 🟦 Style ALL table headers */
+.customTable :where(.ant-table-thead > tr > th) {
+  background-color: #d9d9d9;
+  color: #222;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 12px;
+  text-align: center;
+}
+
+/* ✅ Make "ACTIVITY" column header centered and styled */
+.customTable :where(.ant-table-thead > tr > th:nth-child(2)) {
+  text-align: center;
+  font-size: 20px;       /* override font-size */
+  color: #003366;        /* custom color */
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif; /* Or your preferred font */
+}
+
+/* .customTable :where(.ant-table-tbody a) {
+    color: red;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    -webkit-text-decoration-skip: objects;
+} */

@@ -1,0 +1,111 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+.textBox {
+  /* border: 1px solid red; */
+  width: 50%;
+  margin: 0 auto;
+}
+.textBox h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 50px;
+  text-align: center;
+}
+.textBox p{
+    font-family: sans-serif;
+    padding: 10px;
+    line-height: 1;
+    color: #616262;
+    font-weight: bold;
+
+}
+.textNumBox{
+    /* line-height: 0.1; */
+}
+.textNum{
+    display: flex;
+    font-size: 14px;
+    margin-top: -10px;
+    /* line-height: 0.1; */
+}
+.num{
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    /* border: 1px solid red; */
+    background-color: #ffb900;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.num p{
+    color: #000 !important;
+
+}
+.help{
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+}
+.emptyDiv{
+    width: 500px;
+    height: 1px;
+    background-color: #616262;
+}
+.helpButton{
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: 0  auto 40px auto;
+    display: flex;
+    gap: 20px;
+}
+.BtnHelp{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #999999;
+    width: 370px;
+    /* height: 20px; */
+    padding: 6px;
+}
+.tableTitle{
+    text-transform: uppercase;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.tableTitle h1{
+    font-size: 38px;
+    font-family:"Bebas Neue", sans-serif ;
+    align-items: center;
+}
+.tableTitle h5{
+    color: #ffb900;
+    font-size: 20px;
+}
+.TableContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+.BtnDiv {
+  /* border: 1px solid red; */
+  width: 25%;
+  display: flex;
+  /* justify-content: flex-end; Push children to the right inside the box */
+  /* align-items: flex-end; */
+  gap: 30px;
+  margin-left: auto; /*This pushes the .BtnDiv itself to the right of the parent*/
+}
+.BtnDivSave {
+  background-color: #000;
+  color: #fff;
+}

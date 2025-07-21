@@ -1,0 +1,60 @@
+.textSection{
+    /* border: 1px solid red; */
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+.textSection h1{
+    font-size: 80px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+.textSection p{
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: -50px;
+}
+.vidSection{
+    /* border: 1px solid red; */
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+/* media querry */
+
+/* Extra small: phones */
+@media (max-width: 575px) { 
+
+.textSection{
+    width: 50%;
+}
+
+.vidSection{
+    width: 90%;
+    margin: 0 auto;
+}
+.vidSection img{
+    width: 70%;
+}
+
+}
+
+/* Small: larger phones */
+@media (min-width: 576px) and (max-width: 767px) { }
+
+/* Medium: tablets */
+@media (min-width: 768px) and (max-width: 991px) { }
+
+/* Large: small laptops */
+@media (min-width: 992px) and (max-width: 1199px) { }
+
+/* Extra large: desktops */
+@media (min-width: 1200px) and (max-width: 1399px) { }
+
+/* Extra extra large: big monitors */
+@media (min-width: 1400px) { }

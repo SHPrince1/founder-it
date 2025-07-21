@@ -1,0 +1,15 @@
+.tableTitle{
+    text-transform: uppercase;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.tableTitle h1{
+    font-size: 38px;
+    font-family:"Bebas Neue", sans-serif ;
+    align-items: center;
+}
+.tableTitle h5{
+    color: #ffb900;
+    font-size: 20px;
+}

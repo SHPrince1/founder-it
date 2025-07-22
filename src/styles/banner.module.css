@@ -44,3 +44,189 @@
         border-radius: 50px;
 
 }
+
+
+
+
+/* MEDIA QUERRY */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .container {
+    height: 1130px;
+    flex-direction: column;
+    width: 98%;
+    margin: 0 auto;
+  }
+  .turn{
+        font-size: 28px;
+    width: 86%;
+    margin: 0 auto;
+    font-family: "Bebas Neue", sans-serif;
+    line-height: 1
+  }
+  .discover{
+    margin: 0 auto;
+  }
+  .box2{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .box2 img{
+    width: 80%;
+  }
+  .cardDiv {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 10px;
+  }
+  .box1 {
+    width: 100%;
+    padding: 2px;
+    font-size: 14px;
+  }
+  .buttonDiv {
+    width: 90%;
+    margin: -60px auto;
+  }
+  .buttonDiv button {
+  text-transform: uppercase;
+  border: 1px solid #000;
+  width: 180px;
+  border-radius: 30px;
+  height: 45px;
+  font-size: 9.5px;
+  margin-top: 100px;
+  
+}
+
+  .zigzagImage{
+  position: relative;
+    width: 100%;
+    border: 1px solid #fff;
+    /* margin: 10px auto; */
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  }
+  .zigzagImage img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -4px auto;
+  }
+
+  .zigzagImageBotom{
+    position: relative;
+    width: 100%;
+    /* background-color: #000; */
+    border: 1px solid #fff;
+    margin: 10px auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  
+  }
+   .zigzagImageBotom img{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: -29px auto;
+      /* box-shadow: 3px 3px 1px #707070; */
+    /* border: 1px solid#000; */
+  }
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+  .card{
+    width: 170px;
+  }
+  .cardDiv {
+    width: 90%;
+    margin: 0 auto;
+    
+  }
+  .buttonDiv {
+    width: 50%;
+    margin: -80px auto;
+  }
+  .amazon, .apple{
+    /* width: 300px; */
+  }
+  .zigzagImage{
+    width: 99%;
+    margin: 0 auto;
+    /* border: 1px solid red; */
+    /* margin-top: 10px; */
+    
+  }
+  .zigzagImage img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+  }.look{
+    font-size: 8px;
+    padding: 4px;
+  }
+  .ideaInward{
+    width: 150px;
+    display: flex;
+    gap: 20px;
+  }
+  .ideaInward img{
+    width: 30px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+  .buttonDiv{
+    display: flex
+;
+    align-items: center;
+    gap: 20px;
+    width: 35%;
+    margin: -35px auto;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+  .buttonDiv{
+    /* border: 1px solid red;  */
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* width: 20%; */
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    /* height: 100px; */
+    /* justify-content: space-evenly; */
+    margin: 0 auto;
+    font-size: 18px;
+    gap: 50px;
+  }
+  .cardDiv{
+    /* width: 50%; */
+  }
+}

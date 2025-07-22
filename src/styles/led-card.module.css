@@ -184,13 +184,17 @@ button{
     margin-top: 10px;
   }
   .box1 {
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     padding: 2px;
     font-size: 14px;
   }
+  .box1 h2{
+    font-size: 24px;
+  }
   .buttonDiv {
     width: 90%;
-    margin: -60px auto;
+    margin: 0px auto;
   }
   .buttonDiv button {
   text-transform: uppercase;

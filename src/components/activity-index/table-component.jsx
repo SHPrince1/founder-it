@@ -7,7 +7,7 @@ const data = [
     key: "1",
     day: "DAY 1",
     activity: "Identify your skills and interest",
-    link: "/day1",
+    link: "/day1-part1",
   },
   {
     key: "2",
@@ -19,19 +19,19 @@ const data = [
     key: "3",
     day: "DAY 3-16",
     activity: "Finding the right idea(s)",
-    link: "/day3",
+    link: "/day3-16",
   },
   {
     key: "4",
     day: "DAY 17-25",
     activity: "Testing your idea with target market",
-    link: "/day4",
+    link: "/day17-25",
   },
   {
     key: "5",
     day: "DAY 26",
     activity: "Testing something else",
-    link: "/day5",
+    link: "/day26",
   },
   {
     key: "6",

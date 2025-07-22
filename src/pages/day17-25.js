@@ -5,7 +5,7 @@ import Vid from "../assets/vid.png";
 import style from "../styles/day3-16.module.css";
 import InstructionSteps from "../components/instruction-step";
 import TableTitle from "../components/day1/table-title";
-import IdeaTableList from "../components/ideaslist-table";
+// import IdeaTableList from "../components/ideaslist-table";
 import RankinkIdeaList from '../components/ranking-idea-table'
 
 const Day1725 = () => {

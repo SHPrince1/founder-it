@@ -6,7 +6,7 @@ const data = [
   {
     key: "1",
     day: "Fleet Tracker for small delivery businesses as you want to know where trucks/buses/bikes are 24/7",
-    solution: "Low-cost GPS + dashboard to track truck/bus/bike fleets",
+    solution: "Low-cost GPS + dashboard to track truck/bus/bike fleets",
   },
   {
     key: "2",
@@ -22,7 +22,7 @@ const data = [
   },
   {
     key: "4",
-    day: "Vertical job board for climate-tech roles because these jobs are difficult to find and aggregate",
+    day: "Vertical job board for climate-tech roles because these jobs are difficult to find and aggregate",
     solution:
       "Curated listings, hiring support, and candidate communities focused on climate startups via a website",
   },

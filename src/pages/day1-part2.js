@@ -49,7 +49,7 @@ const day1Part2 = () => {
       <div className={style2.TableContainer}>
         <RankingSkills />
       </div>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 };

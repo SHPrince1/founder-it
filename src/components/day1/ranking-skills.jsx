@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Table, InputNumber } from "antd";
 import style from "../../styles/day1.module.css";
-import QuestionWithOptions from "../questionwithoptions";
+// import QuestionWithOptions from "../questionwithoptions";
 const initialData = [
   {
     key: "1",

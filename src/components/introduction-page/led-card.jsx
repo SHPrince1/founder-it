@@ -3,8 +3,6 @@ import style from "../../styles/led-card.module.css";
 import Idea from "../../assets/arm.svg";
 import Light from "../../assets/lamp.svg";
 import Winner from "../../assets/win.svg";
-import Amazon from "../../assets/black amazon logo.png";
-import AppleBook from "../../assets/applebook.jpg";
 import Top from "../../assets/zigzag.png";
 import Bottom from "../../assets/zigzagdown.png";
 const LedCard = () => {

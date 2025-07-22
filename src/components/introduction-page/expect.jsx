@@ -1,9 +1,6 @@
 import React from "react";
 import Book2 from "../../assets/founderbookcopy.png";
-import Arm from "../../assets/arm.svg";
-import Piece from "../../assets/piece.svg";
-import Team from "../../assets/team.svg";
-import Growth from "../../assets/growth.svg";
+
 import Ladypics from "../../assets/ladypics.png";
 import Manpics from "../../assets/manpics.png";
 import Zag from '../../assets/zag.png'

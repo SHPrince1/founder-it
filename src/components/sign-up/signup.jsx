@@ -3,9 +3,7 @@ import style from "../../styles/signup.module.css";
 import Google from "../../assets/google.png";
 import Fb from "../../assets/fb.png";
 import Link from "../../assets/linkdln.png";
-import FFlogo from "../../assets/FFlogo.png";
-import GroupBook from "../../assets/multygroup.png";
-import SingleBook from "../../assets/singlebook.png";
+
 import SignupIntro from "./signup-intro";
 
 const SignUp = () => {

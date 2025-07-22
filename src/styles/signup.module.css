@@ -263,6 +263,9 @@
   .contentDiv{
     flex-direction: column;
   }
+  .signupSection{
+    width: 100%;
+  }
 }
 
 /* Small devices (portrait tablets, 576px and up) */

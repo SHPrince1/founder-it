@@ -29,10 +29,12 @@ const Banner = () => {
           </div>
 
           <div className={style.buttonDiv}>
-            <button className={style.amazon}>
-              <p>JOIN THE CHALLENGE</p>
-            <img src={Arrow} width={20} alt="" />
-            </button>
+            <a href="/signup-page">
+              <button className={style.amazon}>
+                <p>JOIN THE CHALLENGE</p>
+                <img src={Arrow} width={20} alt="" />
+              </button>
+            </a>
           </div>
         </div>
 

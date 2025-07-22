@@ -3,7 +3,7 @@ import Book2 from "../../assets/founderbookcopy.png";
 
 import Ladypics from "../../assets/ladypics.png";
 import Manpics from "../../assets/manpics.png";
-import Zag from '../../assets/zag.png'
+import Zag from "../../assets/zag.png";
 import Ellipse from "../../assets/tickBackground.png";
 import Arrow from "../../assets/arrow-right-02.png";
 import style from "../../styles/expect.module.css";
@@ -65,11 +65,12 @@ const WhatToExpect = () => {
                 </p>
               </div>
             </div>
-
-            <button>
-              Join the 28 Day Challenge{" "}
-              <img src={Arrow} alt="" size={5} className={style.arrow} />
-            </button>
+            <a href="/signup-page">
+              <button>
+                Join the 28 Day Challenge{" "}
+                <img src={Arrow} alt="" size={5} className={style.arrow} />
+              </button>
+            </a>
           </div>
           <div className={style.book2}>
             <img src={Book2} alt="" />
@@ -77,8 +78,8 @@ const WhatToExpect = () => {
         </div>
 
         <div className={style.Zag}>
-            <img src={Zag} alt=""  />
-            {/* <h1>TEST</h1> */}
+          <img src={Zag} alt="" />
+          {/* <h1>TEST</h1> */}
         </div>
 
         <div className={style.MeetSection}>
@@ -87,7 +88,9 @@ const WhatToExpect = () => {
             <div className={style.tickTextDiv}>
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>A business idea built on your unique strengths and passions</p>
+                <p>
+                  A business idea built on your unique strengths and passions
+                </p>
               </div>
 
               <div className={style.tickText}>
@@ -106,10 +109,13 @@ const WhatToExpect = () => {
               </div>
               <div className={style.want}>
                 <h4>WANT MORE INSIGHT FROM IKE?</h4>
-                <button>
-                  JOIN IKE'S SUBSTACK NEWSLETTER{" "}
-                  <img src={Arrow} alt="" size={2} />
-                </button>
+
+                <a href="/signup-page">
+                  <button>
+                    JOIN IKE'S SUBSTACK NEWSLETTER{" "}
+                    <img src={Arrow} alt="" size={2} />
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -118,8 +124,7 @@ const WhatToExpect = () => {
           </div>
         </div>
         <div className={style.MeetSection}>
-
-              <div className={style.imageSection}>
+          <div className={style.imageSection}>
             <img src={Manpics} width={400} alt="" />
           </div>
           <div className={style.textSection}>
@@ -137,7 +142,9 @@ const WhatToExpect = () => {
 
               <div className={style.tickText}>
                 <img src={Ellipse} width={20} alt="" />
-                <p>You want to avoid costly mistakes and build something real</p>
+                <p>
+                  You want to avoid costly mistakes and build something real
+                </p>
               </div>
 
               <div className={style.tickText}>
@@ -146,10 +153,13 @@ const WhatToExpect = () => {
               </div>
               <div className={style.want}>
                 {/* <h4>WANT MORE INSIGHT FROM IKE?</h4> */}
-                <button>
-                  JOIN IKE'S SUBSTACK NEWSLETTER{" "}
-                  <img src={Arrow} alt="" size={2} />
-                </button>
+
+                <a href="/signup-page">
+                  <button>
+                    JOIN IKE'S SUBSTACK NEWSLETTER{" "}
+                    <img src={Arrow} alt="" size={2} />
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -161,12 +171,12 @@ const WhatToExpect = () => {
         <div className={style.journey}>
           <div className={style.rightText}>
             <h1>DON'T WAIT-START YOUR BUSINESS NOW</h1>
-            <p>
-             Your business won't start itself
-            </p>
-            <button>
-              Join the 28 Day Challenge <img src={Arrow} alt="" size={5} />
-            </button>
+            <p>Your business won't start itself</p>
+            <a href="/signup-page">
+              <button>
+                Join the 28 Day Challenge <img src={Arrow} alt="" size={5} />
+              </button>
+            </a>
           </div>
         </div>
       </div>

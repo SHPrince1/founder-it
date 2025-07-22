@@ -31,7 +31,14 @@
 @media (max-width: 575px) { 
 
 .textSection{
-    width: 50%;
+    width: 100%;
+    /* margin-top: -20px; */
+}
+.textSection p{
+    margin-top: 0 ;
+}
+.textSection h1{
+    font-size: 30px;
 }
 
 .vidSection{
@@ -39,7 +46,7 @@
     margin: 0 auto;
 }
 .vidSection img{
-    width: 70%;
+    width: 100%;
 }
 
 }

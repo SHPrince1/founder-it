@@ -109,3 +109,40 @@
   background-color: #000;
   color: #fff;
 }
+
+
+/* media querry */
+
+/* Extra small: phones */
+@media (max-width: 575px) { 
+.TableContainer{
+  width: 100%;
+}
+.textBox{
+  width: 90%;
+}
+.helpButton{
+  width: 95%;
+}
+.tableTitle{
+  width: 90%;
+}
+.BtnDiv{
+  width: 90%;
+}
+}
+
+/* Small: larger phones */
+@media (min-width: 576px) and (max-width: 767px) { }
+
+/* Medium: tablets */
+@media (min-width: 768px) and (max-width: 991px) { }
+
+/* Large: small laptops */
+@media (min-width: 992px) and (max-width: 1199px) { }
+
+/* Extra large: desktops */
+@media (min-width: 1200px) and (max-width: 1399px) { }
+
+/* Extra extra large: big monitors */
+@media (min-width: 1400px) { }

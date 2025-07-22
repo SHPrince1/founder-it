@@ -197,7 +197,10 @@ color: #868787;
   padding: 5px;
 }
 
-
+.Zag img{
+    width: 100%;
+    margin: -20px auto;
+}
 
 
 /* Extra small devices (phones, less than 576px) */
@@ -206,6 +209,7 @@ color: #868787;
   .Subcontainer{
     flex-direction: column;
     width: 90%;
+    height: 70rem;
     margin: 0 auto;
     /* margin-top: 1000px; */
   }
@@ -223,6 +227,24 @@ color: #868787;
     flex-direction: column;
     width: 90%;
   }
+  .text{
+    width: 100%;
+    line-height: 1;
+  }
+  .text p{
+    font-size: 13px;
+  }
+  .textHeader h2{
+    font-size: 30px;
+    width: 90%;
+    font-family: 'Bebas Neue', sans-serif;
+    
+  }
+  .textSection h1{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  width: 85%;
+}
   .rightText{
     color: #fff;
     width: 90%;

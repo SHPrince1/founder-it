@@ -1,0 +1,63 @@
+.container{
+    width: 90%;
+    height: 200vh;
+    margin: 0 auto;
+       /* border: 1px solid red; */
+}
+.congratDiv{
+    /* border: 1px solid red; */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.congratH2{
+
+    width: 46%;
+        margin: 20px auto;
+        text-align: center;
+}
+.btnsDiv{
+    display: flex;
+    gap: 20px;
+}
+
+
+
+
+.signUpWithBox2Buttton{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.signUpWithBox2Buttton button{
+    /* border: red; */
+    width: 180px;
+    height: 48px;
+    border-radius: 30px;
+   
+}
+.signUpWithBox2Buttton .signUpWithBox2ButttonFb{
+    background-color: #106aff;
+    color:#fff;
+    gap: 12px;
+    border: 1px solid #106aff;
+    
+}
+.signUpWithBox2Buttton .signUpWithBox2ButttonGg{
+    background-color: #00b412;
+    border: 1px solid #ccc;
+    display: flex;
+    gap: 12px;
+}
+.signUpWithBox2Buttton .signUpWithBox2Butttonld{
+    background-color: #087bb7;
+    border: 1px solid #087bb7;
+    color:#fff;
+     gap: 12px;
+     align-items: center;
+}

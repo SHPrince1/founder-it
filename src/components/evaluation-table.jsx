@@ -1,28 +1,17 @@
 import { useState } from "react";
-import { Table, InputNumber } from "antd";
+import { Table, InputNumber, Divider } from "antd";
 import style from "../styles/idea-table-list.module.css";
 
-const data = [
-  {
-    key: "1",
-    day: "Problem 1",
-    skills: "Skill A, Skill B",
-  },
-  {
-    key: "2",
-    day: "Problem 2",
-    skills: "Skill C, Skill D",
-  },
-  {
-    key: "3",
-    day: "Problem 3",
-    skills: "Skill E",
-  },
-  {
-    key: "4",
-    day: "Problem 4",
-    skills: "Skill F, Skill G",
-  },
+// Part 1 Data
+const dataPart1 = [
+  { key: "1", skills: "Skill A, Skill B" },
+  { key: "2", skills: "Skill C, Skill D" },
+];
+
+// Part 2 Data
+const dataPart2 = [
+  { key: "3", skills: "Skill E" },
+  { key: "4", skills: "Skill F, Skill G" },
 ];
 
 const EvaluationTable = () => {
@@ -38,17 +27,17 @@ const EvaluationTable = () => {
     }));
   };
 
-  const getTotal = (field) => {
-    return Object.values(inputs).reduce((sum, row) => sum + (row?.[field] || 0), 0);
+  const getTotal = (field, keys) => {
+    return keys.reduce((sum, key) => sum + (inputs[key]?.[field] || 0), 0);
   };
 
-  const columns = [
+  const keysPart1 = dataPart1.map((item) => item.key);
+  const keysPart2 = dataPart2.map((item) => item.key);
+
+  // 💡 Table 1 Columns
+  const columnsPart1 = [
     {
-      title: "IDEA/PROBLEM",
-      dataIndex: "day",
-    },
-    {
-      title: "Skills Required for Idea to Succeed",
+      title: "Skills Needed (Part 1)",
       dataIndex: "skills",
     },
     {
@@ -58,7 +47,7 @@ const EvaluationTable = () => {
       render: (_, record) => (
         <InputNumber
           min={0}
-          max={10} // ✅ Limit to max 10
+          max={10}
           value={inputs[record.key]?.needs}
           onChange={(val) => handleInputChange(record.key, "needs", val)}
         />
@@ -71,7 +60,7 @@ const EvaluationTable = () => {
       render: (_, record) => (
         <InputNumber
           min={0}
-          max={10} // ✅ Limit to max 10
+          max={10}
           value={inputs[record.key]?.have}
           onChange={(val) => handleInputChange(record.key, "have", val)}
         />
@@ -84,7 +73,54 @@ const EvaluationTable = () => {
       render: (_, record) => (
         <InputNumber
           min={0}
-          max={10} // ✅ Limit to max 10
+          max={10}
+          value={inputs[record.key]?.gap}
+          onChange={(val) => handleInputChange(record.key, "gap", val)}
+        />
+      ),
+    },
+  ];
+
+  // 💡 Table 2 Columns (different headings)
+  const columnsPart2 = [
+    {
+      title: "FIT ASSESSMENT Things I Want vs What Idea Offers",
+      dataIndex: "skills",
+    },
+    {
+      title: "OFFERS",
+      key: "needs",
+      align: "center",
+      render: (_, record) => (
+        <InputNumber
+          min={0}
+          max={10}
+          value={inputs[record.key]?.needs}
+          onChange={(val) => handleInputChange(record.key, "needs", val)}
+        />
+      ),
+    },
+    {
+      title: "I WANT",
+      key: "have",
+      align: "center",
+      render: (_, record) => (
+        <InputNumber
+          min={0}
+          max={10}
+          value={inputs[record.key]?.have}
+          onChange={(val) => handleInputChange(record.key, "have", val)}
+        />
+      ),
+    },
+    {
+      title: "GAP",
+      key: "gap",
+      align: "center",
+      render: (_, record) => (
+        <InputNumber
+          min={0}
+          max={10}
           value={inputs[record.key]?.gap}
           onChange={(val) => handleInputChange(record.key, "gap", val)}
         />
@@ -94,27 +130,70 @@ const EvaluationTable = () => {
 
   return (
     <div className={style.container}>
+      <h3>Part 1</h3>
       <Table
-        columns={columns}
-        dataSource={data}
+        columns={columnsPart1}
+        dataSource={dataPart1}
         pagination={false}
         rowKey="key"
         summary={() => (
           <Table.Summary.Row>
-            <Table.Summary.Cell index={0} colSpan={2}>
-              <strong>Total</strong>
-            </Table.Summary.Cell>
-            <Table.Summary.Cell index={2} align="center">
-              <strong>{getTotal("needs")}</strong>
-            </Table.Summary.Cell>
-            <Table.Summary.Cell index={3} align="center">
-              <strong>{getTotal("have")}</strong>
-            </Table.Summary.Cell>
-            <Table.Summary.Cell index={4} align="center">
-              <strong>{getTotal("gap")}</strong>
-            </Table.Summary.Cell>
+            <Table.Summary.Cell colSpan={2}><strong>Subtotal</strong></Table.Summary.Cell>
+            <Table.Summary.Cell align="center"><strong>{getTotal("needs", keysPart1)}</strong></Table.Summary.Cell>
+            <Table.Summary.Cell align="center"><strong>{getTotal("have", keysPart1)}</strong></Table.Summary.Cell>
+            <Table.Summary.Cell align="center"><strong>{getTotal("gap", keysPart1)}</strong></Table.Summary.Cell>
           </Table.Summary.Row>
         )}
+      />
+
+      <Divider />
+
+      <h3>Part 2</h3>
+      <Table
+        columns={columnsPart2}
+        dataSource={dataPart2}
+        pagination={false}
+        rowKey="key"
+        summary={() => (
+          <Table.Summary.Row>
+            <Table.Summary.Cell colSpan={2}><strong>Subtotal</strong></Table.Summary.Cell>
+            <Table.Summary.Cell align="center"><strong>{getTotal("needs", keysPart2)}</strong></Table.Summary.Cell>
+            <Table.Summary.Cell align="center"><strong>{getTotal("have", keysPart2)}</strong></Table.Summary.Cell>
+            <Table.Summary.Cell align="center"><strong>{getTotal("gap", keysPart2)}</strong></Table.Summary.Cell>
+          </Table.Summary.Row>
+        )}
+      />
+
+      <Divider />
+
+      <h3>Overall Total</h3>
+      <Table
+        columns={[
+          {
+            title: "Total of All Sections",
+            colSpan: 2,
+            render: () => <strong>Total</strong>,
+          },
+          {},
+          {
+            title: "Total NEEDS",
+            render: () => <strong>{getTotal("needs", [...keysPart1, ...keysPart2])}</strong>,
+            align: "center",
+          },
+          {
+            title: "Total I HAVE",
+            render: () => <strong>{getTotal("have", [...keysPart1, ...keysPart2])}</strong>,
+            align: "center",
+          },
+          {
+            title: "Total GAP",
+            render: () => <strong>{getTotal("gap", [...keysPart1, ...keysPart2])}</strong>,
+            align: "center",
+          },
+        ]}
+        dataSource={[{}]}
+        pagination={false}
+        showHeader={false}
       />
     </div>
   );

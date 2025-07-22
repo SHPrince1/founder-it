@@ -1,0 +1,21 @@
+.header{
+    /* border: 1px solid red; */
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+      font-family: 'Bebas Neue', sans-serif;
+}
+
+.btnDiv{
+    /* border: 1px solid red; */
+    width: 15%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.btnDiv button{
+    background-color: #fff;
+    border: 1px solid #c3c3c3;
+}

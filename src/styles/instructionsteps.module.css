@@ -8,38 +8,36 @@
   font-size: 50px;
   text-align: center;
 }
-.textBox p{
-    font-family: sans-serif;
-    padding: 10px;
-    line-height: 1;
-    color: #616262;
-    font-weight: bold;
-
+.textBox p {
+  font-family: sans-serif;
+  padding: 10px;
+  line-height: 1;
+  color: #616262;
+  font-weight: bold;
 }
-.textNumBox{
-    /* line-height: 0.1; */
+.textNumBox {
+  /* line-height: 0.1; */
 }
-.textNum{
-    display: flex;
-    font-size: 14px;
-    margin-top: -10px;
-    /* line-height: 0.1; */
+.textNum {
+  display: flex;
+  font-size: 14px;
+  margin-top: -10px;
+  /* line-height: 0.1; */
 }
-.num{
-    width: 20px;
-    height: 20px;
-    padding: 10px;
-    text-align: center;
-    color: #000;
-    /* border: 1px solid red; */
-    background-color: #ffb900;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
+.num {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  text-align: center;
+  color: #000;
+  /* border: 1px solid red; */
+  background-color: #ffb900;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
-.num p{
-    color: #000 !important;
-
+.num p {
+  color: #000 !important;
 }

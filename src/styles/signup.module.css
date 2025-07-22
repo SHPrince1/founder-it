@@ -250,3 +250,41 @@
     -ms-border-radius: 30px;
     -o-border-radius: 30px;
 }
+
+
+
+
+
+
+/* MEDIA QUERRY */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .contentDiv{
+    flex-direction: column;
+  }
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+ 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+ 
+  }
+

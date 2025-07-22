@@ -24,7 +24,7 @@ width: 90%;
     color: #fff;
     font-size: 70px;
     margin-top: -10px;
-     font-family: 'Bebas Neue', sans-serif !important;
+     font-family: 'Bebas Neue', sans-serif!important;
 }
 .logoTextSection p{
     margin-top: -50px;
@@ -48,3 +48,53 @@ width: 90%;
     margin-left: 435px;
     margin-top: 120px;
 }
+
+
+
+
+
+
+/* MEDIA QUERRY */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  /* styles for phones */
+  .bannerSection{
+    width: 100%;
+    height: auto;
+  }
+  .logoTextSection h2{
+    font-size: 20px;
+  }
+  .logoTextSection p{
+    margin-top: 0 ;
+    font-size: 17px;
+  }
+  .bookSectionImg{
+    margin-top: -80px;
+    width: 100%;
+    margin-right: 40px;
+}
+}
+
+/* Small devices (portrait tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* styles for small tablets */
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* styles for tablets */
+ 
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* styles for small laptops/desktops */
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* styles for large screens */
+ 
+  }

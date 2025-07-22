@@ -5,11 +5,11 @@ import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
 import style from "../styles/day3-16.module.css";
 import style2 from "../styles/day26.module.css";
-import InstructionSteps from "../components/instruction-step";
+// import InstructionSteps from "../components/instruction-step";
 import TableTitle from "../components/day1/table-title";
-import IdeaTableList from "../components/ideaslist-table";
+// import IdeaTableList from "../components/ideaslist-table";
 import EditText from "../components/edittext";
-import RankinkIdeaList from "../components/ranking-idea-table";
+// import RankinkIdeaList from "../components/ranking-idea-table";
 const Day26 = () => {
   return (
     <div>

@@ -4,7 +4,7 @@ import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
 import EditText from "../components/edittext";
 import style from "../styles/day27.module.css";
-import style2 from "../styles/banner.module.css";
+// import style2 from "../styles/banner.module.css";
 import TableTitle from "../components/day1/table-title";
 import AccessmentTable from "../components/accessment-table";
 const Day27 = () => {

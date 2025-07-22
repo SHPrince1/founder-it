@@ -5,7 +5,7 @@ import Vid from "../assets/vid.png";
 import Google from "../assets/plus.png";
 import Fb from "../assets/fb.png";
 import Link from "../assets/linkdln.png";
-import FFlogo from "../assets/FFlogo.png";
+// import FFlogo from "../assets/FFlogo.png";
 import EditText from "../components/edittext";
 import Footer from "../components/footer";
 import style from "../styles/day28.module.css";

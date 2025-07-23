@@ -8,7 +8,9 @@ const Login = () => {
     <div>
       <TopNav />
       <LoginComponent />
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };

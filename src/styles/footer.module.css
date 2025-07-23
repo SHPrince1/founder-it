@@ -31,9 +31,14 @@
 @media (max-width: 575.98px) {
   /* styles for phones */
  .container{
-    flex-direction: column;
+      
+        flex-direction: column;
         height: 130px;
         width: 90%;
+        position: relative;
+        margin-top: 32px;
+        margin-left: -50px;
+  
  }
 }
 

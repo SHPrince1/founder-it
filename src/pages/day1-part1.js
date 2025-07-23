@@ -6,10 +6,11 @@ import Vid from "../assets/vid.png";
 import style from "../styles/day1part1.module.css";
 import TopNav from "../components/top-nav";
 import Footer from "../components/footer";
+import ButtonNextPre from "../components/button-next-pre";
 const Day1Part1 = () => {
   return (
     <div className={style.container}>
-        <TopNav />
+      <TopNav />
       <TableBanner
         title="28-DAY CHALLENGE"
         description="DAY1-PART1"
@@ -63,9 +64,12 @@ const Day1Part1 = () => {
       <div className={style.TableContainer}>
         <TableWithInput />
         <PassionTable />
-        <div className={style.BtnDiv}>
+        {/* <div className={style.BtnDiv}>
           <button className={style.BtnDivSave}>SAVE</button>
           <button className={style.BtnDivUbmit}>SUBMIT</button>
+        </div> */}
+        <div className={style.btnContainer}>
+          <ButtonNextPre />
         </div>
       </div>
 

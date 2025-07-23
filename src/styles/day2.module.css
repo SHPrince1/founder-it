@@ -26,6 +26,12 @@
     width: 280px;
 }
 
+.btnContainer{
+    width: 65%;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+}
+
 /* MEDIA QUERRY */
 /* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {

@@ -1,6 +1,8 @@
 .TableContainer {
   /* background-color: red; */
-  height: 140vh;
+  /* height: 140vh; */
+  margin: 0 auto;
+  width: 80%;
 }
 .rank {
   width: 50%;
@@ -20,4 +22,9 @@
   -moz-border-radius: 14px;
   -ms-border-radius: 14px;
   -o-border-radius: 14px;
+}
+.btnContainer{
+    width: 65%;
+    border: 1px solid red;
+    margin: 0 auto;
 }

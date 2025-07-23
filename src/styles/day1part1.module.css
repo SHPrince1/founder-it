@@ -110,7 +110,11 @@
   color: #fff;
 }
 
-
+.btnContainer{
+    width: 80%;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+}
 /* media querry */
 
 /* Extra small: phones */

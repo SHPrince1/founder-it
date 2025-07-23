@@ -1,0 +1,13 @@
+.BtnDiv {
+  /* border: 1px solid red; */
+  width: 25%;
+  display: flex;
+  /* justify-content: flex-end; Push children to the right inside the box */
+  /* align-items: flex-end; */
+  gap: 30px;
+  margin-left: auto; /*This pushes the .BtnDiv itself to the right of the parent*/
+}
+.BtnDivSave {
+  background-color: #000;
+  color: #fff;
+}

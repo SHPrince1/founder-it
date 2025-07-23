@@ -8,10 +8,11 @@ import style2 from "../styles/day1part2.module.css";
 import TopNav from "../components/top-nav";
 import Footer from "../components/footer";
 import EditText from "../components/edittext";
+import ButtonNextPre from "../components/button-next-pre";
 const day1Part2 = () => {
   return (
     <div className={style2.container}>
-        <TopNav/>
+      <TopNav />
       <TableBanner
         title="28-DAY CHALLENGE"
         description="DAY1-PART2"
@@ -35,10 +36,10 @@ const day1Part2 = () => {
 
       <div className={style2.edit}>
         <p>
-
-            <EditText message=' You can edit the list by changing the numbers assigned to the
-          attribute and clicking the "rank for me" button above' />
-         
+          <EditText
+            message=' You can edit the list by changing the numbers assigned to the
+          attribute and clicking the "rank for me" button above'
+          />
         </p>
       </div>
       <TableTitle
@@ -48,8 +49,12 @@ const day1Part2 = () => {
       />
       <div className={style2.TableContainer}>
         <RankingSkills />
+
+        <div className={style.btnContainer}>
+          <ButtonNextPre />
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

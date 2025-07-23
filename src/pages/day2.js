@@ -7,6 +7,7 @@ import Vid from "../assets/vid.png";
 import EditText from "../components/edittext";
 import style from "../styles/day2.module.css";
 import Footer from "../components/footer";
+import ButtonNextPre from "../components/button-next-pre";
 const Day2 = () => {
   return (
     <div>
@@ -35,6 +36,9 @@ const Day2 = () => {
         title="Defining selection criteria"
       />
       <QuestionWithOptions />
+      <div className={style.btnContainer}>
+        <ButtonNextPre />
+      </div>
       <Footer />
     </div>
   );

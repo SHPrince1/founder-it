@@ -1,68 +1,80 @@
 import { useState } from 'react';
-import { Table, InputNumber } from 'antd';
+import { Table, Input, InputNumber, Button, message } from 'antd';
 import style from '../../styles/day1.module.css';
 
 const initialData = [
-  {
-    key: '1',
-    sn: '1',
-    activity: 'Developing new business in emerging and existing markets',
-    score: null,
-  },
-  {
-    key: '2',
-    sn: '2',
-    activity: 'Selling anything to customers',
-    score: null,
-  },
-  {
-    key: '3',
-    sn: '3',
-    activity: 'Creating an understandable user experience and interface',
-    score: null,
-  },
-  {
-    key: '4',
-    sn: '4',
-    activity: 'Managing small teams',
-    score: null,
-  },
-  {
-    key: '5',
-    sn: '5',
-    activity: 'Basic accounting and financial reporting',
-    score: null,
-  },
-  {
-    key: '6',
-    sn: '6',
-    activity: 'Basic accounting and financial reporting',
-    score: null,
-  },
+  { key: '1', sn: '1', activity: '', score: null },
+  { key: '2', sn: '2', activity: '', score: null },
+  { key: '3', sn: '3', activity: '', score: null },
+  { key: '4', sn: '4', activity: '', score: null },
+  { key: '5', sn: '5', activity: '', score: null },
+  { key: '6', sn: '6', activity: '', score: null },
 ];
 
 const WhatIamGreatAtTable = () => {
   const [dataSource, setDataSource] = useState(initialData);
+  const [loading, setLoading] = useState(false);
 
-  const handleScoreChange = (value, recordKey) => {
-    const updatedData = dataSource.map((item) => {
-      if (item.key === recordKey) {
-        return { ...item, score: value };
-      }
-      return item;
-    });
+  // Handle activity text input
+  const handleActivityChange = (value, recordKey) => {
+    const updatedData = dataSource.map((item) =>
+      item.key === recordKey ? { ...item, activity: value } : item
+    );
     setDataSource(updatedData);
+  };
+
+  // Handle score input
+  const handleScoreChange = (value, recordKey) => {
+    const updatedData = dataSource.map((item) =>
+      item.key === recordKey ? { ...item, score: value } : item
+    );
+    setDataSource(updatedData);
+  };
+
+  // Submit to backend
+  const handleSubmit = async () => {
+    // Optional: validate fields
+    const hasEmpty = dataSource.some(item => !item.activity || !item.score);
+    if (hasEmpty) {
+      message.warning('Please fill in all fields before submitting.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/submit-good-at', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataSource),
+      });
+
+      if (response.ok) {
+        message.success('Data submitted successfully!');
+      } else {
+        message.error('Failed to submit data.');
+      }
+    } catch (err) {
+      console.error(err);
+      message.error('Error occurred while submitting.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const columns = [
     {
-    //   title: 'S/N',
       dataIndex: 'sn',
       align: 'center',
     },
     {
       title: 'WHAT I AM GOOD AT',
       dataIndex: 'activity',
+      render: (_, record) => (
+        <Input
+          value={record.activity}
+          onChange={(e) => handleActivityChange(e.target.value, record.key)}
+        />
+      ),
     },
     {
       title: 'EFFECTIVENESS ON (1–10)',
@@ -89,6 +101,12 @@ const WhatIamGreatAtTable = () => {
         pagination={false}
         rowKey="key"
       />
+
+      {/* <div style={{ marginTop: 20, textAlign: 'right' }}>
+        <Button type="primary" onClick={handleSubmit} loading={loading}>
+          Submit
+        </Button>
+      </div> */}
     </div>
   );
 };

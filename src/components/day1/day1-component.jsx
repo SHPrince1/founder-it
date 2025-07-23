@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Table, Input, InputNumber, Button, message } from 'antd';
+import { Table, Input, InputNumber,  message } from 'antd';
 import style from '../../styles/day1.module.css';
 
 const initialData = [
@@ -102,11 +102,11 @@ const WhatIamGreatAtTable = () => {
         rowKey="key"
       />
 
-      {/* <div style={{ marginTop: 20, textAlign: 'right' }}>
-        <Button type="primary" onClick={handleSubmit} loading={loading}>
+      <div style={{ marginTop: 20, textAlign: 'right' }}>
+        <button type="primary" onClick={handleSubmit} loading={loading}>
           Submit
-        </Button>
-      </div> */}
+        </button>
+      </div>
     </div>
   );
 };

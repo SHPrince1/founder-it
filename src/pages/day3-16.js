@@ -6,6 +6,7 @@ import style from "../styles/day3-16.module.css";
 import InstructionSteps from "../components/instruction-step";
 import TableTitle from "../components/day1/table-title";
 import IdeaTableList from "../components/ideaslist-table";
+import Footer from "../components/footer";
 const Day316 = () => {
   return (
     <div>
@@ -42,6 +43,8 @@ const Day316 = () => {
       <TableTitle subtitle="Table 4" title="LISTING IDEAS AND EVAULATION" />
 
       <IdeaTableList />
+
+      <Footer />
     </div>
   );
 };

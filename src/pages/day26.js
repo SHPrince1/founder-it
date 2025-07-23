@@ -9,6 +9,7 @@ import style2 from "../styles/day26.module.css";
 import TableTitle from "../components/day1/table-title";
 // import IdeaTableList from "../components/ideaslist-table";
 import EditText from "../components/edittext";
+import Footer from "../components/footer";
 // import RankinkIdeaList from "../components/ranking-idea-table";
 const Day26 = () => {
   return (
@@ -52,6 +53,7 @@ const Day26 = () => {
         </div>
       </div>
       <EvaluationTable />
+      <Footer />
     </div>
   );
 };

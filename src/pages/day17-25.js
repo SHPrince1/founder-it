@@ -7,6 +7,7 @@ import InstructionSteps from "../components/instruction-step";
 import TableTitle from "../components/day1/table-title";
 // import IdeaTableList from "../components/ideaslist-table";
 import RankinkIdeaList from '../components/ranking-idea-table'
+import Footer from "../components/footer";
 
 const Day1725 = () => {
   return (
@@ -51,6 +52,7 @@ const Day1725 = () => {
         {/* <IdeaTableList /> */}
         <RankinkIdeaList />
       </div>
+      <Footer />
     </div>
   );
 };

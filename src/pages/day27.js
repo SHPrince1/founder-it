@@ -7,6 +7,7 @@ import style from "../styles/day27.module.css";
 // import style2 from "../styles/banner.module.css";
 import TableTitle from "../components/day1/table-title";
 import AccessmentTable from "../components/accessment-table";
+import Footer from "../components/footer";
 const Day27 = () => {
   return (
     <div>
@@ -40,6 +41,7 @@ const Day27 = () => {
       />
 
       <AccessmentTable />
+      <Footer />
     </div>
   );
 };

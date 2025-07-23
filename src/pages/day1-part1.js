@@ -5,6 +5,7 @@ import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
 import style from "../styles/day1part1.module.css";
 import TopNav from "../components/top-nav";
+import Footer from "../components/footer";
 const Day1Part1 = () => {
   return (
     <div className={style.container}>
@@ -67,6 +68,8 @@ const Day1Part1 = () => {
           <button className={style.BtnDivUbmit}>SUBMIT</button>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

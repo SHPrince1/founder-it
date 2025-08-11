@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "../../styles/signup.module.css";
 import Google from "../../assets/google.png";
 import Fb from "../../assets/fb.png";
@@ -7,6 +7,68 @@ import Link from "../../assets/linkdln.png";
 import SignupIntro from "./signup-intro";
 
 const SignUp = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Popup state
+  const [popupMessage, setPopupMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+
+  const showPopupMessage = (message) => {
+    setPopupMessage(message);
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
+  };
+
+  const handleSignup = async () => {
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      showPopupMessage(" Please fill in all fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      showPopupMessage(" Passwords do not match.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        "https://founderfit-backend.onrender.com/api/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Signup failed");
+      }
+
+      showPopupMessage("Account created successfully!");
+    } catch (err) {
+      showPopupMessage(`${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <div className={style.container}>
@@ -23,27 +85,51 @@ const SignUp = () => {
               {/* top */}
               <div className={style.inputGroup}>
                 <label>FIRST NAME</label>
-                <input type="text" placeholder="Enter your first name" />
+                <input
+                  type="text"
+                  placeholder="Enter your first name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
               </div>
               <div className={style.inputGroup}>
                 <label>LAST NAME</label>
-                <input type="text" placeholder="Enter your Last name" />
+                <input
+                  type="text"
+                  placeholder="Enter your Last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </div>
               {/* middle */}
               <div className={style.inputEmailDiv}>
                 <label>Email</label>
-                <input type="email " />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
 
-              {/* two buttom for password  */}
-
+              {/* two bottom for password */}
               <div className={style.inputGroup}>
                 <label>PASSWORD</label>
-                <input type="password" placeholder="Enter your password" />
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
               <div className={style.inputGroup}>
                 <label>RE-ENTER PASSWORD</label>
-                <input type="password" placeholder="" />
+                <input
+                  type="password"
+                  placeholder=""
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
               </div>
             </div>
 
@@ -59,7 +145,6 @@ const SignUp = () => {
               <div className={style.signUpWithBox2}>
                 <div className={style.signUpWithBox2Buttton}>
                   <button className={style.signUpWithBox2ButttonFb}>
-                    {" "}
                     <img src={Fb} alt="" />
                     Facebook
                   </button>
@@ -68,7 +153,7 @@ const SignUp = () => {
                     Google
                   </button>
                   <button className={style.signUpWithBox2Butttonld}>
-                    <img src={Link} alt="" /> Linkdin
+                    <img src={Link} alt="" /> LinkedIn
                   </button>
                 </div>
 
@@ -77,12 +162,32 @@ const SignUp = () => {
                 </div>
               </div>
               <div className={style.signUpBtnDiv}>
-                <button>SIGN UP</button>
+                <button onClick={handleSignup} disabled={loading}>
+                  {loading ? "Signing up..." : "SIGN UP"}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Popup message */}
+      {showPopup && (
+        <div
+          style={{
+            position: "fixed",
+            top: "20px",
+            right: "20px",
+            background: "#333",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            zIndex: 1000,
+          }}
+        >
+          {popupMessage}
+        </div>
+      )}
     </>
   );
 };

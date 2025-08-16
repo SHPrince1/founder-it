@@ -1,13 +1,111 @@
-import React from "react";
-import TableWithInput from "../components/day1/day1-component";
+import React, { useState } from "react";
+import WhatIamGreatAtTable from "../components/day1/day1-component";
 import PassionTable from "../components/day1/passion-table";
 import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
 import style from "../styles/day1part1.module.css";
 import TopNav from "../components/top-nav";
 import Footer from "../components/footer";
-import ButtonNextPre from "../components/button-next-pre";
+import { message } from "antd";
+
+const initialSkills = [
+  { key: "1", sn: "1", activity: "", score: null },
+  { key: "2", sn: "2", activity: "", score: null },
+  { key: "3", sn: "3", activity: "", score: null },
+  { key: "4", sn: "4", activity: "", score: null },
+  { key: "5", sn: "5", activity: "", score: null },
+  { key: "6", sn: "6", activity: "", score: null },
+];
+
+const initialPassions = [
+  { key: "1", sn: "1", activity: "", score: null },
+  { key: "2", sn: "2", activity: "", score: null },
+  { key: "3", sn: "3", activity: "", score: null },
+  { key: "4", sn: "4", activity: "", score: null },
+  { key: "5", sn: "5", activity: "", score: null },
+  { key: "6", sn: "6", activity: "", score: null },
+  { key: "7", sn: "7", activity: "", score: null },
+];
+
 const Day1Part1 = () => {
+  const [skills, setSkills] = useState(initialSkills);
+  const [passions, setPassions] = useState(initialPassions);
+  const [loading, setLoading] = useState(false);
+
+  const getPayload = () => {
+    const userId = localStorage.getItem("user_id");
+    return {
+      user_id: Number(userId),
+      skills: skills.map((s) => ({
+        skill: s.activity,
+        score: s.score,
+      })),
+      passions: passions.map((p) => ({
+        passion: p.activity,
+        score: p.score,
+      })),
+    };
+  };
+
+  const handleSave = async () => {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      message.error("User not found. Please login again.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://founderfit-backend.onrender.com/api/form/save-form",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(getPayload()),
+        }
+      );
+      if (!res.ok) throw new Error("Unable to save");
+      message.success("Draft saved successfully");
+    } catch (err) {
+      console.error(err);
+      message.error("Could not save draft");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async () => {
+    const allFilled = [...skills, ...passions].every(
+      (i) => i.activity && i.score
+    );
+    if (!allFilled) {
+      message.warning("Please fill in all fields before submitting.");
+      return;
+    }
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      message.error("User not found. Please login again.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://founderfit-backend.onrender.com/api/form/submit-form",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(getPayload()),
+        }
+      );
+      if (!res.ok) throw new Error("Unable to submit");
+      message.success("Form submitted successfully!");
+    } catch (err) {
+      console.error(err);
+      message.error("Error submitting form");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className={style.container}>
       <TopNav />
@@ -16,60 +114,19 @@ const Day1Part1 = () => {
         description="DAY1-PART1"
         image={Vid}
         imageAlt="Challenge Preview"
-        imageWidth={900} // optional
       />
 
-      <div className={style.textBox}>
-        <h1>Welcome to your first day!</h1>
-        <div className={style.textNumBox}>
-          <div className={style.textNum}>
-            <p className={style.num}>1</p>
-            <p>
-              Begin by identifying your skills, passions, interests using the
-              table below.
-            </p>
-          </div>
-          <div className={style.textNum}>
-            <p className={style.num}>2</p>
-            <p>
-              Evaluate them using a 1-10 scale where "1" is the lowest score and
-              "10" the highest
-            </p>
-          </div>
-          <div className={style.textNum}>
-            <p className={style.num}>3</p>
-            <p>Submit the information once done.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className={style.helpButtonDiv}>
-        <div className={style.help}>
-          <div className={style.emptyDiv}></div>
-          <p>HELP</p>
-          <div className={style.emptyDiv}></div>
-        </div>
-        <div className={style.helpButton}>
-          <button className={style.BtnHelp}>Sample of a filled out form</button>
-          <button className={style.BtnHelp}>
-            Use an AI tool to help you get started
-          </button>
-        </div>
-      </div>
-
-      <div className={style.tableTitle}>
-        <h5>Table 1</h5>
-        <h1>Listing skills, passions and interests</h1>
-      </div>
       <div className={style.TableContainer}>
-        <TableWithInput />
-        <PassionTable />
-        {/* <div className={style.BtnDiv}>
-          <button className={style.BtnDivSave}>SAVE</button>
-          <button className={style.BtnDivUbmit}>SUBMIT</button>
-        </div> */}
-        <div className={style.btnContainer}>
-          <ButtonNextPre />
+        <WhatIamGreatAtTable dataSource={skills} onDataChange={setSkills} />
+        <PassionTable dataSource={passions} onDataChange={setPassions} />
+
+        <div className={style.BtnDiv}>
+          <button className={style.BtnDivSave} onClick={handleSave} disabled={loading}>
+            {loading ? "saving..." : "SAVE"}
+          </button>
+          <button className={style.BtnDivUbmit} onClick={handleSubmit} disabled={loading}>
+            {loading ? "submitting..." : "SUBMIT"}
+          </button>
         </div>
       </div>
 

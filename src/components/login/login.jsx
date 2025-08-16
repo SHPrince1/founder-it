@@ -10,7 +10,7 @@ const LoginComponent = () => {
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
     setLoading(true);
     setError("");
 
@@ -19,9 +19,7 @@ const LoginComponent = () => {
         "https://founderfit-backend.onrender.com/api/auth/login",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
         }
       );
@@ -35,10 +33,15 @@ const LoginComponent = () => {
       // Save token
       localStorage.setItem("token", data.token);
 
+      // Save user ID
+      if (data.user && data.user.id) {
+        localStorage.setItem("user_id", data.user.id);
+      }
+
       console.log("Login success:", data);
 
-      // TODO: Navigate to dashboard or home page
-      // e.g., navigate("/dashboard");
+      // TODO: Navigate to dashboard page
+      // navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -57,7 +60,6 @@ const LoginComponent = () => {
           <p>Log in to continue your 28-Day Challenge journey.</p>
         </div>
 
-        {/* Form */}
         <form className={style.inputDiv} onSubmit={handleLogin}>
           {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -90,12 +92,12 @@ const LoginComponent = () => {
 
           <div className={style.alreadyAccount}>
             <p>Don’t have an account?</p>
-            <Link to="/sign-up">Sign up</Link>
+            <Link to="/signup-page">Sign up</Link>
           </div>
 
           <div className={style.signUpBtnDiv}>
             <button type="submit" disabled={loading}>
-              {loading ? "Logging in..." : "SIGN IN"}
+              {loading ? "Logging in..." : "LOG IN"}
             </button>
           </div>
         </form>

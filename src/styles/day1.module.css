@@ -7,6 +7,19 @@
   padding: 24px;
   background-color: #f5f5f5;
 }
+.draggableRow {
+  cursor: grab !important;
+}
+
+/* Cursor while actively dragging */
+.draggableRow:active {
+  cursor: grabbing !important;
+}
+
+/* Optional: smoother transition for transform while dragging */
+.draggableRow {
+  transition: transform 0.2s ease;
+}
 
 /* 🟦 Entire table wrapper */
 .customTable :where(.ant-table-wrapper) {
@@ -55,4 +68,12 @@
 .InputNumber {
     /* width: 40px; */
   margin-left: 30px; /* Adjust this value to your preference */
+}
+
+.draggableRow {
+  cursor: grab !important;
+}
+
+.draggableRow:active {
+  cursor: grabbing !important;
 }

@@ -21,9 +21,9 @@
     font-weight: bold;
 
 }
-.textNumBox{
-    /* line-height: 0.1; */
-}
+/* .textNumBox{
+    line-height: 0.1;
+} */
 .textNum{
     display: flex;
     font-size: 14px;

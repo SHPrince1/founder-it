@@ -24,7 +24,7 @@
   -o-border-radius: 14px;
 }
 .btnContainer{
-    width: 65%;
-    border: 1px solid red;
+    width: 75%;
+    /* border: 1px solid red; */
     margin: 0 auto;
 }

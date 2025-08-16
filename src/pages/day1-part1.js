@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import WhatIamGreatAtTable from "../components/day1/day1-component";
 import PassionTable from "../components/day1/passion-table";
 import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
 import style from "../styles/day1part1.module.css";
 import TopNav from "../components/top-nav";
+import ButtonNextPre from "../components/button-next-pre";
 import Footer from "../components/footer";
 import { message } from "antd";
 
@@ -28,6 +30,7 @@ const initialPassions = [
 ];
 
 const Day1Part1 = () => {
+  const navigate = useNavigate();
   const [skills, setSkills] = useState(initialSkills);
   const [passions, setPassions] = useState(initialPassions);
   const [loading, setLoading] = useState(false);
@@ -36,56 +39,24 @@ const Day1Part1 = () => {
     const userId = localStorage.getItem("user_id");
     return {
       user_id: Number(userId),
-      skills: skills.map((s) => ({
-        skill: s.activity,
-        score: s.score,
-      })),
-      passions: passions.map((p) => ({
-        passion: p.activity,
-        score: p.score,
-      })),
+      skills: skills.map((s) => ({ skill: s.activity, score: s.score })),
+      passions: passions.map((p) => ({ passion: p.activity, score: p.score })),
     };
   };
 
   const handleSave = async () => {
-    const userId = localStorage.getItem("user_id");
-    if (!userId) {
-      message.error("User not found. Please login again.");
-      return;
-    }
-    setLoading(true);
-    try {
-      const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/form/save-form",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(getPayload()),
-        }
-      );
-      if (!res.ok) throw new Error("Unable to save");
-      message.success("Draft saved successfully");
-    } catch (err) {
-      console.error(err);
-      message.error("Could not save draft");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSubmit = async () => {
-    const allFilled = [...skills, ...passions].every(
-      (i) => i.activity && i.score
-    );
+    const allFilled = [...skills, ...passions].every((i) => i.activity && i.score);
     if (!allFilled) {
-      message.warning("Please fill in all fields before submitting.");
+      message.warning("Please fill in all fields before saving.");
       return;
     }
+
     const userId = localStorage.getItem("user_id");
     if (!userId) {
       message.error("User not found. Please login again.");
       return;
     }
+
     setLoading(true);
     try {
       const res = await fetch(
@@ -96,14 +67,22 @@ const Day1Part1 = () => {
           body: JSON.stringify(getPayload()),
         }
       );
-      if (!res.ok) throw new Error("Unable to submit");
-      message.success("Form submitted successfully!");
+      if (!res.ok) throw new Error("Unable to save");
+      message.success("Data saved successfully!");
     } catch (err) {
       console.error(err);
-      message.error("Error submitting form");
+      message.error("Error saving data");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handlePrev = () => {
+    navigate("/activityindex"); // previous page
+  };
+
+  const handleNext = () => {
+    navigate("/day2"); // next page
   };
 
   return (
@@ -120,13 +99,16 @@ const Day1Part1 = () => {
         <WhatIamGreatAtTable dataSource={skills} onDataChange={setSkills} />
         <PassionTable dataSource={passions} onDataChange={setPassions} />
 
-        <div className={style.BtnDiv}>
-          <button className={style.BtnDivSave} onClick={handleSave} disabled={loading}>
-            {loading ? "saving..." : "SAVE"}
+        <div className={style.BtnDiv2}>
+          <button onClick={handleSave} disabled={loading}>
+            {loading ? "Saving..." : "SAVE"}
           </button>
-          <button className={style.BtnDivUbmit} onClick={handleSubmit} disabled={loading}>
-            {loading ? "submitting..." : "SUBMIT"}
-          </button>
+          <ButtonNextPre
+            buttons={[
+              { label: "PREVIOUS", onClick: handlePrev },
+              { label: "NEXT", onClick: handleNext },
+            ]}
+          />
         </div>
       </div>
 

@@ -115,6 +115,12 @@
     /* border: 1px solid red; */
     margin: 0 auto;
 }
+
+.BtnDiv2{
+  /* border: 1px solid red; */
+  width: 85%;
+  margin: 0 auto;
+}
 /* media querry */
 
 /* Extra small: phones */

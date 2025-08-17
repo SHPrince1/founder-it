@@ -82,7 +82,7 @@ const Day1Part1 = () => {
   };
 
   const handleNext = () => {
-    navigate("/day2"); // next page
+    navigate("/day1-part2"); // next page
   };
 
   return (

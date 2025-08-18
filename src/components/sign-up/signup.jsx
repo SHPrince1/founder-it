@@ -25,50 +25,51 @@ const SignUp = () => {
   };
 
   const handleSignup = async () => {
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      showPopupMessage(" Please fill in all fields.");
-      return;
-    }
+  if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    showPopupMessage("Please fill in all fields.");
+    return;
+  }
 
-    if (password !== confirmPassword) {
-      showPopupMessage(" Passwords do not match.");
-      return;
-    }
+  if (password !== confirmPassword) {
+    showPopupMessage("Passwords do not match.");
+    return;
+  }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            password,
-            confirmPassword,
-          }),
-        }
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Signup failed");
+  try {
+    const res = await fetch(
+      "https://founderfit-backend.onrender.com/api/auth/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          confirmPassword,
+        }),
       }
+    );
 
-      showPopupMessage("Account created successfully!");
-    } catch (err) {
-      showPopupMessage(`${err.message}`);
-    } finally {
-      setLoading(false);
+    const data = await res.json();
+
+    if (!res.ok) {
+      // ✅ Directly use backend error message
+      throw new Error(data.error || data.message || "Signup failed");
     }
-  };
 
+    // ✅ Show backend success message
+    showPopupMessage(data.message || "Account created successfully!");
+  } catch (err) {
+    showPopupMessage(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <>
       <div className={style.container}>

@@ -54,60 +54,12 @@ const LoginComponent = () => {
 
   return (
     <>
-      <div className={style.container}>
-        <div className={style.introSection}>
-          <SignupIntro />
-        </div>
-        <div className={style.loginSection}>
-          <div className={style.textDiv}>
-            <h2>Welcome Back!</h2>
-            <p>Log in to continue your 28-Day Challenge journey.</p>
-          </div>
-
-        {/* Form */}
-        <form className={style.inputDiv} onSubmit={handleLogin}>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-
-          <div className={style.inputEmailDiv}>
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="Enter Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-
-            <div className={style.inputEmailDiv}>
-              <label>Password</label>
-              <input
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className={style.forgotPassword}>
-              <p>Keep me signed in</p>
-              <Link to="/forgot-password">Forgot password?</Link>
-            </div>
-
-          <div className={style.alreadyAccount}>
-            <p>Don’t have an account?</p>
-            <Link to="/sign-up">Sign up</Link>
-          </div>
-
-          <div className={style.signUpBtnDiv}>
-            <button type="submit" disabled={loading}>
-              {loading ? "Logging in..." : "SIGN IN"}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+      {/* Popup message */}
+      {showPopup && (
+        <div className={style.popup}>{popupMessage}</div>
+      )}
+      {/* Add your login form and other components here */}
+    </>
   );
 };
 

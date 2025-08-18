@@ -70,6 +70,7 @@ const SignUp = () => {
     setLoading(false);
   }
 };
+
   return (
     <>
       <div className={style.container}>

@@ -21,9 +21,9 @@
     font-weight: bold;
 
 }
-.textNumBox{
-    /* line-height: 0.1; */
-}
+/* .textNumBox{
+    line-height: 0.1;
+} */
 .textNum{
     display: flex;
     font-size: 14px;
@@ -114,6 +114,12 @@
     width: 80%;
     /* border: 1px solid red; */
     margin: 0 auto;
+}
+
+.BtnDiv2{
+  /* border: 1px solid red; */
+  width: 85%;
+  margin: 0 auto;
 }
 /* media querry */
 

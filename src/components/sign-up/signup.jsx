@@ -159,7 +159,7 @@ const SignUp = () => {
                 </div>
 
                 <div className={style.alreadyAccount}>
-                  <p>Already have an account?</p> <a href="/">Sign in</a>
+                  <p>Already have an account?</p> <a href="/login">Sign in</a>
                 </div>
               </div>
               <div className={style.signUpBtnDiv}>

@@ -19,7 +19,7 @@ const LoginComponent = () => {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
     setLoading(true);
 
     try {
@@ -27,9 +27,7 @@ const LoginComponent = () => {
         "https://founderfit-backend.onrender.com/api/auth/login",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
         }
       );
@@ -43,14 +41,10 @@ const LoginComponent = () => {
       // Save token
       localStorage.setItem("token", data.token);
 
-      // ✅ Show success popup
-      showPopupMessage(data.message || "Login successful!");
-
       console.log("Login success:", data);
 
-      // TODO: Navigate to dashboard
+      // TODO: Navigate to dashboard or home page
       // e.g., navigate("/dashboard");
-
     } catch (err) {
       showPopupMessage(err.message);
     } finally {
@@ -70,18 +64,20 @@ const LoginComponent = () => {
             <p>Log in to continue your 28-Day Challenge journey.</p>
           </div>
 
-          {/* Form */}
-          <form className={style.inputDiv} onSubmit={handleLogin}>
-            <div className={style.inputEmailDiv}>
-              <label>Email</label>
-              <input
-                type="email"
-                placeholder="Enter Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+        {/* Form */}
+        <form className={style.inputDiv} onSubmit={handleLogin}>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+
+          <div className={style.inputEmailDiv}>
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
             <div className={style.inputEmailDiv}>
               <label>Password</label>
@@ -99,38 +95,19 @@ const LoginComponent = () => {
               <Link to="/forgot-password">Forgot password?</Link>
             </div>
 
-            <div className={style.alreadyAccount}>
-              <p>Don’t have an account?</p>
-              <Link to="/sign-up">Sign up</Link>
-            </div>
+          <div className={style.alreadyAccount}>
+            <p>Don’t have an account?</p>
+            <Link to="/sign-up">Sign up</Link>
+          </div>
 
-            <div className={style.signUpBtnDiv}>
-              <button type="submit" disabled={loading}>
-                {loading ? "Logging in..." : "SIGN IN"}
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className={style.signUpBtnDiv}>
+            <button type="submit" disabled={loading}>
+              {loading ? "Logging in..." : "SIGN IN"}
+            </button>
+          </div>
+        </form>
       </div>
-
-      {/* Popup */}
-      {showPopup && (
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            right: "20px",
-            background: "#333",
-            color: "#fff",
-            padding: "10px 20px",
-            borderRadius: "5px",
-            zIndex: 1000,
-          }}
-        >
-          {popupMessage}
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 

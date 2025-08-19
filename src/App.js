@@ -19,6 +19,7 @@ import Day26 from "./pages/day26";
 import Day27 from "./pages/day27";
 import Day28 from "./pages/day28";
 import Welcome from "./components/welcome";
+import PaymentFailed from "./components/paymentfailed"; 
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/day27" element={<Day27 />} /> 
         <Route path="/day28" element={<Day28 />} /> 
         <Route path="/welcome" element={<Welcome />} />
+        <Route path="/payment-failed" element={<PaymentFailed />} />
       </Routes>
     </Router>  );
 }

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import SignupIntro from "../sign-up/signup-intro";
 import style from "../../styles/login.module.css";
 
 const LoginComponent = () => {
@@ -55,10 +53,34 @@ const LoginComponent = () => {
   return (
     <>
       {/* Popup message */}
-      {showPopup && (
-        <div className={style.popup}>{popupMessage}</div>
-      )}
-      {/* Add your login form and other components here */}
+      {showPopup && <div className={style.popup}>{popupMessage}</div>}
+
+      {/* Login form */}
+      <form onSubmit={handleLogin} className={style.form}>
+        <div className={style.inputGroup}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className={style.inputGroup}>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
     </>
   );
 };

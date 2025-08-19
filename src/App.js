@@ -18,7 +18,7 @@ import Day1725 from "./pages/day17-25";
 import Day26 from "./pages/day26";
 import Day27 from "./pages/day27";
 import Day28 from "./pages/day28";
-
+import Welcome from "./components/welcome";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
         <Route path="/day26" element={<Day26 />} /> 
         <Route path="/day27" element={<Day27 />} /> 
         <Route path="/day28" element={<Day28 />} /> 
+        <Route path="/welcome" element={<Welcome />} />
       </Routes>
     </Router>  );
 }

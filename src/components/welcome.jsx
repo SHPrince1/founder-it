@@ -17,28 +17,34 @@ const Welcome = () => {
     }
 
     const verifyPayment = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.REACT_APP_BACKEND ||"https://founderfit-backend.onrender.com"}/api/payment/get-token/${sessionId}`
-        );
-        const data = await res.json();
+  let attempts = 0;
+  let token = null;
 
-        if (res.ok && data.token) {
-          localStorage.setItem("token", data.token); // ✅ Save token
-          setMessage("Payment verified ✅ Redirecting...");
-          setTimeout(() => navigate("/dashboard"), 1500);
-        } else {
-          setMessage("❌ Payment not verified. Please complete your payment.");
-          setTimeout(() => navigate("/payment-failed"), 2500);
-        }
-      } catch (err) {
-        console.error(err);
-        setMessage("⚠️ Server error. Try again later.");
-        setTimeout(() => navigate("/payment-failed"), 2500);
-      } finally {
-        setLoading(false);
+  while (attempts < 5 && !token) {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND || "https://founderfit-backend.onrender.com"}/api/payment/get-token/${sessionId}`
+      );
+      const data = await res.json();
+
+      if (res.ok && data.token) {
+        token = data.token;
+        localStorage.setItem("token", token);
+        setMessage("✅ Payment verified. Redirecting...");
+        setTimeout(() => navigate("/dashboard"), 1500);
+        return;
       }
-    };
+    } catch (err) {
+      console.error(`Attempt ${attempts + 1} failed:`, err);
+    }
+
+    attempts++;
+    await new Promise((r) => setTimeout(r, 1000)); // wait 1 second
+  }
+
+  setMessage("❌ Payment not verified. Please complete your payment.");
+  setTimeout(() => navigate("/payment-failed"), 2500);
+};
 
     verifyPayment();
   }, [searchParams, navigate]);

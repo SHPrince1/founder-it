@@ -75,12 +75,11 @@ const Day1Part1 = () => {
 
       const result = await res.json();
 
-      if (!res.ok) {
-        message.error(result.error || "Error saving data");
-        return;
-      }
-
-      message.success(result.message || "Saved successfully!");
+  if (!res.ok) {
+  message.error(result.error || "Error saving data");
+  return;
+}
+ message.success("✅ Your skills and passions have been saved. Click ‘Next’ to continue.");
     } catch (err) {
       console.error(err);
       message.error("Server error");

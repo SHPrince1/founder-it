@@ -26,7 +26,7 @@ const initialPassions = [
   { key: "4", sn: "4", activity: "", score: null },
   { key: "5", sn: "5", activity: "", score: null },
   { key: "6", sn: "6", activity: "", score: null },
-  { key: "7", sn: "7", activity: "", score: null },
+  // { key: "7", sn: "7", activity: "", score: null },
 ];
 
 const Day1Part1 = () => {

@@ -49,6 +49,34 @@
 }
 
 
+.container {
+  padding: 20px;
+}
+
+.checkBoxText {
+  margin-bottom: 20px;
+}
+
+.questBox {
+  margin-top: 10px;
+}
+
+.blockCheck {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.otherInput {
+  margin-top: 8px;
+  max-width: 250px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
 
 /* MEDIA QUERRY */
 /* Extra small devices (phones, less than 576px) */

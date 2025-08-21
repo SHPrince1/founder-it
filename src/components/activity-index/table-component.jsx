@@ -62,7 +62,7 @@ const TableComponent = () => {
       render: (text, record) => <a href={record.link}>{text}</a>,
     },
     {
-      title: "SELECT IF COMPLETE",
+      title: "COMPLETED",
       key: "checkbox",
       render: (_, record) => (
         <Checkbox

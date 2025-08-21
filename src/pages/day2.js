@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "antd";
 import TopNav from "../components/top-nav";
 import QuestionWithOptions from "../components/questionwithoptions";
 import TableTitle from "../components/day1/table-title";
@@ -11,7 +12,8 @@ import Footer from "../components/footer";
 import ButtonNextPre from "../components/button-next-pre";
 
 const Day2 = () => {
-  const navigate = useNavigate(); // <-- Initialize navigate here
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handlePrev = () => navigate("/day1-part1");
   const handleNext = () => navigate("/day3-16");
@@ -37,11 +39,28 @@ const Day2 = () => {
       </div>
 
       <div className={style.btnDiv}>
-        <button>Sample of a filled out form</button>
+        <button onClick={() => setIsModalOpen(true)}>
+          Sample of a filled out form
+        </button>
       </div>
 
+      {/* Modal (Popup) */}
+      <Modal
+        title="Sample of a Filled Out Form"
+        open={isModalOpen}
+        onOk={() => setIsModalOpen(false)}
+        onCancel={() => setIsModalOpen(false)}
+        okText="Close"
+        cancelButtonProps={{ style: { display: "none" } }}
+      >
+        {/* You can put plain text here */}
+        <p>This is an example of how the form should be filled.</p>
+
+        {/* Or even another component */}
+        {/* <YourSampleFormComponent /> */}
+      </Modal>
+
       <TableTitle
-        TableTitle
         subtitle="Table 3"
         title="Defining selection criteria"
       />

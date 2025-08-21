@@ -31,7 +31,7 @@ const Welcome = () => {
         token = data.token;
         localStorage.setItem("token", token);
         setMessage("✅ Payment verified. Redirecting...");
-        setTimeout(() => navigate("/dashboard"), 1500);
+        setTimeout(() => navigate("/welcome"), 1500);
         return;
       }
     } catch (err) {

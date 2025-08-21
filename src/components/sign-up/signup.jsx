@@ -38,13 +38,12 @@ const SignUp = () => {
     setLoading(true);
 
     try {
+      // Step 1: Register user
       const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/auth/signup",
+        `${process.env.REACT_APP_BACKEND_URL || "https://founderfit-backend.onrender.com"}/api/auth/signup`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             firstName,
             lastName,
@@ -58,10 +57,29 @@ const SignUp = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Signup failed");
+        throw new Error(data.error || data.message || "Signup failed");
       }
 
-      showPopupMessage("Account created successfully!");
+      showPopupMessage(
+        data.message || "Account created successfully! Redirecting to payment..."
+      );
+
+      // Step 2: Create Stripe checkout session
+      const paymentRes = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL || "https://founderfit-backend.onrender.com"}/api/payment/create-checkout-session`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const paymentData = await paymentRes.json();
+      if (paymentData.url) {
+        setTimeout(() => {
+          window.location.href = paymentData.url;
+        }, 1500); // short delay so popup shows before redirect
+      }
     } catch (err) {
       showPopupMessage(`${err.message}`);
     } finally {
@@ -82,7 +100,7 @@ const SignUp = () => {
             </div>
 
             <div className={style.inputDiv}>
-              {/* top */}
+              {/* First + Last Name */}
               <div className={style.inputGroup}>
                 <label>FIRST NAME</label>
                 <input
@@ -101,7 +119,8 @@ const SignUp = () => {
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
-              {/* middle */}
+
+              {/* Email */}
               <div className={style.inputEmailDiv}>
                 <label>Email</label>
                 <input
@@ -112,7 +131,7 @@ const SignUp = () => {
                 />
               </div>
 
-              {/* two bottom for password */}
+              {/* Passwords */}
               <div className={style.inputGroup}>
                 <label>PASSWORD</label>
                 <input
@@ -126,13 +145,14 @@ const SignUp = () => {
                 <label>RE-ENTER PASSWORD</label>
                 <input
                   type="password"
-                  placeholder=""
+                  placeholder="Re-enter your password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
             </div>
 
+            {/* Social sign-up UI */}
             <div className={style.signUpWith}>
               <div className={style.signUpWithBox1}>
                 <div className={style.emptyDiv}></div>
@@ -145,15 +165,15 @@ const SignUp = () => {
               <div className={style.signUpWithBox2}>
                 <div className={style.signUpWithBox2Buttton}>
                   <button className={style.signUpWithBox2ButttonFb}>
-                    <img src={Fb} alt="" />
+                    <img src={Fb} alt="Facebook" />
                     Facebook
                   </button>
                   <button className={style.signUpWithBox2ButttonGg}>
-                    <img src={Google} alt="" />
+                    <img src={Google} alt="Google" />
                     Google
                   </button>
                   <button className={style.signUpWithBox2Butttonld}>
-                    <img src={Link} alt="" /> LinkedIn
+                    <img src={Link} alt="LinkedIn" /> LinkedIn
                   </button>
                 </div>
 
@@ -161,6 +181,8 @@ const SignUp = () => {
                   <p>Already have an account?</p> <a href="/login">Sign in</a>
                 </div>
               </div>
+
+              {/* Submit */}
               <div className={style.signUpBtnDiv}>
                 <button onClick={handleSignup} disabled={loading}>
                   {loading ? "Signing up..." : "SIGN UP"}

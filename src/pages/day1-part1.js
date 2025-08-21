@@ -48,6 +48,7 @@ const Day1Part1 = () => {
   };
 
   const handleSave = async () => {
+    console.log("Save button clicked");
   const payload = getPayload();
 
   if (payload.skills.length === 0 && payload.passions.length === 0) {

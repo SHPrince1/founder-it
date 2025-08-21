@@ -48,36 +48,44 @@ const Day1Part1 = () => {
   };
 
   const handleSave = async () => {
-    const payload = getPayload();
+  const payload = getPayload();
 
-    if (payload.skills.length === 0 && payload.passions.length === 0) {
-      message.warning("Please enter at least one skill or passion.");
+  if (payload.skills.length === 0 && payload.passions.length === 0) {
+    message.warning("Please enter at least one skill or passion.");
+    return;
+  }
+
+  setLoading(true);
+  try {
+    const res = await fetch(
+      "https://founderfit-backend.onrender.com/api/day1/save",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      // ✅ Show backend error message
+      message.error(result.error || "Error saving data");
       return;
     }
 
-    setLoading(true);
-    try {
-      const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/day1/save",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // ✅ JWT
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      if (!res.ok) throw new Error("Unable to save");
-      message.success("Data saved successfully!");
-    } catch (err) {
-      console.error(err);
-      message.error("Error saving data");
-    } finally {
-      setLoading(false);
-    }
-  };
+    // ✅ Show backend success message
+    message.success(result.message || "Saved successfully!");
+  } catch (err) {
+    console.error(err);
+    message.error("Server error");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handlePrev = () => {
     navigate("/activityindex");

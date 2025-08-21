@@ -35,58 +35,63 @@ const Day1Part1 = () => {
   const [passions, setPassions] = useState(initialPassions);
   const [loading, setLoading] = useState(false);
 
-  // ✅ match backend expected payload
   const getPayload = () => {
+    const filteredSkills = skills
+      .filter((s) => s.activity.trim() !== "" && s.score !== null)
+      .map((s) => ({ description: s.activity, score: s.score }));
+
+    const filteredPassions = passions
+      .filter((p) => p.activity.trim() !== "" && p.score !== null)
+      .map((p) => ({ description: p.activity, score: p.score }));
+
     return {
-      skills: skills
-        .filter((s) => s.activity && s.score)
-        .map((s) => ({ description: s.activity, score: s.score })),
-      passions: passions
-        .filter((p) => p.activity && p.score)
-        .map((p) => ({ description: p.activity, score: p.score })),
+      skills: filteredSkills,
+      passions: filteredPassions,
     };
   };
 
   const handleSave = async () => {
     console.log("Save button clicked");
-  const payload = getPayload();
+    console.log("Skills:", skills);
+    console.log("Passions:", passions);
 
-  if (payload.skills.length === 0 && payload.passions.length === 0) {
-    message.warning("Please enter at least one skill or passion.");
-    return;
-  }
+    const payload = getPayload();
+    console.log("Payload:", payload);
 
-  setLoading(true);
-  try {
-    const res = await fetch(
-      "https://founderfit-backend.onrender.com/api/day1/save",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    const result = await res.json();
-
-    if (!res.ok) {
-      // ✅ Show backend error message
-      message.error(result.error || "Error saving data");
+    if (payload.skills.length === 0 && payload.passions.length === 0) {
+      message.warning("Please enter at least one skill or passion.");
       return;
     }
 
-    // ✅ Show backend success message
-    message.success(result.message || "Saved successfully!");
-  } catch (err) {
-    console.error(err);
-    message.error("Server error");
-  } finally {
-    setLoading(false);
-  }
-};
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://founderfit-backend.onrender.com/api/day1/save",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        message.error(result.error || "Error saving data");
+        return;
+      }
+
+      message.success(result.message || "Saved successfully!");
+    } catch (err) {
+      console.error(err);
+      message.error("Server error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handlePrev = () => {
     navigate("/activityindex");

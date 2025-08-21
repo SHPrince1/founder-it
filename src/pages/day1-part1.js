@@ -51,11 +51,6 @@ const Day1Part1 = () => {
   };
 
   const handleSave = async () => {
-    console.log("Save button clicked");
-    message.warning("This is a test warning");
-    console.log("Skills:", skills);
-    console.log("Passions:", passions);
-
     const payload = getPayload();
     console.log("Payload:", payload);
 

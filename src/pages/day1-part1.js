@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WhatIamGreatAtTable from "../components/day1/day1-component";
@@ -35,7 +36,25 @@ const Day1Part1 = () => {
   const [passions, setPassions] = useState(initialPassions);
   const [loading, setLoading] = useState(false);
 
-  const getPayload = () => {
+  const handleSave = async () => {
+    // 🔍 Check for incomplete rows
+    const incompleteSkill = skills.find(
+      (s) =>
+        (s.activity.trim() !== "" && (s.score === null || s.score === undefined)) ||
+        (s.activity.trim() === "" && s.score !== null)
+    );
+    const incompletePassion = passions.find(
+      (p) =>
+        (p.activity.trim() !== "" && (p.score === null || p.score === undefined)) ||
+        (p.activity.trim() === "" && p.score !== null)
+    );
+
+    if (incompleteSkill || incompletePassion) {
+      message.error("⚠️ Each skill/passion must have BOTH a description and a score.");
+      return;
+    }
+
+    // ✅ Build payload only from fully valid rows
     const filteredSkills = skills
       .filter((s) => s.activity.trim() !== "" && s.score !== null)
       .map((s) => ({ description: s.activity, score: s.score }));
@@ -44,57 +63,43 @@ const Day1Part1 = () => {
       .filter((p) => p.activity.trim() !== "" && p.score !== null)
       .map((p) => ({ description: p.activity, score: p.score }));
 
-    return {
-      skills: filteredSkills,
-      passions: filteredPassions,
-    };
-  };
-
-  const handleSave = async () => {
-    const payload = getPayload();
-    console.log("Payload:", payload);
-
-    if (payload.skills.length === 0 && payload.passions.length === 0) {
-      message.warning("Please enter at least one skill or passion.");
+    if (filteredSkills.length === 0 && filteredPassions.length === 0) {
+      message.warning("⚠️ Please enter at least one skill or passion.");
       return;
     }
 
+    const payload = { skills: filteredSkills, passions: filteredPassions };
+    console.log("Payload:", payload);
+
     setLoading(true);
     try {
-      const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/day1/save",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const res = await fetch("https://founderfit-backend.onrender.com/api/day1/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
       const result = await res.json();
 
-  if (!res.ok) {
-  message.error(result.error || "Error saving data");
-  return;
-}
- message.success("✅ Your skills and passions have been saved. Click ‘Next’ to continue.");
+      if (!res.ok) {
+        message.error(result.error || "❌ Error saving data");
+        return;
+      }
+
+      message.success("✅ Your skills and passions have been saved. Click ‘Next’ to continue.");
     } catch (err) {
       console.error(err);
-      message.error("Server error");
+      message.error("❌ Server error");
     } finally {
       setLoading(false);
     }
   };
 
-  const handlePrev = () => {
-    navigate("/activityindex");
-  };
-
-  const handleNext = () => {
-    navigate("/day1-part2");
-  };
+  const handlePrev = () => navigate("/activityindex");
+  const handleNext = () => navigate("/day1-part2");
 
   return (
     <div className={style.container}>

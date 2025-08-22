@@ -14,7 +14,7 @@ import { message } from "antd";
 
 const Day1part2 = () => {
   const navigate = useNavigate();
-  const [items, setItems] = useState([]); // 👈 skills + passions
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // ✅ Fetch saved skills & passions when page loads
@@ -42,40 +42,6 @@ const Day1part2 = () => {
 
     fetchData();
   }, []);
-
-  // ✅ Handle updating (description, score, or rank)
-  const handleUpdate = async (id, field, value) => {
-    const updated = items.map((item) =>
-      item.id === id ? { ...item, [field]: value } : item
-    );
-    setItems(updated);
-
-    try {
-      const token = localStorage.getItem("token");
-      const item = updated.find((i) => i.id === id);
-
-      await fetch(
-        `https://founderfit-backend.onrender.com/api/day1/update/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            description: item.description,
-            score: item.score,
-            rank_order: item.rank_order,
-          }),
-        }
-      );
-
-      message.success("✅ Updated successfully!");
-    } catch (err) {
-      console.error(err);
-      message.error("Update failed");
-    }
-  };
 
   const handlePrev = () => navigate("/day1-part1");
   const handleNext = () => navigate("/day2");
@@ -119,7 +85,6 @@ const Day1part2 = () => {
           <RankingSkills
             data={items}
             onDataChange={(newData) => setItems(newData)}
-            onUpdate={handleUpdate}
           />
         )}
 

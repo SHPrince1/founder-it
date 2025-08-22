@@ -63,7 +63,6 @@ const RankingSkills = () => {
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
 
-        // Map backend fields to table
         const mapped = data.map((item, idx) => ({
           key: String(item.id),
           sn: String(idx + 1),
@@ -82,8 +81,13 @@ const RankingSkills = () => {
     fetchData();
   }, []);
 
-  // ✅ Update score in backend immediately
+  // ✅ Prevent empty scores
   const handleScoreChange = async (value, recordKey) => {
+    if (value === null || value === undefined) {
+      message.error("⚠️ Score cannot be left blank. Please enter 1–10.");
+      return;
+    }
+
     const updated = dataSource.map((item) =>
       item.key === recordKey ? { ...item, score: value } : item
     );
@@ -106,7 +110,7 @@ const RankingSkills = () => {
           }),
         }
       );
-      message.success("Updated successfully!");
+      message.success("✅ Updated successfully!");
     } catch (err) {
       console.error(err);
       message.error("Update failed");

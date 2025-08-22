@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RankingSkills from "../components/day1/ranking-skills";
 import TableBanner from "../components/activity-index/table-baner";
@@ -10,20 +10,72 @@ import TopNav from "../components/top-nav";
 import Footer from "../components/footer";
 import EditText from "../components/edittext";
 import ButtonNextPre from "../components/button-next-pre";
-
-const initialPassions = [
-  { key: "1", sn: "1", activity: "Education", score: null },
-  { key: "2", sn: "2", activity: "Climate Action", score: null },
-  { key: "3", sn: "3", activity: "Entrepreneurship", score: null },
-  { key: "4", sn: "4", activity: "Singing", score: null },
-  { key: "5", sn: "5", activity: "Fashion", score: null },
-  { key: "6", sn: "6", activity: "Dancing", score: null },
-  { key: "7", sn: "7", activity: "Content Creating", score: null },
-];
+import { message } from "antd";
 
 const Day1part2 = () => {
   const navigate = useNavigate();
-  const [passions, setPassions] = useState(initialPassions);
+  const [items, setItems] = useState([]); // 👈 skills + passions
+  const [loading, setLoading] = useState(false);
+
+  // ✅ Fetch saved skills & passions when page loads
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem("token");
+        const res = await fetch(
+          "https://founderfit-backend.onrender.com/api/day1/get",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        if (!res.ok) throw new Error("Failed to fetch data");
+        const data = await res.json();
+        setItems(data);
+      } catch (err) {
+        console.error(err);
+        message.error("Error fetching skills & passions");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // ✅ Handle updating (description, score, or rank)
+  const handleUpdate = async (id, field, value) => {
+    const updated = items.map((item) =>
+      item.id === id ? { ...item, [field]: value } : item
+    );
+    setItems(updated);
+
+    try {
+      const token = localStorage.getItem("token");
+      const item = updated.find((i) => i.id === id);
+
+      await fetch(
+        `https://founderfit-backend.onrender.com/api/day1/update/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            description: item.description,
+            score: item.score,
+            rank_order: item.rank_order,
+          }),
+        }
+      );
+
+      message.success("✅ Updated successfully!");
+    } catch (err) {
+      console.error(err);
+      message.error("Update failed");
+    }
+  };
 
   const handlePrev = () => navigate("/day1-part1");
   const handleNext = () => navigate("/day2");
@@ -48,11 +100,6 @@ const Day1part2 = () => {
         </p>
       </div>
 
-      <div className={style2.help}>
-        <div className={style2.emptyDiv}></div>
-        <div className={style2.emptyDiv}></div>
-      </div>
-
       <div className={style2.edit}>
         <EditText
           message='You can edit the list by changing the numbers assigned to the
@@ -61,13 +108,21 @@ const Day1part2 = () => {
       </div>
 
       <TableTitle
-        TableTitle
         subtitle="Table 2"
         title="Ranking skills, passions and interests"
       />
 
       <div className={style2.TableContainer}>
-        <RankingSkills data={passions} onDataChange={setPassions} />
+        {loading ? (
+          <p>Loading your skills & passions...</p>
+        ) : (
+          <RankingSkills
+            data={items}
+            onDataChange={(newData) => setItems(newData)}
+            onUpdate={handleUpdate}
+          />
+        )}
+
         <div className={style2.btnContainer}>
           <ButtonNextPre
             buttons={[

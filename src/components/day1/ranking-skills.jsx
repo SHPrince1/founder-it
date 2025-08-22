@@ -17,26 +17,11 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import style from "../../styles/day1.module.css";
 
-const initialData = [
-  { key: "1", sn: "1", activity: "Developing new business in emerging and existing markets", score: null },
-  { key: "2", sn: "2", activity: "Selling anything to customers", score: null },
-  { key: "3", sn: "3", activity: "Traveling around the world and experiencing new things", score: null },
-  { key: "4", sn: "4", activity: "Vacationing and meeting new people", score: null },
-  { key: "5", sn: "5", activity: "Learning new things on my own through exploration and experience", score: null },
-  { key: "6", sn: "6", activity: "Volunteering at homeless shelters and food banks", score: null },
-  { key: "7", sn: "7", activity: "Creating an understandable user experience and interface", score: null },
-  { key: "8", sn: "8", activity: "Managing small teams", score: null },
-  { key: "9", sn: "9", activity: "Basic accounting and financial reporting", score: null },
-  { key: "10", sn: "10", activity: "Making Youtube and Tiktok videos", score: null },
-  { key: "11", sn: "11", activity: "Creating new businesses", score: null },
-  { key: "12", sn: "12", activity: "Creating music", score: null },
-  { key: "13", sn: "13", activity: "Writing", score: null },
-];
-
 const DraggableRow = (props) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
-    id: props["data-row-key"],
-  });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: props["data-row-key"],
+    });
 
   const styleRow = {
     transform: CSS.Transform.toString(transform),
@@ -51,52 +36,84 @@ const DraggableRow = (props) => {
       {...attributes}
       {...listeners}
       style={styleRow}
-      className={style.draggableRow}  // this works with CSS modules
+      className={style.draggableRow}
     />
   );
 };
 
 const RankingSkills = () => {
-  const [dataSource, setDataSource] = useState(initialData);
+  const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // ✅ Fetch data from backend
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://founderfit-backend.onrender.com/api/form/passions", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (data.passions?.length > 0) {
-            const mapped = data.passions.map((p, idx) => ({
-              key: String(idx + 1),
-              sn: String(idx + 1),
-              activity: p.passion,
-              score: p.score,
-            }));
-            setDataSource(mapped);
+        setLoading(true);
+        const res = await fetch(
+          "https://founderfit-backend.onrender.com/api/day1/get",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        }
+        );
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+
+        // Map backend fields to table
+        const mapped = data.map((item, idx) => ({
+          key: String(item.id),
+          sn: String(idx + 1),
+          activity: item.description,
+          score: item.score,
+          rank_order: item.rank_order,
+        }));
+        setDataSource(mapped);
       } catch (err) {
         console.error(err);
-        message.error("Unable to load passions");
+        message.error("Unable to load skills & passions");
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  const handleScoreChange = (value, recordKey) => {
+  // ✅ Update score in backend immediately
+  const handleScoreChange = async (value, recordKey) => {
     const updated = dataSource.map((item) =>
       item.key === recordKey ? { ...item, score: value } : item
     );
     setDataSource(updated);
+
+    const item = updated.find((i) => i.key === recordKey);
+    try {
+      await fetch(
+        `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            description: item.activity,
+            score: item.score,
+            rank_order: item.rank_order,
+          }),
+        }
+      );
+      message.success("Updated successfully!");
+    } catch (err) {
+      console.error(err);
+      message.error("Update failed");
+    }
   };
 
+  // ✅ Handle drag & drop ranking
   const handleDragEnd = (event) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -107,50 +124,44 @@ const RankingSkills = () => {
     const reindexed = moved.map((item, idx) => ({
       ...item,
       sn: String(idx + 1),
+      rank_order: idx + 1,
     }));
     setDataSource(reindexed);
+
+    // 🚀 Send updated rank to backend
+    reindexed.forEach(async (item) => {
+      try {
+        await fetch(
+          `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              description: item.activity,
+              score: item.score,
+              rank_order: item.rank_order,
+            }),
+          }
+        );
+      } catch (err) {
+        console.error("Rank update failed:", err);
+      }
+    });
   };
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
   );
 
-  const handleSave = async () => {
-    const userId = localStorage.getItem("user_id");
-    if (!userId) return message.error("User not identified");
-    setLoading(true);
-    try {
-      const payload = {
-        user_id: Number(userId),
-        passions: dataSource.map((d) => ({
-          passion: d.activity,
-          score: d.score,
-        })),
-      };
-      const res = await fetch(
-        `https://founderfit-backend.onrender.com/api/form/passions/1`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-      if (!res.ok) throw new Error("Failed");
-      message.success("Passions updated successfully!");
-    } catch (err) {
-      console.error(err);
-      message.error("Could not update passions");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const columns = [
     { dataIndex: "sn", align: "center", width: 50 },
-    { title: "WHAT I AM PASSIONATE ABOUT / INTERESTED IN DOING", dataIndex: "activity" },
+    {
+      title: "WHAT I AM PASSIONATE ABOUT / INTERESTED IN DOING",
+      dataIndex: "activity",
+    },
     {
       title: "EFFECTIVENESS (1 - 10)",
       dataIndex: "score",
@@ -169,8 +180,15 @@ const RankingSkills = () => {
 
   return (
     <div className={style.container}>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={dataSource.map((i) => i.key)} strategy={verticalListSortingStrategy}>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={dataSource.map((i) => i.key)}
+          strategy={verticalListSortingStrategy}
+        >
           <Table
             className={style.customTable}
             dataSource={dataSource}
@@ -178,15 +196,10 @@ const RankingSkills = () => {
             pagination={false}
             rowKey="key"
             components={{ body: { row: DraggableRow } }}
+            loading={loading}
           />
         </SortableContext>
       </DndContext>
-
-      <div style={{ textAlign: "right", marginTop: 20 }}>
-        <button onClick={handleSave} disabled={loading}>
-          {loading ? "Saving..." : "Save Changes"}
-        </button>
-      </div>
     </div>
   );
 };

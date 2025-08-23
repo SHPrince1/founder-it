@@ -55,10 +55,35 @@ const LoginComponent = () => {
   return (
     <>
       {/* Popup message */}
-      {showPopup && (
-        <div className={style.popup}>{popupMessage}</div>
-      )}
-      {/* Add your login form and other components here */}
+      {showPopup && <div className={style.popup}>{popupMessage}</div>}
+
+      <div className={style.loginContainer}>
+        <SignupIntro />
+
+        <form onSubmit={handleLogin} className={style.form}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        <p>
+          Don’t have an account? <Link to="/signup">Sign up</Link>
+        </p>
+      </div>
     </>
   );
 };

@@ -26,12 +26,12 @@ const SignUp = () => {
 
   const handleSignup = async () => {
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      showPopupMessage(" Please fill in all fields.");
+      showPopupMessage("Please fill in all fields.");
       return;
     }
 
     if (password !== confirmPassword) {
-      showPopupMessage(" Passwords do not match.");
+      showPopupMessage("Passwords do not match.");
       return;
     }
 
@@ -81,7 +81,7 @@ const SignUp = () => {
         }, 1500); // short delay so popup shows before redirect
       }
     } catch (err) {
-      showPopupMessage(`${err.message}`);
+      showPopupMessage(err.message);
     } finally {
       setLoading(false);
     }

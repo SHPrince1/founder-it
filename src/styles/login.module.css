@@ -1,57 +1,107 @@
 .container {
   width: 90%;
-  margin: 0 auto;
-  display: flex;
-  gap: 30px;
-  /* border: 1px solid red; */
+  margin: 30px auto;
+  height: 100vh;
 }
-.introSection{
-    width: 50%;
-}
-.loginSection{
-    width: 42%;
-    margin-top: 100px;
-}
-.textDiv{
-    /* border: 1px solid red; */
-    width: 100%;
-    /* display: flex; */
-    text-align: center;
-    line-height: 10px;
-    margin: 10px auto;
-    justify-content: center;
-}
-.textDiv h2{
-    font-size: 60px;
-    text-transform: uppercase;
-     font-family: 'Bebas Neue', sans-serif !important;;
 
+.contentDiv {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+  height: 100%;
 }
-.textDiv p{
-    font-size: 20px;
-    color: #4d4d4d;
-    font-family: sans-serif;
+
+.loginSection {
+  width: 50%;
+  padding: 10px;
 }
+
+.loginText {
+  width: 90%;
+  margin: -30px auto;
+  text-align: center;
+}
+
+.loginText h4 {
+  font-size: 60px;
+  font-family: 'Bebas Neue', sans-serif !important;
+}
+
+.loginText p {
+  font-size: 22px;
+  color: #4d4d4d;
+  margin-top: -80px;
+}
+
+.inputDiv {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-weight: lighter;
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    "middle"
+    "bottom";
+  grid-template-columns: 1fr;
+  width: 90%;
+  margin: 40px auto;
+}
+
+.inputGroup {
+  position: relative;
+  margin: 20px 0;
+  width: 90%;
+}
+
+.inputGroup input {
+  width: 90%;
+  margin-top: 10px;
+  padding: 12px;
+  padding-top: 22px;
+  font-size: 16px;
+  height: 20px;
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  border-radius: 14px;
+  outline: none;
+}
+
+.inputGroup label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #000;
+  font-weight: bold;
+  background: #f4f4f4;
+  padding: 0 4px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+/* Float label */
+.inputGroup input:focus + label,
+.inputGroup input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  color: #333;
+}
+
 .inputEmailDiv {
   position: relative;
   margin: 20px 0;
 }
 
 .inputEmailDiv input {
-  width: 100%;
+  width: 80%;
   height: 20px;
   padding: 10px 14px;
   padding-top: 20px;
-  /*leavespaceforlabel*/
   font-size: 16px;
   border: 1px solid #ccc;
   background-color: #f4f4f4;
   border-radius: 12px;
   outline: none;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
 }
 
 .inputEmailDiv label {
@@ -63,13 +113,12 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 16px;
-  /* background: white; */
   padding: 0 4px;
   pointer-events: none;
   transition: 0.2s ease all;
 }
 
-/* Float label when input has focus or value */
+/* Float label */
 .inputEmailDiv input:focus + label,
 .inputEmailDiv input:not(:placeholder-shown) + label {
   top: -8px;
@@ -77,95 +126,48 @@
   font-size: 12px;
   color: #333;
 }
-.forgotPassword{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.forgotPassword a{
-    text-decoration: none;
-    font-weight: bolder;
-    color: #000;
-}
-.alreadyAccount{
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-}
-.alreadyAccount a{
-    color: #fabb14;
-    font-weight: bolder;
-}
-.signUpBtnDiv{
-    /* border: 1px solid red; */
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 90%;
-    height: 40px;
-    align-items: flex-end;
-    /* justify-content: right; */
-    display: flex;
-    /* height: 200px; */
-}
-.signUpBtnDiv button{
-    width: 100%;
-    height: 55px;
-    font-size: 20px;
-    font-weight: bolder;
-    margin-top: -10px;
-    margin: 0 auto;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+
+.alreadyAccount {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
+.loginBtnDiv {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 80%;
+  height: 40px;
+  align-items: flex-end;
+  display: flex;
+}
 
+.loginBtnDiv button {
+  width: 100%;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 30px;
+}
 
+/* Popup */
+.popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
 
-/* MEDIA QUERRY */
-/* Extra small devices (phones, less than 576px) */
+/* Responsive */
 @media (max-width: 575.98px) {
-  /* styles for phones */
-.container{
+  .contentDiv {
     flex-direction: column;
-}
-.introSection{
-    width: 99%;
-    margin: 0 auto;
-}
-.loginSection{
-    width: 100%;
-}
-.inputEmailDiv input{
-    width: 90%;
-}
-.textDiv p{
-    line-height: 1;
-}
-}
-
-/* Small devices (portrait tablets, 576px and up) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  /* styles for small tablets */
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  /* styles for tablets */
- 
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  /* styles for small laptops/desktops */
-
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  /* styles for large screens */
- 
   }
+  .loginSection {
+    width: 100%;
+  }
+}

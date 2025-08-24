@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TopNav from "../components/top-nav";
 import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
+import Filled from "../assets/filled sample.jpeg";
 import style from "../styles/day3-16.module.css";
 import InstructionSteps from "../components/instruction-step";
 import TableTitle from "../components/day1/table-title";
@@ -11,20 +12,23 @@ import Footer from "../components/footer";
 // Example extra components that can be shown inside popups
 const SampleForm = () => (
   <div>
-    <h3>📄 Sample Filled Form</h3>
+    <h3> Sample Filled Form</h3>
     <p>This is how a filled-out idea form might look:</p>
-    <ul>
-      <li><strong>Problem:</strong> Long waiting times at banks</li>
-      <li><strong>Solution:</strong> Mobile queue management app</li>
-      <li><strong>Interest Level:</strong> 8/10</li>
-    </ul>
+    
+    <img src={Filled} alt="Sample Filled Form" style={{ width: "100%", maxWidth: "600px" }} />
   </div>
 );
 
 const AIToolTip = () => (
   <div>
     <h3>AI Tool Tip</h3>
-    <p>You can use ChatGPT or other AI brainstorming tools to quickly generate business ideas.</p>
+    <p>
+      Hello. I'm trying to figure out the top traits or things I am good at. can
+      you take a look at my resume/CV attached and let me know. OR hello. i'm
+      trying to figure out the top traits or things i am good at. can you take a
+      look at my linkedin profile and let me know
+      -https://www.linkedin.com/in/...[enter your linkedin URL]
+    </p>
     <a
       href="https://www.perplexity.ai/"
       target="_blank"

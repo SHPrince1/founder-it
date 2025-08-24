@@ -56,7 +56,7 @@ const WelcomePageCom = () => {
     return (
         <div style={{ textAlign: "center", marginTop: "2rem" }}>
             
-            <h2>Welcome to the 28-Day Challenge</h2>
+         
             <ActivityIndexPage />
         
             <p>{loading ? "Please wait..." : message}</p>

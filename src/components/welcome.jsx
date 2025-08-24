@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import ActivityIndexPage from "../pages/activityindex";
 // import style from "../styles/welcome.module.css" 
 
 const WelcomePageCom = () => {
@@ -54,8 +55,13 @@ const WelcomePageCom = () => {
 
     return (
         <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            
             <h2>Welcome to the 28-Day Challenge</h2>
+            <ActivityIndexPage />
+        
             <p>{loading ? "Please wait..." : message}</p>
+
+            
         </div>
     );
 };

@@ -1,18 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox, Input } from "antd";
 import style from "../styles/questionwithoption.module.css";
 
 const QuestionWithOptions = () => {
-  const [selectedValues, setSelectedValues] = useState([]);
-  const [customOther, setCustomOther] = useState("");
-  const [errorMessages, setErrorMessages] = useState({
-    criteria: "",
-    location: "",
-    scalability: "",
-    risk: "",
-    commitment: "",
-    investment: "",
-  });
+  // 🔹 Load saved state from localStorage (if available)
+  const loadState = (key, defaultValue) => {
+    try {
+      const saved = localStorage.getItem(key);
+      return saved ? JSON.parse(saved) : defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  };
+
+  // Section 1
+  const [selectedValues, setSelectedValues] = useState(
+    () => loadState("criteria", [])
+  );
+  const [customOther, setCustomOther] = useState(
+    () => loadState("customOther", "")
+  );
+  const [errorMessages, setErrorMessages] = useState({});
+
+  // Section states (single choice each)
+  const [location, setLocation] = useState(() => loadState("location", ""));
+  const [scalability, setScalability] = useState(() =>
+    loadState("scalability", "")
+  );
+  const [risk, setRisk] = useState(() => loadState("risk", ""));
+  const [commitment, setCommitment] = useState(() =>
+    loadState("commitment", "")
+  );
+  const [investment, setInvestment] = useState(() =>
+    loadState("investment", "")
+  );
+
+  // 🔹 Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("criteria", JSON.stringify(selectedValues));
+    localStorage.setItem("customOther", JSON.stringify(customOther));
+    localStorage.setItem("location", JSON.stringify(location));
+    localStorage.setItem("scalability", JSON.stringify(scalability));
+    localStorage.setItem("risk", JSON.stringify(risk));
+    localStorage.setItem("commitment", JSON.stringify(commitment));
+    localStorage.setItem("investment", JSON.stringify(investment));
+  }, [
+    selectedValues,
+    customOther,
+    location,
+    scalability,
+    risk,
+    commitment,
+    investment,
+  ]);
 
   // ✅ Section 1: Max 2 selections
   const handleCheckboxChange = (values) => {
@@ -26,8 +66,9 @@ const QuestionWithOptions = () => {
     setErrorMessages((prev) => ({ ...prev, criteria: "" }));
     setSelectedValues(values);
 
+    // reset Other input if unchecked
     if (!values.includes("Other")) {
-      setCustomOther(""); // Clear input when 'Other' is unchecked
+      setCustomOther("");
     }
   };
 
@@ -36,24 +77,10 @@ const QuestionWithOptions = () => {
   };
 
   // ✅ Generic handler for single-choice groups
-  const handleSingleSelectChange = (values, key, setFn) => {
-    if (values.length > 1) {
-      setErrorMessages((prev) => ({
-        ...prev,
-        [key]: "You can only select one option.",
-      }));
-      return;
-    }
+  const handleSingleSelectChange = (value, key, setFn) => {
+    setFn(value);
     setErrorMessages((prev) => ({ ...prev, [key]: "" }));
-    setFn(values);
   };
-
-  // States for each single-choice section
-  const [location, setLocation] = useState([]);
-  const [scalability, setScalability] = useState([]);
-  const [risk, setRisk] = useState([]);
-  const [commitment, setCommitment] = useState([]);
-  const [investment, setInvestment] = useState([]);
 
   return (
     <div className={style.container}>
@@ -94,11 +121,10 @@ const QuestionWithOptions = () => {
         <h3>The location of the business</h3>
         <div className={style.questBox}>
           <Checkbox.Group
-            style={{ width: "100%" }}
-            onChange={(values) =>
-              handleSingleSelectChange(values, "location", setLocation)
+            value={[location]}
+            onChange={(vals) =>
+              handleSingleSelectChange(vals[0] || "", "location", setLocation)
             }
-            value={location}
           >
             <div className={style.blockCheck}>
               <Checkbox value="A">No location</Checkbox>
@@ -117,11 +143,10 @@ const QuestionWithOptions = () => {
         <h3>Scalability requirement is</h3>
         <div className={style.questBox}>
           <Checkbox.Group
-            style={{ width: "100%" }}
-            onChange={(values) =>
-              handleSingleSelectChange(values, "scalability", setScalability)
+            value={[scalability]}
+            onChange={(vals) =>
+              handleSingleSelectChange(vals[0] || "", "scalability", setScalability)
             }
-            value={scalability}
           >
             <div className={style.blockCheck}>
               <Checkbox value="A">Supporting my lifestyle</Checkbox>
@@ -140,11 +165,10 @@ const QuestionWithOptions = () => {
         <h3>Risk tolerance is</h3>
         <div className={style.questBox}>
           <Checkbox.Group
-            style={{ width: "100%" }}
-            onChange={(values) =>
-              handleSingleSelectChange(values, "risk", setRisk)
+            value={[risk]}
+            onChange={(vals) =>
+              handleSingleSelectChange(vals[0] || "", "risk", setRisk)
             }
-            value={risk}
           >
             <div className={style.blockCheck}>
               <Checkbox value="A">Low</Checkbox>
@@ -152,9 +176,7 @@ const QuestionWithOptions = () => {
               <Checkbox value="C">High</Checkbox>
             </div>
           </Checkbox.Group>
-          {errorMessages.risk && (
-            <p className={style.error}>{errorMessages.risk}</p>
-          )}
+          {errorMessages.risk && <p className={style.error}>{errorMessages.risk}</p>}
         </div>
       </div>
 
@@ -163,11 +185,10 @@ const QuestionWithOptions = () => {
         <h3>Required time commitment</h3>
         <div className={style.questBox}>
           <Checkbox.Group
-            style={{ width: "100%" }}
-            onChange={(values) =>
-              handleSingleSelectChange(values, "commitment", setCommitment)
+            value={[commitment]}
+            onChange={(vals) =>
+              handleSingleSelectChange(vals[0] || "", "commitment", setCommitment)
             }
-            value={commitment}
           >
             <div className={style.blockCheck}>
               <Checkbox value="A">Full time</Checkbox>
@@ -187,11 +208,10 @@ const QuestionWithOptions = () => {
         <h3>Money to be invested</h3>
         <div className={style.questBox}>
           <Checkbox.Group
-            style={{ width: "100%" }}
-            onChange={(values) =>
-              handleSingleSelectChange(values, "investment", setInvestment)
+            value={[investment]}
+            onChange={(vals) =>
+              handleSingleSelectChange(vals[0] || "", "investment", setInvestment)
             }
-            value={investment}
           >
             <div className={style.blockCheck}>
               <Checkbox value="A">No money</Checkbox>

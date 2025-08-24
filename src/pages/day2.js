@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal, message } from "antd"; 
 import TopNav from "../components/top-nav";
 import QuestionWithOptions from "../components/questionwithoptions";
 import TableTitle from "../components/day1/table-title";
@@ -14,9 +14,17 @@ import ButtonNextPre from "../components/button-next-pre";
 const Day2 = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selection, setSelection] = useState(null); // track user choice
 
   const handlePrev = () => navigate("/day1-part1");
-  const handleNext = () => navigate("/day3-16");
+
+  const handleNext = () => {
+    if (!selection) {
+      message.warning("Please make a selection before proceeding.");
+      return;
+    }
+    navigate("/day3-16");
+  };
 
   return (
     <div>
@@ -53,19 +61,13 @@ const Day2 = () => {
         okText="Close"
         cancelButtonProps={{ style: { display: "none" } }}
       >
-        {/* You can put plain text here */}
         <p>This is an example of how the form should be filled.</p>
-
-        {/* Or even another component */}
-        {/* <YourSampleFormComponent /> */}
       </Modal>
 
-      <TableTitle
-        subtitle="Table 3"
-        title="Defining selection criteria"
-      />
+      <TableTitle subtitle="Table 3" title="Defining selection criteria" />
 
-      <QuestionWithOptions />
+      {/* ✅ Ensure QuestionWithOptions calls props.onSelect(value) when user chooses */}
+      <QuestionWithOptions onSelect={(value) => setSelection(value)} />
 
       <div className={style.btnContainer}>
         <ButtonNextPre

@@ -15,6 +15,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { MenuOutlined } from "@ant-design/icons";  // 👈 drag handle icon
 import style from "../../styles/day1.module.css";
 
 const initialData = [
@@ -51,7 +52,7 @@ const DraggableRow = (props) => {
       {...attributes}
       {...listeners}
       style={styleRow}
-      className={style.draggableRow}  // this works with CSS modules
+      className={style.draggableRow}
     />
   );
 };
@@ -148,9 +149,20 @@ const RankingSkills = () => {
     }
   };
 
+  // 👇 Updated columns with drag handle
   const columns = [
+    {
+      dataIndex: "drag",
+      width: 40,
+      render: () => (
+        <MenuOutlined style={{ cursor: "grab", color: "#999" }} />
+      ),
+    },
     { dataIndex: "sn", align: "center", width: 50 },
-    { title: "WHAT I AM PASSIONATE ABOUT / INTERESTED IN DOING", dataIndex: "activity" },
+    {
+      title: "WHAT I AM PASSIONATE ABOUT / INTERESTED IN DOING",
+      dataIndex: "activity",
+    },
     {
       title: "EFFECTIVENESS (1 - 10)",
       dataIndex: "score",

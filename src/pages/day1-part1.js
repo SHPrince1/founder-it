@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import WhatIamGreatAtTable from "../components/day1/day1-component";
 import PassionTable from "../components/day1/passion-table";
@@ -26,7 +26,6 @@ const initialPassions = [
   { key: "4", sn: "4", activity: "", score: null },
   { key: "5", sn: "5", activity: "", score: null },
   { key: "6", sn: "6", activity: "", score: null },
-  // { key: "7", sn: "7", activity: "", score: null },
 ];
 
 const Day1Part1 = () => {
@@ -35,23 +34,45 @@ const Day1Part1 = () => {
   const [passions, setPassions] = useState(initialPassions);
   const [loading, setLoading] = useState(false);
 
-  const getPayload = () => {
-    const userId = localStorage.getItem("user_id");
-    return {
-      user_id: Number(userId),
-      skills: skills.map((s) => ({ skill: s.activity, score: s.score })),
-      passions: passions.map((p) => ({ passion: p.activity, score: p.score })),
-    };
-  };
+  const userId = localStorage.getItem("user_id");
+
+  // 🔹 Load saved data for this user
+  useEffect(() => {
+    if (userId) {
+      const savedData = localStorage.getItem(`day1part1_${userId}`);
+      if (savedData) {
+        const { skills: savedSkills, passions: savedPassions } = JSON.parse(savedData);
+        setSkills(savedSkills || initialSkills);
+        setPassions(savedPassions || initialPassions);
+      }
+    }
+  }, [userId]);
+
+  // 🔹 Save data whenever it changes
+  useEffect(() => {
+    if (userId) {
+      localStorage.setItem(
+        `day1part1_${userId}`,
+        JSON.stringify({ skills, passions })
+      );
+    }
+  }, [skills, passions, userId]);
+
+  const getPayload = () => ({
+    user_id: Number(userId),
+    skills: skills.map((s) => ({ skill: s.activity, score: s.score })),
+    passions: passions.map((p) => ({ passion: p.activity, score: p.score })),
+  });
 
   const handleSave = async () => {
-    const allFilled = [...skills, ...passions].every((i) => i.activity && i.score);
-    if (!allFilled) {
-      message.warning("Please fill in all fields before saving.");
+    const anySkill = skills.some((i) => i.activity && i.score);
+    const anyPassion = passions.some((i) => i.activity && i.score);
+
+    if (!anySkill || !anyPassion) {
+      message.warning("Please fill at least one skill and one passion before saving.");
       return;
     }
 
-    const userId = localStorage.getItem("user_id");
     if (!userId) {
       message.error("User not found. Please login again.");
       return;
@@ -78,11 +99,19 @@ const Day1Part1 = () => {
   };
 
   const handlePrev = () => {
-    navigate("/activityindex"); // previous page
+    navigate("/activityindex"); // values remain since stored per user
   };
 
   const handleNext = () => {
-    navigate("/day1-part2"); // next page
+    const anySkill = skills.some((i) => i.activity && i.score);
+    const anyPassion = passions.some((i) => i.activity && i.score);
+
+    if (!anySkill || !anyPassion) {
+      message.warning("Please fill at least one skill and one passion before proceeding.");
+      return;
+    }
+
+    navigate("/day1-part2");
   };
 
   return (

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WhatIamGreatAtTable from "../components/day1/day1-component";
@@ -35,56 +36,57 @@ const Day1Part1 = () => {
   const [passions, setPassions] = useState(initialPassions);
   const [loading, setLoading] = useState(false);
 
-  // ✅ match backend expected payload
   const getPayload = () => {
+    const userId = localStorage.getItem("user_id");
     return {
-      skills: skills
-        .filter((s) => s.activity && s.score)
-        .map((s) => ({ description: s.activity, score: s.score })),
-      passions: passions
-        .filter((p) => p.activity && p.score)
-        .map((p) => ({ description: p.activity, score: p.score })),
+      user_id: Number(userId),
+      skills: skills.map((s) => ({ skill: s.activity, score: s.score })),
+      passions: passions.map((p) => ({ passion: p.activity, score: p.score })),
     };
   };
 
   const handleSave = async () => {
-    const payload = getPayload();
-
-    if (payload.skills.length === 0 && payload.passions.length === 0) {
-      message.warning("Please enter at least one skill or passion.");
+    const allFilled = [...skills, ...passions].every((i) => i.activity && i.score);
+    if (!allFilled) {
+      message.warning("Please fill in all fields before saving.");
       return;
     }
+
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      message.error("User not found. Please login again.");
+      return;
+    }
+
+    const payload = { skills: filteredSkills, passions: filteredPassions };
+    console.log("Payload:", payload);
 
     setLoading(true);
     try {
       const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/day1/save",
+        "https://founderfit-backend.onrender.com/api/form/submit-form",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // ✅ JWT
-          },
-          body: JSON.stringify(payload),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(getPayload()),
         }
       );
-
       if (!res.ok) throw new Error("Unable to save");
       message.success("Data saved successfully!");
     } catch (err) {
       console.error(err);
-      message.error("Error saving data");
+      message.error("❌ Server error");
     } finally {
       setLoading(false);
     }
   };
 
   const handlePrev = () => {
-    navigate("/activityindex");
+    navigate("/activityindex"); // previous page
   };
 
   const handleNext = () => {
-    navigate("/day1-part2");
+    navigate("/day1-part2"); // next page
   };
 
   return (

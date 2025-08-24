@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import style from "../../styles/login.module.css";
 
 const LoginComponent = () => {
@@ -6,9 +7,10 @@ const LoginComponent = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Popup states
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
+  const navigate = useNavigate(); // ✅ React Router hook
 
   const showPopupMessage = (message) => {
     setPopupMessage(message);
@@ -36,13 +38,15 @@ const LoginComponent = () => {
         throw new Error(data.error || data.message || "Login failed");
       }
 
-      // Save token
       localStorage.setItem("token", data.token);
-
       console.log("Login success:", data);
 
-      // TODO: Navigate to dashboard or home page
-      // e.g., navigate("/dashboard");
+      showPopupMessage("Login successful!");
+
+      // ✅ Redirect after short delay
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
     } catch (err) {
       showPopupMessage(err.message);
     } finally {
@@ -52,10 +56,8 @@ const LoginComponent = () => {
 
   return (
     <>
-      {/* Popup message */}
       {showPopup && <div className={style.popup}>{popupMessage}</div>}
 
-      {/* Login form */}
       <form onSubmit={handleLogin} className={style.form}>
         <div className={style.inputGroup}>
           <label>Email</label>

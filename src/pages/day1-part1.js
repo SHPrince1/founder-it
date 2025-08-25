@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WhatIamGreatAtTable from "../components/day1/day1-component";
 import PassionTable from "../components/day1/passion-table";
@@ -26,6 +27,7 @@ const initialPassions = [
   { key: "4", sn: "4", activity: "", score: null },
   { key: "5", sn: "5", activity: "", score: null },
   { key: "6", sn: "6", activity: "", score: null },
+  { key: "7", sn: "7", activity: "", score: null },
 ];
 
 const Day1Part1 = () => {
@@ -34,85 +36,70 @@ const Day1Part1 = () => {
   const [passions, setPassions] = useState(initialPassions);
   const [loading, setLoading] = useState(false);
 
-  const userId = localStorage.getItem("user_id");
-
-  // 🔹 Load saved data for this user
-  useEffect(() => {
-    if (userId) {
-      const savedData = localStorage.getItem(`day1part1_${userId}`);
-      if (savedData) {
-        const { skills: savedSkills, passions: savedPassions } = JSON.parse(savedData);
-        setSkills(savedSkills || initialSkills);
-        setPassions(savedPassions || initialPassions);
-      }
-    }
-  }, [userId]);
-
-  // 🔹 Save data whenever it changes
-  useEffect(() => {
-    if (userId) {
-      localStorage.setItem(
-        `day1part1_${userId}`,
-        JSON.stringify({ skills, passions })
-      );
-    }
-  }, [skills, passions, userId]);
-
-  const getPayload = () => ({
-    user_id: Number(userId),
-    skills: skills.map((s) => ({ skill: s.activity, score: s.score })),
-    passions: passions.map((p) => ({ passion: p.activity, score: p.score })),
-  });
-
   const handleSave = async () => {
-    const anySkill = skills.some((i) => i.activity && i.score);
-    const anyPassion = passions.some((i) => i.activity && i.score);
+    // 🔍 Check for incomplete rows
+    const incompleteSkill = skills.find(
+      (s) =>
+        (s.activity.trim() !== "" && (s.score === null || s.score === undefined)) ||
+        (s.activity.trim() === "" && s.score !== null)
+    );
+    const incompletePassion = passions.find(
+      (p) =>
+        (p.activity.trim() !== "" && (p.score === null || p.score === undefined)) ||
+        (p.activity.trim() === "" && p.score !== null)
+    );
 
-    if (!anySkill || !anyPassion) {
-      message.warning("Please fill at least one skill and one passion before saving.");
+    if (incompleteSkill || incompletePassion) {
+      message.error("⚠ Each skill/passion must have BOTH a description and a score.");
       return;
     }
 
-    if (!userId) {
-      message.error("User not found. Please login again.");
+    // ✅ Build payload only from fully valid rows
+    const filteredSkills = skills
+      .filter((s) => s.activity.trim() !== "" && s.score !== null)
+      .map((s) => ({ description: s.activity, score: s.score }));
+
+    const filteredPassions = passions
+      .filter((p) => p.activity.trim() !== "" && p.score !== null)
+      .map((p) => ({ description: p.activity, score: p.score }));
+
+    if (filteredSkills.length === 0 && filteredPassions.length === 0) {
+      message.warning("⚠ Please enter at least one skill or passion.");
       return;
     }
+
+    const payload = { skills: filteredSkills, passions: filteredPassions };
+    console.log("Payload:", payload);
 
     setLoading(true);
     try {
-      const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/form/submit-form",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(getPayload()),
-        }
-      );
-      if (!res.ok) throw new Error("Unable to save");
-      message.success("Data saved successfully!");
+      const res = await fetch("https://founderfit-backend.onrender.com/api/day1/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // ✅ Fixed here
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        message.error(result.error || "❌ Error saving data");
+        return;
+      }
+
+      message.success("✅ Your skills and passions have been saved. Click ‘Next’ to continue.");
     } catch (err) {
       console.error(err);
-      message.error("Error saving data");
+      message.error("❌ Server error");
     } finally {
       setLoading(false);
     }
   };
 
-  const handlePrev = () => {
-    navigate("/activityindex"); // values remain since stored per user
-  };
-
-  const handleNext = () => {
-    const anySkill = skills.some((i) => i.activity && i.score);
-    const anyPassion = passions.some((i) => i.activity && i.score);
-
-    if (!anySkill || !anyPassion) {
-      message.warning("Please fill at least one skill and one passion before proceeding.");
-      return;
-    }
-
-    navigate("/day1-part2");
-  };
+  const handlePrev = () => navigate("/activityindex");
+  const handleNext = () => navigate("/day1-part2");
 
   return (
     <div className={style.container}>

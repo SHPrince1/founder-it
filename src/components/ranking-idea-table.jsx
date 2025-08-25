@@ -1,148 +1,182 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Table, InputNumber } from "antd";
-import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { SortableContext, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
+import React, { useState, useEffect } from "react";
+import { Table, InputNumber, message } from "antd";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { MenuOutlined } from "@ant-design/icons";
-import style from "../styles/idea-table-list.module.css";
+import style from "../styles/day1.module.css";
 
-// Dummy fallback data
-const dummyData = [
-  {
-    key: "1",
-    day: "Hotels remain expensive and subpar when you take a vacation as a family, especially in new countries",
-    solution: "Buy and/or build out a portfolio of rental units to accommodate travelers that want a “home away from home”",
-  },
-  {
-    key: "2",
-    day: "People need short-term storage facilities when they are between rental properties, or their new place cannot accommodate everything they have",
-    solution: "Acquire or build a small local self-storage facility, and improve operations via software and more responsive customer service",
-  },
-  {
-    key: "3",
-    day: "Try Before You Fly is needed to virtually see the hotel rooms you might want to rent so it does not upset your vacation",
-    solution: "Platform that aggregates 3D hotel room walkthroughs with realtime availability to avoid “buying” wrong rooms",
-  },
-  {
-    key: "4",
-    day: "Vertical job board for climate-tech roles because these jobs are difficult to find and aggregate",
-    solution: "Curated listings, hiring support, and candidate communities focused on climate startups via a website",
-  },
-  {
-    key: "5",
-    day: "Fleet Tracker for small delivery businesses as you want to know where trucks/buses/bikes are 24/7",
-    solution: "Low-cost GPS + dashboard to track truck/bus/bike fleets",
-  },
-];
-
-// 🔹 Sortable row wrapper
-const SortableRow = ({ children, ...props }) => {
+const DraggableRow = (props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props["data-row-key"] });
+    useSortable({
+      id: props["data-row-key"],
+    });
 
   const styleRow = {
-    ...props.style,
     transform: CSS.Transform.toString(transform),
     transition,
+    ...props.style,
   };
 
   return (
-    <tr ref={setNodeRef} style={styleRow} {...props}>
-      {children.map((child, index) => {
-        // Attach listeners only to the first cell (the handle column)
-        if (index === 0) {
-          return (
-            <td
-              key={index}
-              {...attributes}
-              {...listeners}
-              style={{ cursor: "grab", width: "40px", textAlign: "center" }}
-            >
-              <MenuOutlined style={{ fontSize: "18px", color: "#999" }} />
-            </td>
-          );
-        }
-        return child;
-      })}
-    </tr>
+    <tr
+      ref={setNodeRef}
+      {...props}
+      {...attributes}
+      {...listeners}
+      style={styleRow}
+      className={style.draggableRow}
+    />
   );
 };
 
-const RankinkIdeaList = () => {
-  const [data, setData] = useState(dummyData);
-  const [interestLevels, setInterestLevels] = useState({});
+const RankingSkills = () => {
+  const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const sensors = useSensors(useSensor(PointerSensor));
-
-  const handleInterestChange = (key, value) => {
-    setInterestLevels((prev) => ({
-      ...prev,
-      [key]: value || 0,
-    }));
-  };
-
+  // ✅ Fetch data from backend
   useEffect(() => {
-    const fetchIdeas = async () => {
-      setLoading(true);
+    const fetchData = async () => {
       try {
-        const res = await fetch("https://your-backend-url.com/api/ideas"); //  replace with real API
+        setLoading(true);
+        const res = await fetch(
+          "https://founderfit-backend.onrender.com/api/day1/get",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         if (!res.ok) throw new Error("Failed to fetch");
-        const backendData = await res.json();
+        const data = await res.json();
 
-        const formatted = backendData.map((item, index) => ({
-          key: item.id || String(index + 1),
-          day: item.problem || item.day,
-          solution: item.solution,
+        const mapped = data.map((item, idx) => ({
+          key: String(item.id),
+          sn: String(idx + 1),
+          activity: item.description,
+          score: item.score,
+          rank_order: item.rank_order,
         }));
-
-        setData(formatted);
-      } catch (error) {
-        console.error("Using dummy data because API failed:", error.message);
+        setDataSource(mapped);
+      } catch (err) {
+        console.error(err);
+        message.error("Unable to load skills & passions");
       } finally {
         setLoading(false);
       }
     };
-
-    fetchIdeas();
+    fetchData();
   }, []);
 
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-    if (active.id !== over.id) {
-      setData((prev) => {
-        const oldIndex = prev.findIndex((item) => item.key === active.id);
-        const newIndex = prev.findIndex((item) => item.key === over.id);
-        return arrayMove(prev, oldIndex, newIndex);
-      });
+  // ✅ Prevent empty scores
+  const handleScoreChange = async (value, recordKey) => {
+    if (value === null || value === undefined) {
+      message.error("⚠ Score cannot be left blank. Please enter 1–10.");
+      return;
+    }
+
+    const updated = dataSource.map((item) =>
+      item.key === recordKey ? { ...item, score: value } : item
+    );
+    setDataSource(updated);
+
+    const item = updated.find((i) => i.key === recordKey);
+    try {
+      await fetch(
+        `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            description: item.activity,
+            score: item.score,
+            rank_order: item.rank_order,
+          }),
+        }
+      );
+      message.success("✅ Updated successfully!");
+    } catch (err) {
+      console.error(err);
+      message.error("Update failed");
     }
   };
 
+  // ✅ Handle drag & drop ranking
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = dataSource.findIndex((i) => i.key === active.id);
+    const newIndex = dataSource.findIndex((i) => i.key === over.id);
+    const moved = arrayMove([...dataSource], oldIndex, newIndex);
+    const reindexed = moved.map((item, idx) => ({
+      ...item,
+      sn: String(idx + 1),
+      rank_order: idx + 1,
+    }));
+    setDataSource(reindexed);
+
+    // 🚀 Send updated rank to backend
+    reindexed.forEach(async (item) => {
+      try {
+        await fetch(
+          `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              description: item.activity,
+              score: item.score,
+              rank_order: item.rank_order,
+            }),
+          }
+        );
+      } catch (err) {
+        console.error("Rank update failed:", err);
+      }
+    });
+  };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
+  );
+
   const columns = [
+    { dataIndex: "sn", align: "center", width: 50 },
     {
-      title: "", // handle column
-      dataIndex: "sort",
-      width: 40,
+      title: "WHAT I AM PASSIONATE ABOUT / INTERESTED IN DOING",
+      dataIndex: "activity",
     },
     {
-      title: "IDEA/PROBLEM",
-      dataIndex: "day",
-    },
-    {
-      title: "SOLUTION",
-      dataIndex: "solution",
-    },
-    {
-      title: "RATE YOUR LEVEL OF INTEREST IN THIS IDEA (1-10: 10 IS HIGH)",
-      key: "interest",
-      align: "center",
+      title: "EFFECTIVENESS (1 - 10)",
+      dataIndex: "score",
+      align: "right",
       render: (_, record) => (
         <InputNumber
           min={1}
           max={10}
-          value={interestLevels[record.key]}
-          onChange={(value) => handleInterestChange(record.key, value)}
+          value={record.score}
+          onChange={(value) => handleScoreChange(value, record.key)}
+          className={style.inputRight}
         />
       ),
     },
@@ -150,15 +184,23 @@ const RankinkIdeaList = () => {
 
   return (
     <div className={style.container}>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <SortableContext items={data.map((i) => i.key)} strategy={verticalListSortingStrategy}>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={dataSource.map((i) => i.key)}
+          strategy={verticalListSortingStrategy}
+        >
           <Table
-            components={{ body: { row: SortableRow } }}
+            className={style.customTable}
+            dataSource={dataSource}
             columns={columns}
-            dataSource={data}
-            loading={loading}
             pagination={false}
             rowKey="key"
+            components={{ body: { row: DraggableRow } }}
+            loading={loading}
           />
         </SortableContext>
       </DndContext>
@@ -166,4 +208,4 @@ const RankinkIdeaList = () => {
   );
 };
 
-export default RankinkIdeaList;
+export default RankingSkills;

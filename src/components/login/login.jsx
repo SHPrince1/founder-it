@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import SignupIntro from "../sign-up/signup-intro";
-import style from "../../styles/login.module.css"; // 👈 still its own css
+import style from "../../styles/login.module.css";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +11,8 @@ const LoginComponent = () => {
   // Popup states
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
+  const navigate = useNavigate(); // ✅ enable navigation
 
   const showPopupMessage = (message) => {
     setPopupMessage(message);
@@ -38,10 +40,17 @@ const LoginComponent = () => {
         throw new Error(data.error || data.message || "Login failed");
       }
 
+      // Save token
       localStorage.setItem("token", data.token);
       console.log("Login success:", data);
 
-      // TODO: navigate("/dashboard");
+      // Success popup
+      showPopupMessage("Login successful!");
+
+      // Redirect after short delay
+      setTimeout(() => {
+        navigate("/welcome");
+      }, 1500);
     } catch (err) {
       showPopupMessage(err.message);
     } finally {
@@ -53,8 +62,10 @@ const LoginComponent = () => {
     <>
       <div className={style.container}>
         <div className={style.contentDiv}>
+          {/* Left side intro */}
           <SignupIntro />
 
+          {/* Right side login form */}
           <div className={style.loginSection}>
             <div className={style.loginText}>
               <h4>WELCOME BACK</h4>
@@ -103,10 +114,8 @@ const LoginComponent = () => {
         </div>
       </div>
 
-      {/* Popup */}
-      {showPopup && (
-        <div className={style.popup}>{popupMessage}</div>
-      )}
+      {/* Popup message */}
+      {showPopup && <div className={style.popup}>{popupMessage}</div>}
     </>
   );
 };

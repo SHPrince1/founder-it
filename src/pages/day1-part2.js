@@ -23,9 +23,8 @@ const Day1part2 = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-
         if (!token) {
-          message.error("⚠ You must log in to view this page.");
+          message.error("No token found. Please login again.");
           navigate("/login");
           return;
         }
@@ -33,7 +32,9 @@ const Day1part2 = () => {
         const res = await fetch(
           "https://founderfit-backend.onrender.com/api/day1/get",
           {
-            headers: { Authorization: `Bearer ${token}` }, // ✅ fixed
+            headers: {
+              Authorization: `Bearer ${token}`, // ✅ fixed here
+            },
           }
         );
 
@@ -43,7 +44,7 @@ const Day1part2 = () => {
         setItems(data);
       } catch (err) {
         console.error(err);
-        message.error("❌ Error fetching skills & passions");
+        message.error("Error fetching skills & passions");
       } finally {
         setLoading(false);
       }

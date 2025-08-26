@@ -84,7 +84,7 @@ const RankingSkills = () => {
   // ✅ Prevent empty scores
   const handleScoreChange = async (value, recordKey) => {
     if (value === null || value === undefined) {
-      message.error("⚠ Score cannot be left blank. Please enter 1–10.");
+      message.error("⚠️ Score cannot be left blank. Please enter 1–10.");
       return;
     }
 

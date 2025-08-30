@@ -1,84 +1,134 @@
 import { useState } from "react";
-import { Table, InputNumber } from "antd";
+import { Table, Input, InputNumber, message } from "antd";
 import style from "../styles/idea-table-list.module.css";
+import ButtonNextPre from "../components/button-next-pre";
+import { useNavigate } from "react-router-dom";
 
-const data = [
-  {
-    key: "1",
-    day: "Fleet Tracker for small delivery businesses as you want to know where trucks/buses/bikes are 24/7",
-    solution: "Low-cost GPS + dashboard to track truck/bus/bike fleets",
-  },
-  {
-    key: "2",
-    day: "Try Before You Fly is needed to virtually see the hotel rooms you might want to rent so it does not upset your vacation",
-    solution:
-      "Platform that aggregates 3D hotel room walkthroughs with realtime availability to avoid “buying” wrong rooms",
-  },
-  {
-    key: "3",
-    day: "People need short-term storage facilities when they are between rental properties, or their new place cannot accommodate everything they have",
-    solution:
-      "Acquire or build a small local self-storage facility, and improve operations via software and more responsive customer service",
-  },
-  {
-    key: "4",
-    day: "Vertical job board for climate-tech roles because these jobs are difficult to find and aggregate",
-    solution:
-      "Curated listings, hiring support, and candidate communities focused on climate startups via a website",
-  },
-  {
-    key: "5",
-    day: "Hotels remain expensive and subpar when you take a vacation as a family, especially in new countries",
-    solution:
-      "Buy and/or build out a portfolio of rental units to accommodate travelers that want a “home away from home”",
-  },
-];
+const { TextArea } = Input;
 
 const IdeaTableList = () => {
-  const [interestLevels, setInterestLevels] = useState({});
+  const navigate = useNavigate();
 
-  const handleInterestChange = (key, value) => {
-    setInterestLevels((prev) => ({
-      ...prev,
-      [key]: value || 0,
-    }));
+  // ✅ State for rows
+  const [rows, setRows] = useState([
+    { key: "1", day: "", solution: "", interest: 0 },
+    { key: "2", day: "", solution: "", interest: 0 },
+    { key: "3", day: "", solution: "", interest: 0 },
+    { key: "4", day: "", solution: "", interest: 0 },
+    { key: "5", day: "", solution: "", interest: 0 },
+  ]);
+
+  // ✅ Handle changes
+  const handleChange = (key, field, value) => {
+    setRows((prev) =>
+      prev.map((row) =>
+        row.key === key ? { ...row, [field]: value } : row
+      )
+    );
+  };
+
+  const handlePrev = () => navigate("/day17-25");
+
+  const handleNext = async () => {
+    // ✅ Allow proceeding if at least one row is filled
+    const filledRows = rows.filter(
+      (row) => row.day.trim() && row.solution.trim() && row.interest > 0
+    );
+
+    if (filledRows.length === 0) {
+      message.warning("⚠️ Please fill at least one idea before proceeding.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "https://founderfit-backend.onrender.com/api/dayX/save", // replace with correct endpoint
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ ideas: filledRows }), // ✅ send only filled rows
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to save");
+
+      message.success("✅ Ideas saved successfully!");
+      navigate("/next-page"); // replace with actual next route
+    } catch (err) {
+      console.error("Error saving ideas:", err);
+      message.error("❌ Failed to save your ideas");
+    }
   };
 
   const columns = [
     {
-      title: "IDEA/PROBLEM",
+      title: "IDEA / PROBLEM",
       dataIndex: "day",
+      width: "40%",
+      render: (_, record) => (
+        <TextArea
+          rows={4} // ✅ made larger
+          placeholder="Enter your idea or problem"
+          value={record.day}
+          onChange={(e) => handleChange(record.key, "day", e.target.value)}
+          style={{ width: "100%" }}
+        />
+      ),
     },
     {
       title: "SOLUTION",
       dataIndex: "solution",
+      width: "40%",
+      render: (_, record) => (
+        <TextArea
+          rows={4} // ✅ made larger
+          placeholder="Enter solution"
+          value={record.solution}
+          onChange={(e) =>
+            handleChange(record.key, "solution", e.target.value)
+          }
+          style={{ width: "100%" }}
+        />
+      ),
     },
     {
-      title: "RATE YOUR LEVEL OF INTEREST IN THIS IDEA (1-10: 10 IS HIGH)",
-      key: "interest",
+      title: "RATE YOUR INTEREST (1-10)",
+      dataIndex: "interest",
+      width: "20%",
       align: "center",
       render: (_, record) => (
         <InputNumber
           min={1}
           max={10}
-          value={interestLevels[record.key]}
-          onChange={(value) => handleInterestChange(record.key, value)}
+          value={record.interest}
+          onChange={(value) => handleChange(record.key, "interest", value)}
         />
       ),
     },
   ];
 
   return (
-    <div>
-      <div className={style.container}>
-        <Table
-          columns={columns}
-          dataSource={data}
-          pagination={false}
-          rowKey="key"
+    <div className={style.container}>
+      <Table
+        columns={columns}
+        dataSource={rows}
+        pagination={false}
+        rowKey="key"
+      />
+      <div style={{ marginTop: "16px", textAlign: "right" }}>
+        <ButtonNextPre
+          buttons={[
+            { label: "PREVIOUS", onClick: handlePrev },
+            { label: "NEXT", onClick: handleNext },
+          ]}
         />
       </div>
     </div>
   );
 };
+
 export default IdeaTableList;

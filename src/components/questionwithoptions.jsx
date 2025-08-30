@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Checkbox, Input } from "antd";
+// components/questionwithoptions.js
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
+import { Checkbox, Input, message } from "antd";
 import style from "../styles/questionwithoption.module.css";
 
-const QuestionWithOptions = () => {
+const QuestionWithOptions = forwardRef((props, ref) => {
   // 🔹 Load saved state from localStorage (if available)
   const loadState = (key, defaultValue) => {
     try {
@@ -57,10 +63,7 @@ const QuestionWithOptions = () => {
   // ✅ Section 1: Max 2 selections
   const handleCheckboxChange = (values) => {
     if (values.length > 2) {
-      setErrorMessages((prev) => ({
-        ...prev,
-        criteria: "You can only pick up to 2 options here.",
-      }));
+      message.error("You can only pick up to 2 options here.");
       return;
     }
     setErrorMessages((prev) => ({ ...prev, criteria: "" }));
@@ -81,6 +84,47 @@ const QuestionWithOptions = () => {
     setFn(value);
     setErrorMessages((prev) => ({ ...prev, [key]: "" }));
   };
+
+  // ✅ Expose validation + payload to parent
+  useImperativeHandle(ref, () => ({
+    validateAndBuildPayload() {
+      if (selectedValues.length !== 2) {
+        message.error("Please select exactly 2 options in 'Selection Criteria'.");
+        return null;
+      }
+      if (!location) {
+        message.error("Please select one option in 'Location'.");
+        return null;
+      }
+      if (!scalability) {
+        message.error("Please select one option in 'Scalability'.");
+        return null;
+      }
+      if (!risk) {
+        message.error("Please select one option in 'Risk Tolerance'.");
+        return null;
+      }
+      if (!commitment) {
+        message.error("Please select one option in 'Time Commitment'.");
+        return null;
+      }
+      if (!investment) {
+        message.error("Please select one option in 'Investment'.");
+        return null;
+      }
+
+      return {
+        selectionCriteria: selectedValues.includes("Other")
+          ? [...selectedValues.filter((v) => v !== "Other"), customOther]
+          : selectedValues,
+        location,
+        scalability,
+        riskTolerance: risk,
+        timeCommitment: commitment,
+        investment,
+      };
+    },
+  }));
 
   return (
     <div className={style.container}>
@@ -127,14 +171,11 @@ const QuestionWithOptions = () => {
             }
           >
             <div className={style.blockCheck}>
-              <Checkbox value="A">No location</Checkbox>
-              <Checkbox value="B">In the Area (permanence not required)</Checkbox>
-              <Checkbox value="C">Fixed Location</Checkbox>
+              <Checkbox value="No location">No location</Checkbox>
+              <Checkbox value="In the Area">In the Area (permanence not required)</Checkbox>
+              <Checkbox value="Fixed Location">Fixed Location</Checkbox>
             </div>
           </Checkbox.Group>
-          {errorMessages.location && (
-            <p className={style.error}>{errorMessages.location}</p>
-          )}
         </div>
       </div>
 
@@ -149,14 +190,11 @@ const QuestionWithOptions = () => {
             }
           >
             <div className={style.blockCheck}>
-              <Checkbox value="A">Supporting my lifestyle</Checkbox>
-              <Checkbox value="B">Stable cash flow; some growth</Checkbox>
-              <Checkbox value="C">High Growth</Checkbox>
+              <Checkbox value="Lifestyle">Supporting my lifestyle</Checkbox>
+              <Checkbox value="Stable Growth">Stable cash flow; some growth</Checkbox>
+              <Checkbox value="High Growth">High Growth</Checkbox>
             </div>
           </Checkbox.Group>
-          {errorMessages.scalability && (
-            <p className={style.error}>{errorMessages.scalability}</p>
-          )}
         </div>
       </div>
 
@@ -171,12 +209,11 @@ const QuestionWithOptions = () => {
             }
           >
             <div className={style.blockCheck}>
-              <Checkbox value="A">Low</Checkbox>
-              <Checkbox value="B">Medium</Checkbox>
-              <Checkbox value="C">High</Checkbox>
+              <Checkbox value="Low">Low</Checkbox>
+              <Checkbox value="Medium">Medium</Checkbox>
+              <Checkbox value="High">High</Checkbox>
             </div>
           </Checkbox.Group>
-          {errorMessages.risk && <p className={style.error}>{errorMessages.risk}</p>}
         </div>
       </div>
 
@@ -191,15 +228,12 @@ const QuestionWithOptions = () => {
             }
           >
             <div className={style.blockCheck}>
-              <Checkbox value="A">Full time</Checkbox>
-              <Checkbox value="B">Part time</Checkbox>
-              <Checkbox value="C">Evening/weekends</Checkbox>
-              <Checkbox value="D">Adhoc</Checkbox>
+              <Checkbox value="Full time">Full time</Checkbox>
+              <Checkbox value="Part time">Part time</Checkbox>
+              <Checkbox value="Evenings/Weekends">Evening/weekends</Checkbox>
+              <Checkbox value="Adhoc">Adhoc</Checkbox>
             </div>
           </Checkbox.Group>
-          {errorMessages.commitment && (
-            <p className={style.error}>{errorMessages.commitment}</p>
-          )}
         </div>
       </div>
 
@@ -214,19 +248,16 @@ const QuestionWithOptions = () => {
             }
           >
             <div className={style.blockCheck}>
-              <Checkbox value="A">No money</Checkbox>
-              <Checkbox value="B">Some money</Checkbox>
-              <Checkbox value="C">Other people's money</Checkbox>
-              <Checkbox value="D">Self-funded</Checkbox>
+              <Checkbox value="No money">No money</Checkbox>
+              <Checkbox value="Some money">Some money</Checkbox>
+              <Checkbox value="Other people's money">Other people's money</Checkbox>
+              <Checkbox value="Self-funded">Self-funded</Checkbox>
             </div>
           </Checkbox.Group>
-          {errorMessages.investment && (
-            <p className={style.error}>{errorMessages.investment}</p>
-          )}
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default QuestionWithOptions;

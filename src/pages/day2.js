@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+// pages/Day2.js
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, message } from "antd"; 
+import { Modal, message } from "antd";
 import TopNav from "../components/top-nav";
 import QuestionWithOptions from "../components/questionwithoptions";
 import TableTitle from "../components/day1/table-title";
@@ -14,16 +15,56 @@ import ButtonNextPre from "../components/button-next-pre";
 const Day2 = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selection, setSelection] = useState(null); // track user choice
+  const questionRef = useRef();
 
   const handlePrev = () => navigate("/day1-part1");
 
-  const handleNext = () => {
-    if (!selection) {
-      message.warning("Please make a selection before proceeding.");
+  const handleNext = async () => {
+    // ✅ Validate form and build payload
+    const payload = questionRef.current?.validateAndBuildPayload();
+    if (!payload) {
+      message.warning("Please complete the form before proceeding.");
       return;
     }
-    navigate("/day3-16");
+
+    // 🔹 Re-map keys to match backend API fields
+    const backendPayload = {
+      selection_criteria: payload.selectionCriteria,
+      location: payload.location,
+      scalability: payload.scalability,
+      risk_tolerance: payload.riskTolerance,
+      time_commitment: payload.timeCommitment,
+    };
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        message.error("You are not logged in. Please log in first.");
+        return;
+      }
+
+      const response = await fetch(
+        "https://founderfit-backend.onrender.com/api/day2/save",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // ✅ fixed template string
+          },
+          body: JSON.stringify(backendPayload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
+      }
+
+      message.success("Responses saved successfully!");
+      navigate("/day3-16");
+    } catch (err) {
+      console.error("❌ Failed to save Day2 responses:", err);
+      message.error("Failed to save your responses. Try again.");
+    }
   };
 
   return (
@@ -40,12 +81,14 @@ const Day2 = () => {
         message="Today you will define your selection criteria and carefully consider your personal and professional goals. To make informed decisions use your responses from Day 2 to guide you through this process. Define your selection criteria for a business below."
       />
 
+      {/* Help Section */}
       <div className={style.help}>
         <div className={style.emptyDiv}></div>
         <p>HELP</p>
         <div className={style.emptyDiv}></div>
       </div>
 
+      {/* Modal Trigger */}
       <div className={style.btnDiv}>
         <button onClick={() => setIsModalOpen(true)}>
           Sample of a filled out form
@@ -64,11 +107,13 @@ const Day2 = () => {
         <p>This is an example of how the form should be filled.</p>
       </Modal>
 
+      {/* Table Title */}
       <TableTitle subtitle="Table 3" title="Defining selection criteria" />
 
-      {/* ✅ Ensure QuestionWithOptions calls props.onSelect(value) when user chooses */}
-      <QuestionWithOptions onSelect={(value) => setSelection(value)} />
+      {/* ✅ Pass ref so we can validate on Next */}
+      <QuestionWithOptions ref={questionRef} />
 
+      {/* Navigation Buttons */}
       <div className={style.btnContainer}>
         <ButtonNextPre
           buttons={[

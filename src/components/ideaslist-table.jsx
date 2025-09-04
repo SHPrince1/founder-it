@@ -1,24 +1,18 @@
-import { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Table, Input, InputNumber, message } from "antd";
 import style from "../styles/idea-table-list.module.css";
-import ButtonNextPre from "../components/button-next-pre";
-import { useNavigate } from "react-router-dom";
 
-const { TextArea } = Input;
+const IdeaTableList = forwardRef((props, ref) => {
+  // Initialize with 5 empty rows
+  const [rows, setRows] = useState(
+    Array.from({ length: 5 }, (_, i) => ({
+      key: (i + 1).toString(),
+      idea: "",
+      solution: "",
+      score: null,
+    }))
+  );
 
-const IdeaTableList = () => {
-  const navigate = useNavigate();
-
-  //  State for rows
-  const [rows, setRows] = useState([
-    { key: "1", day: "", solution: "", interest: 0 },
-    { key: "2", day: "", solution: "", interest: 0 },
-    { key: "3", day: "", solution: "", interest: 0 },
-    { key: "4", day: "", solution: "", interest: 0 },
-    { key: "5", day: "", solution: "", interest: 0 },
-  ]);
-
-  //  Handle changes
   const handleChange = (key, field, value) => {
     setRows((prev) =>
       prev.map((row) =>
@@ -27,85 +21,71 @@ const IdeaTableList = () => {
     );
   };
 
-  const handlePrev = () => navigate("/day17-25");
-
-  const handleNext = async () => {
-    // Allow proceeding if at least one row is filled
-    const filledRows = rows.filter(
-      (row) => row.day.trim() && row.solution.trim() && row.interest > 0
-    );
-
-    if (filledRows.length === 0) {
-      message.warning("⚠️ Please fill at least one idea before proceeding.");
-      return;
-    }
-
-    try {
-      const token = localStorage.getItem("token");
-      const response = await fetch(
-        "https://founderfit-backend.onrender.com/api/dayX/save", // replace with correct endpoint
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ ideas: filledRows }), //  send only filled rows
-        }
+  // Expose validation + payload builder
+  useImperativeHandle(ref, () => ({
+    validateAndBuildPayload() {
+      // Must have at least one complete row
+      const filledRows = rows.filter(
+        (r) => r.idea.trim() && r.solution.trim() && r.score
       );
 
-      if (!response.ok) throw new Error("Failed to save");
+      if (filledRows.length === 0) {
+        message.error("Please fill at least one idea, solution, and score.");
+        return null;
+      }
 
-      message.success("Ideas saved successfully!");
-      navigate("/next-page"); // replace with actual next route
-    } catch (err) {
-      console.error("Error saving ideas:", err);
-      message.error(" Failed to save your ideas");
-    }
-  };
+      // Validate that if user starts filling, they must complete the row
+      for (const r of rows) {
+        if ((r.idea || r.solution || r.score) && !(r.idea && r.solution && r.score)) {
+          message.error("All fields in a row must be filled if you start it.");
+          return null;
+        }
+      }
+
+      // Return payload for backend
+      return {
+        ideas: filledRows.map((r) => ({
+          idea: r.idea,
+          solution: r.solution,
+          score: r.score,
+        })),
+      };
+    },
+  }));
 
   const columns = [
     {
       title: "IDEA / PROBLEM",
-      dataIndex: "day",
-      width: "40%",
+      dataIndex: "idea",
       render: (_, record) => (
-        <TextArea
-          rows={4} //  made larger
-          placeholder="Enter your idea or problem"
-          value={record.day}
-          onChange={(e) => handleChange(record.key, "day", e.target.value)}
-          style={{ width: "100%" }}
+        <Input
+          value={record.idea}
+          onChange={(e) => handleChange(record.key, "idea", e.target.value)}
+          placeholder="Enter idea/problem"
         />
       ),
     },
     {
       title: "SOLUTION",
       dataIndex: "solution",
-      width: "40%",
       render: (_, record) => (
-        <TextArea
-          rows={4} //  made larger
-          placeholder="Enter solution"
+        <Input
           value={record.solution}
-          onChange={(e) =>
-            handleChange(record.key, "solution", e.target.value)
-          }
-          style={{ width: "100%" }}
+          onChange={(e) => handleChange(record.key, "solution", e.target.value)}
+          placeholder="Enter solution"
         />
       ),
     },
     {
       title: "RATE YOUR INTEREST (1-10)",
-      dataIndex: "interest",
-      width: "20%",
+      dataIndex: "score",
       align: "center",
       render: (_, record) => (
         <InputNumber
           min={1}
           max={10}
-          value={record.interest}
-          onChange={(value) => handleChange(record.key, "interest", value)}
+          value={record.score}
+          onChange={(val) => handleChange(record.key, "score", val)}
         />
       ),
     },
@@ -119,16 +99,8 @@ const IdeaTableList = () => {
         pagination={false}
         rowKey="key"
       />
-      <div style={{ marginTop: "16px", textAlign: "right" }}>
-        <ButtonNextPre
-          buttons={[
-            { label: "PREVIOUS", onClick: handlePrev },
-            { label: "NEXT", onClick: handleNext },
-          ]}
-        />
-      </div>
     </div>
   );
-};
+});
 
 export default IdeaTableList;

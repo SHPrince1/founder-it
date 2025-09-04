@@ -1,211 +1,60 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { Table, InputNumber, message } from "antd";
-import {
-  DndContext,
-  closestCenter,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy,
-  arrayMove,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import style from "../styles/day1.module.css";
+import React, { useEffect, useState } from "react";
+import { Table, message } from "antd";
+import style from "../styles/idea-table-list.module.css";
 
-const DraggableRow = (props) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: props["data-row-key"],
-    });
+const RankinkIdeaList = () => {
+  const [ideas, setIdeas] = useState([]);
 
-  const styleRow = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    ...props.style,
-  };
-
-  return (
-    <tr
-      ref={setNodeRef}
-      {...props}
-      {...attributes}
-      {...listeners}
-      style={styleRow}
-      className={style.draggableRow}
-    />
-  );
-};
-
-const RankingSkills = () => {
-  const [dataSource, setDataSource] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // ✅ Fetch data from backend
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchIdeas = async () => {
       try {
-        setLoading(true);
+        const token = localStorage.getItem("token");
         const res = await fetch(
-          "https://founderfit-backend.onrender.com/api/day1/get",
+          "https://founderfit-backend.onrender.com/api/day3/get",
           {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
+            headers: { Authorization: `Bearer ${token}` }, // ✅ fixed
           }
         );
-        if (!res.ok) throw new Error("Failed to fetch");
+        if (!res.ok) throw new Error(`Server responded with ${res.status}`); // ✅ fixed
         const data = await res.json();
 
-        const mapped = data.map((item, idx) => ({
-          key: String(item.id),
-          sn: String(idx + 1),
-          activity: item.description,
-          score: item.score,
-          rank_order: item.rank_order,
-        }));
-        setDataSource(mapped);
+        // ✅ backend now returns { data: [ ... ] }
+        setIdeas(data.data || []);
       } catch (err) {
-        console.error(err);
-        message.error("Unable to load skills & passions");
-      } finally {
-        setLoading(false);
+        console.error("❌ Failed to fetch ideas:", err);
+        message.error("Failed to load your saved ideas.");
       }
     };
-    fetchData();
+
+    fetchIdeas();
   }, []);
 
-  // ✅ Prevent empty scores
-  const handleScoreChange = async (value, recordKey) => {
-    if (value === null || value === undefined) {
-      message.error("⚠️ Score cannot be left blank. Please enter 1–10.");
-      return;
-    }
-
-    const updated = dataSource.map((item) =>
-      item.key === recordKey ? { ...item, score: value } : item
-    );
-    setDataSource(updated);
-
-    const item = updated.find((i) => i.key === recordKey);
-    try {
-      await fetch(
-        `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({
-            description: item.activity,
-            score: item.score,
-            rank_order: item.rank_order,
-          }),
-        }
-      );
-      message.success("✅ Updated successfully!");
-    } catch (err) {
-      console.error(err);
-      message.error("Update failed");
-    }
-  };
-
-  // ✅ Handle drag & drop ranking
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-    if (!over || active.id === over.id) return;
-
-    const oldIndex = dataSource.findIndex((i) => i.key === active.id);
-    const newIndex = dataSource.findIndex((i) => i.key === over.id);
-    const moved = arrayMove([...dataSource], oldIndex, newIndex);
-    const reindexed = moved.map((item, idx) => ({
-      ...item,
-      sn: String(idx + 1),
-      rank_order: idx + 1,
-    }));
-    setDataSource(reindexed);
-
-    // 🚀 Send updated rank to backend
-    reindexed.forEach(async (item) => {
-      try {
-        await fetch(
-          `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify({
-              description: item.activity,
-              score: item.score,
-              rank_order: item.rank_order,
-            }),
-          }
-        );
-      } catch (err) {
-        console.error("Rank update failed:", err);
-      }
-    });
-  };
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
-  );
-
   const columns = [
-    { dataIndex: "sn", align: "center", width: 50 },
     {
-      title: "WHAT I AM PASSIONATE ABOUT / INTERESTED IN DOING",
-      dataIndex: "activity",
+      title: "IDEA/PROBLEM",
+      dataIndex: "idea",
     },
     {
-      title: "EFFECTIVENESS (1 - 10)",
+      title: "SOLUTION",
+      dataIndex: "solution",
+    },
+    {
+      title: "INTEREST SCORE",
       dataIndex: "score",
-      align: "right",
-      render: (_, record) => (
-        <InputNumber
-          min={1}
-          max={10}
-          value={record.score}
-          onChange={(value) => handleScoreChange(value, record.key)}
-          className={style.inputRight}
-        />
-      ),
+      align: "center",
     },
   ];
 
   return (
     <div className={style.container}>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={dataSource.map((i) => i.key)}
-          strategy={verticalListSortingStrategy}
-        >
-          <Table
-            className={style.customTable}
-            dataSource={dataSource}
-            columns={columns}
-            pagination={false}
-            rowKey="key"
-            components={{ body: { row: DraggableRow } }}
-            loading={loading}
-          />
-        </SortableContext>
-      </DndContext>
+      <Table
+        columns={columns}
+        dataSource={ideas.map((item, index) => ({ ...item, key: index }))}
+        pagination={false}
+        rowKey="key"
+      />
     </div>
   );
 };
 
-export default RankingSkills;
+export default RankinkIdeaList;

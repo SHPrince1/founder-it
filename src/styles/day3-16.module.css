@@ -50,3 +50,9 @@
   text-align: left;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
+.btnContainer{
+  /* border: 1px solid red; */
+  width: 70%;
+  margin: 20px auto;
+  /* margin: 0 50; */
+}

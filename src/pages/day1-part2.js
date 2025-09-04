@@ -17,7 +17,7 @@ const Day1part2 = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Fetch saved skills & passions when page loads
+  //  Fetch saved skills & passions when page loads
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +33,7 @@ const Day1part2 = () => {
           "https://founderfit-backend.onrender.com/api/day1/get",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // ✅ fixed here
+              Authorization: `Bearer ${token}`, // fixed here
             },
           }
         );

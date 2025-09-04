@@ -20,14 +20,14 @@ const Day2 = () => {
   const handlePrev = () => navigate("/day1-part1");
 
   const handleNext = async () => {
-    // ✅ Validate form and build payload
+    // Validate form and build payload
     const payload = questionRef.current?.validateAndBuildPayload();
     if (!payload) {
       message.warning("Please complete the form before proceeding.");
       return;
     }
 
-    // 🔹 Re-map keys to match backend API fields
+    // Re-map keys to match backend API fields
     const backendPayload = {
       selection_criteria: payload.selectionCriteria,
       location: payload.location,
@@ -49,7 +49,7 @@ const Day2 = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // ✅ fixed template string
+            Authorization: `Bearer ${token}`, //  fixed template string
           },
           body: JSON.stringify(backendPayload),
         }
@@ -62,7 +62,7 @@ const Day2 = () => {
       message.success("Responses saved successfully!");
       navigate("/day3-16");
     } catch (err) {
-      console.error("❌ Failed to save Day2 responses:", err);
+      console.error(" Failed to save Day2 responses:", err);
       message.error("Failed to save your responses. Try again.");
     }
   };
@@ -110,7 +110,7 @@ const Day2 = () => {
       {/* Table Title */}
       <TableTitle subtitle="Table 3" title="Defining selection criteria" />
 
-      {/* ✅ Pass ref so we can validate on Next */}
+      {/*  Pass ref so we can validate on Next */}
       <QuestionWithOptions ref={questionRef} />
 
       {/* Navigation Buttons */}

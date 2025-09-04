@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const IdeaTableList = () => {
   const navigate = useNavigate();
 
-  // ✅ State for rows
+  //  State for rows
   const [rows, setRows] = useState([
     { key: "1", day: "", solution: "", interest: 0 },
     { key: "2", day: "", solution: "", interest: 0 },
@@ -18,7 +18,7 @@ const IdeaTableList = () => {
     { key: "5", day: "", solution: "", interest: 0 },
   ]);
 
-  // ✅ Handle changes
+  //  Handle changes
   const handleChange = (key, field, value) => {
     setRows((prev) =>
       prev.map((row) =>
@@ -30,7 +30,7 @@ const IdeaTableList = () => {
   const handlePrev = () => navigate("/day17-25");
 
   const handleNext = async () => {
-    // ✅ Allow proceeding if at least one row is filled
+    // Allow proceeding if at least one row is filled
     const filledRows = rows.filter(
       (row) => row.day.trim() && row.solution.trim() && row.interest > 0
     );
@@ -50,17 +50,17 @@ const IdeaTableList = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ ideas: filledRows }), // ✅ send only filled rows
+          body: JSON.stringify({ ideas: filledRows }), //  send only filled rows
         }
       );
 
       if (!response.ok) throw new Error("Failed to save");
 
-      message.success("✅ Ideas saved successfully!");
+      message.success("Ideas saved successfully!");
       navigate("/next-page"); // replace with actual next route
     } catch (err) {
       console.error("Error saving ideas:", err);
-      message.error("❌ Failed to save your ideas");
+      message.error(" Failed to save your ideas");
     }
   };
 
@@ -71,7 +71,7 @@ const IdeaTableList = () => {
       width: "40%",
       render: (_, record) => (
         <TextArea
-          rows={4} // ✅ made larger
+          rows={4} //  made larger
           placeholder="Enter your idea or problem"
           value={record.day}
           onChange={(e) => handleChange(record.key, "day", e.target.value)}
@@ -85,7 +85,7 @@ const IdeaTableList = () => {
       width: "40%",
       render: (_, record) => (
         <TextArea
-          rows={4} // ✅ made larger
+          rows={4} //  made larger
           placeholder="Enter solution"
           value={record.solution}
           onChange={(e) =>

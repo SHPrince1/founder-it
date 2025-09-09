@@ -4,8 +4,16 @@ import style from "../styles/idea-table-list.module.css";
 
 // Part 1 Data
 const dataPart1 = [
-  { key: "1", skills: "Skill A, Skill B" },
-  { key: "2", skills: "Skill C, Skill D" },
+  { key: "1", skills: "Product" },
+  { key: "2", skills: "Sales" },
+  { key: "3", skills: "Sector experience/understanding" },
+  { key: "4", skills: "Technology" },
+  { key: "5", skills: "Relatioships" },
+  { key: "6", skills: "Distribution" },
+  { key: "7", skills: "Capital" },
+  { key: "8", skills: "Legal/Compliance" },
+  { key: "9", skills: "Competetive Positioning" },
+  { key: "10", skills: "Management" },
 ];
 
 // Part 2 Data
@@ -37,7 +45,7 @@ const EvaluationTable = () => {
   // 💡 Table 1 Columns
   const columnsPart1 = [
     {
-      title: "Skills Needed (Part 1)",
+      title: "CAPABILITIES ASSESMENT SKILLS REQUIRED FOR IDEA TO SUCCEED",
       dataIndex: "skills",
     },
     {

@@ -1,5 +1,5 @@
 import React from "react";
-import CongratsBatch from "../assets/completed.png";
+import CongratsBatch from "../assets/congratulations.svg";
 import TableBanner from "../components/activity-index/table-baner";
 import Vid from "../assets/vid.png";
 import Google from "../assets/plus.png";
@@ -21,9 +21,11 @@ const Day28 = () => {
         imageAlt="Challenge Preview"
         imageWidth={900}
       />
-      <h2 className={style.congratH2}>Congratulations you are ready to conquer the world.</h2>
+      <h2 className={style.congratH2}>
+        Congratulations you are ready to conquer the world.
+      </h2>
       <div className={style.congratDiv}>
-        <img src={CongratsBatch} alt="" />
+        <img src={CongratsBatch} alt="" className={style.con} />
 
         <EditText message="Congratulations you are ready to conquer the world." />
         <div className={style.btnsDiv}>
@@ -44,7 +46,9 @@ const Day28 = () => {
             </div>
           </div>
         </div>
-        <button>BACK TO MAN PAGE</button>
+        <a href="/">
+          <button>BACK TO MAN PAGE</button>
+        </a>
       </div>
 
       <Footer />

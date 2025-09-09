@@ -8,6 +8,7 @@ const TableTitle = ({ subtitle, title }) => {
     <div className={styles.tableTitle}>
       <h5>{subtitle}</h5>
       <h1>{title}</h1>
+      
     </div>
   );
 };

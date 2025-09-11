@@ -53,6 +53,18 @@ const Day26 = () => {
         </div>
       </div>
       <EvaluationTable />
+
+      <div className={style2.btnsDivs}>
+        <div>
+         
+          <button className={style2.back}>BACK</button>
+        </div>
+        <div className={style2.btns2}>
+          <button  className={style2.save}>SAVE</button>
+          <button  className={style2.submit}>SUBMIT</button>
+        </div>
+      </div>
+
       <Footer />
     </div>
   );

@@ -19,3 +19,35 @@
     background-color: #fff;
     border: 1px solid #c3c3c3;
 }
+
+.btnsDivs{
+    /* border: 1px solid red; */
+    width: 70%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back{
+    background-color: #fff;
+    color: black;
+    border: 1px solid #000;
+}
+.save{
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
+.submit{
+    background-color: #ffb900;
+    color: #000;
+    border: 1px solid #ffb900;
+}
+.btns2{
+    display: flex;
+    gap: 30px;
+}
+
+.btnsDivs button{
+    width: 120px;
+}

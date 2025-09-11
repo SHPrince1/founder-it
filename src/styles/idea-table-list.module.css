@@ -1,5 +1,5 @@
 .container{
-    width: 70%;
+    width: 60%;
     margin: 10px auto;
      overflow-x: auto;
 }
@@ -8,6 +8,64 @@
 .responsiveTable {
   margin-bottom: 1rem;
 }
+.rowDivider td {
+  border-bottom: 2px solid #000 !important; /* thick black line */
+}
+
+
+/* groupRow: base styles for rows inside a box segment */
+.groupRow td {
+  border: none !important;         /* remove default thin borders inside the box */
+  padding: 12px 12px !important;
+  background: #ffffff;             /* white inside the box - adjust if you want a tint */
+}
+
+/* vertical borders for the box (applied to each cell so full height) */
+.groupRow td:first-child {
+  border-left: 2px solid #d9d9d9 !important;
+}
+.groupRow td:last-child {
+  border-right: 2px solid #d9d9d9 !important;
+}
+
+/* top border for the first row of the group */
+.groupStart td {
+  border-top: 2px solid #d9d9d9 !important;
+}
+
+/* bottom border for the last row of the group */
+.groupEnd td {
+  border-bottom: 2px solid #d9d9d9 !important;
+}
+
+/* rounded corners for the group's outer corners */
+.groupStart td:first-child {
+  border-top-left-radius: 8px;
+}
+.groupStart td:last-child {
+  border-top-right-radius: 8px;
+}
+.groupEnd td:first-child {
+  border-bottom-left-radius: 8px;
+}
+.groupEnd td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+/* optional subtle shadow to emphasize box (remove if you prefer flat) */
+.groupStart td:first-child,
+.groupStart td:last-child,
+.groupEnd td:first-child,
+.groupEnd td:last-child {
+  /* no-op: only corners need radius; shadow applied on container would be heavier */
+}
+
+/* small tweak so summary row stays visually separate */
+:global(.ant-table-summary) td {
+  background: transparent !important;
+}
+
+
 
 /* 🔹 Adjust table style on small screens */
 @media (max-width: 768px) {
@@ -22,4 +80,11 @@
   .responsiveTable :global(.ant-table-thead > tr > th) {
     white-space: nowrap; /* keep headers readable */
   }
+  /* Make input smaller on mobile */
+@media (max-width: 600px) {
+  .ant-input-number {
+    width: 90px !important;
+  }
+}
+
 }

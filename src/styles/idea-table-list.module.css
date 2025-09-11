@@ -1,4 +1,25 @@
 .container{
     width: 70%;
     margin: 10px auto;
+     overflow-x: auto;
+}
+
+
+.responsiveTable {
+  margin-bottom: 1rem;
+}
+
+/* 🔹 Adjust table style on small screens */
+@media (max-width: 768px) {
+  .responsiveTable :global(.ant-table) {
+    font-size: 12px; /* smaller text on mobile */
+  }
+
+  .responsiveTable :global(.ant-table-cell) {
+    padding: 6px 8px; /* tighter padding */
+  }
+
+  .responsiveTable :global(.ant-table-thead > tr > th) {
+    white-space: nowrap; /* keep headers readable */
+  }
 }

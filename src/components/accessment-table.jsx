@@ -87,6 +87,7 @@ const AccessmentTable = () => {
                 min={0}
                 value={inputs[record.key] || 0}
                 onChange={(val) => handleChange(record.key, val)}
+                style={{ width: "120px" }} // ✅ fixed width for neatness
                 formatter={(val) => `₦${val}`}
                 parser={(val) => val.replace(/₦\s?|(,*)/g, "")}
               />
@@ -137,6 +138,7 @@ const AccessmentTable = () => {
         rowKey="key"
         bordered
         rowClassName={rowClassName}
+        scroll={{ x: true }} // ✅ makes it scrollable on small screens
         summary={() => (
           <Table.Summary.Row>
             <Table.Summary.Cell index={0}>

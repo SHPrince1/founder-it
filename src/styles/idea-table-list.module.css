@@ -56,10 +56,7 @@
 .groupStart td:first-child,
 .groupStart td:last-child,
 .groupEnd td:first-child,
-.groupEnd td:last-child {
-  /* no-op: only corners need radius; shadow applied on container would be heavier */
-}
-
+.groupEnd td:last-child 
 /* small tweak so summary row stays visually separate */
 :global(.ant-table-summary) td {
   background: transparent !important;

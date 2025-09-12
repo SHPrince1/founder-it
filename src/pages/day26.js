@@ -20,9 +20,8 @@ const Day26 = () => {
   // 🔑 Handles both save & submit
   const handleAction = async (action) => {
     try {
-      // ⬇️ Replace "/api/evaluation" with your actual backend API endpoint
-      // Example: "https://api.yourdomain.com/evaluation"
-      const res = await fetch("/api/evaluation", {
+      
+      const res = await fetch("https://founderfit-backend.onrender.com/api/day2/get", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

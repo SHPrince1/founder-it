@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Table, InputNumber, Divider } from "antd";
+import { Table, InputNumber, Divider, message } from "antd";
 import style from "../styles/idea-table-list.module.css";
 
-// Part 1 Data (still static for now)
+// ✅ Part 1 Data (static)
 const dataPart1 = [
   { key: "1", skills: "Product" },
   { key: "2", skills: "Sales" },
@@ -16,7 +16,7 @@ const dataPart1 = [
   { key: "10", skills: "Management" },
 ];
 
-const EvaluationTable = () => {
+const EvaluationTable = ({ onDataChange }) => {
   const [inputs, setInputs] = useState({});
   const [dataPart2, setDataPart2] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -26,15 +26,54 @@ const EvaluationTable = () => {
     const fetchPart2Data = async () => {
       try {
         setLoading(true);
-        const res = await fetch("/api/part2-data"); // replace with your endpoint
+        const token = localStorage.getItem("token");
+        const res = await fetch(
+          "https://founderfit-backend.onrender.com/api/day2/get",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        if (!res.ok) throw new Error(`Server responded with ${res.status}`);
         const json = await res.json();
-        const formatted = json.map((item, index) => ({
-          key: item.id || String(index + 1),
-          skills: item.skills,
-        }));
+
+        const formatted = [];
+        if (json.data) {
+          if (Array.isArray(json.data.selection_criteria)) {
+            json.data.selection_criteria.forEach((crit, idx) => {
+              formatted.push({ key: `crit-${idx}`, skills: crit });
+            });
+          }
+          if (json.data.location) {
+            formatted.push({
+              key: "location",
+              skills: `Location: ${json.data.location}`,
+            });
+          }
+          if (json.data.scalability) {
+            formatted.push({
+              key: "scalability",
+              skills: `Scalability: ${json.data.scalability}`,
+            });
+          }
+          if (json.data.risk_tolerance) {
+            formatted.push({
+              key: "risk",
+              skills: `Risk tolerance: ${json.data.risk_tolerance}`,
+            });
+          }
+          if (json.data.time_commitment) {
+            formatted.push({
+              key: "time",
+              skills: `Time commitment: ${json.data.time_commitment}`,
+            });
+          }
+        }
+
         setDataPart2(formatted);
       } catch (error) {
         console.error("Failed to fetch Part 2 data:", error);
+        message.error("Failed to load selection criteria.");
       } finally {
         setLoading(false);
       }
@@ -63,18 +102,20 @@ const EvaluationTable = () => {
         updated[key].gap = Math.max(have - needs, 0);
       }
 
+      // 🔑 Bubble up to parent
+      onDataChange && onDataChange(updated);
+
       return updated;
     });
   };
 
-  const getTotal = (field, keys) => {
-    return keys.reduce((sum, key) => sum + (inputs[key]?.[field] || 0), 0);
-  };
+  const getTotal = (field, keys) =>
+    keys.reduce((sum, key) => sum + (inputs[key]?.[field] || 0), 0);
 
   const keysPart1 = dataPart1.map((item) => item.key);
   const keysPart2 = dataPart2.map((item) => item.key);
 
-  // 💡 Columns generator (accepts partType for logic)
+  // 💡 Columns generator
   const makeColumns = (title, partType) => [
     {
       title,
@@ -89,7 +130,9 @@ const EvaluationTable = () => {
           min={0}
           max={10}
           value={inputs[record.key]?.needs}
-          onChange={(val) => handleInputChange(record.key, "needs", val, partType)}
+          onChange={(val) =>
+            handleInputChange(record.key, "needs", val, partType)
+          }
         />
       ),
     },
@@ -102,7 +145,9 @@ const EvaluationTable = () => {
           min={0}
           max={10}
           value={inputs[record.key]?.have}
-          onChange={(val) => handleInputChange(record.key, "have", val, partType)}
+          onChange={(val) =>
+            handleInputChange(record.key, "have", val, partType)
+          }
         />
       ),
     },
@@ -116,10 +161,11 @@ const EvaluationTable = () => {
 
   return (
     <div className={style.container}>
+      {/* Part 1 */}
       <h3>Part 1</h3>
       <Table
         columns={makeColumns(
-          "CAPABILITIES ASSESMENT SKILLS REQUIRED FOR IDEA TO SUCCEED",
+          "CAPABILITIES ASSESSMENT SKILLS REQUIRED FOR IDEA TO SUCCEED",
           1
         )}
         dataSource={dataPart1}
@@ -147,6 +193,7 @@ const EvaluationTable = () => {
 
       <Divider />
 
+      {/* Part 2 */}
       <h3>Part 2</h3>
       <Table
         loading={loading}
@@ -179,6 +226,7 @@ const EvaluationTable = () => {
 
       <Divider />
 
+      {/* Overall Totals */}
       <h3>Overall Total</h3>
       <Table
         columns={[

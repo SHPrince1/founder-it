@@ -17,25 +17,13 @@ const Day26 = () => {
 
   const handlePrev = () => navigate("/day3-16");
 
-  // 🔑 Handles both save & submit
-  const handleAction = async (action) => {
+  // 🔑 Handles both save & submit (local only)
+  const handleAction = (action) => {
     try {
-      
-      const res = await fetch("https://founderfit-backend.onrender.com/api/day2/get", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          action,       // "save" or "submit"
-          data: tableData,
-        }),
-      });
-
-      if (!res.ok) throw new Error(`${action} failed`);
-
       if (action === "save") {
-        alert("Progress saved ");
-      } else {
-        alert("Submitted successfully ");
+        alert("Progress saved");
+      } else if (action === "submit") {
+        alert("Submitted successfully");
         navigate("/day27");
       }
     } catch (err) {
@@ -68,9 +56,7 @@ const Day26 = () => {
           <div className={style.emptyDiv}></div>
         </div>
         <div className={style.helpButton}>
-          <button className={style.BtnHelp}>
-            Sample of a filled out form
-          </button>
+          <button className={style.BtnHelp}>Sample of a filled out form</button>
           <button className={style.BtnHelp}>
             Use an AI tool to help you get started
           </button>
@@ -82,7 +68,7 @@ const Day26 = () => {
         title="Evaluation of ideas against skills, passions, interest and selection criteria"
       />
 
-      {/* Pass collected data upward */}
+      {/* Collect data from child */}
       <EvaluationTable onDataChange={setTableData} />
 
       <div className={style2.btnsDivs}>

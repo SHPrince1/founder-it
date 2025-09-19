@@ -17,7 +17,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import style from "../../styles/day1.module.css";
 
-// ✅ Custom draggable row
+//  Custom draggable row
 const DraggableRow = ({ children, ...restProps }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
@@ -48,7 +48,7 @@ const RankingSkills = () => {
   const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Fetch data from backend
+  //  Fetch data from backend
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,7 +61,7 @@ const RankingSkills = () => {
         }
 
         const res = await fetch(
-          "https://founderfit-backend.onrender.com/api/day1/get",
+          "https://backend.thefounderfit.com/api/day1/get",
           {
             method: "GET",
             headers: {
@@ -109,7 +109,7 @@ const RankingSkills = () => {
 
     try {
       await fetch(
-        `https://founderfit-backend.onrender.com/api/day1/update/${item.key}`,
+        `https://backend.thefounderfit.com/api/day1/update/${item.key}`,
         {
           method: "PUT",
           headers: {
@@ -123,7 +123,7 @@ const RankingSkills = () => {
           }),
         }
       );
-      message.success("✅ Updated successfully!");
+      message.success("Updated successfully!");
     } catch (err) {
       console.error(err);
       message.error("Update failed");
@@ -146,7 +146,7 @@ const RankingSkills = () => {
     }));
     setDataSource(reindexed);
 
-    // 🚀 Only update the moved item to reduce API calls
+    //  Only update the moved item to reduce API calls
     const movedItem = reindexed.find((i) => i.key === active.id);
     if (movedItem) {
       try {

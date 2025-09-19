@@ -12,7 +12,7 @@ const LoginComponent = () => {
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
-  const navigate = useNavigate(); // ✅ enable navigation
+  const navigate = useNavigate(); //enable navigation
 
   const showPopupMessage = (message) => {
     setPopupMessage(message);

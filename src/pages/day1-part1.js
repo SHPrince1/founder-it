@@ -89,7 +89,7 @@ const Day1Part1 = () => {
         return;
       }
 
-      message.success("✅Your skills and passions have been saved. Click ‘Next’ to continue.");
+      message.success("Your skills and passions have been saved. Click ‘Next’ to continue.");
     } catch (err) {
       console.error(err);
       message.error("Server error");

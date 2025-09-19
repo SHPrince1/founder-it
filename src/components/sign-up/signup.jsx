@@ -40,7 +40,7 @@ const SignUp = () => {
     try {
       // Step 1: Register user
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || "https://founderfit-backend.onrender.com"}/api/auth/signup`,
+        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com"}/api/auth/signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

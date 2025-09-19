@@ -30,7 +30,7 @@ const Day1part2 = () => {
         }
 
         const res = await fetch(
-          "https://founderfit-backend.onrender.com/api/day1/get",
+          "https://backend.thefounderfit.com/api/day1/get",
           {
             headers: {
               Authorization: `Bearer ${token}`, // fixed here

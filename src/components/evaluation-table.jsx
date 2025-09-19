@@ -28,7 +28,7 @@ const EvaluationTable = ({ onDataChange }) => {
         setLoading(true);
         const token = localStorage.getItem("token");
         const res = await fetch(
-          "https://founderfit-backend.onrender.com/api/day2/get",
+          "https://backend.thefounderfit.com/api/day2/get",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

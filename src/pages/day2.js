@@ -44,7 +44,7 @@ const Day2 = () => {
       }
 
       const response = await fetch(
-        "https://founderfit-backend.onrender.com/api/day2/save",
+        "https://backend.thefounderfit.com/api/day2/save",
         {
           method: "POST",
           headers: {

@@ -66,7 +66,7 @@ const SignUp = () => {
 
       // Step 2: Create Stripe checkout session
       const paymentRes = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || "https://founderfit-backend.onrender.com"}/api/payment/create-checkout-session`,
+        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com"}/api/payment/create-checkout-session`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

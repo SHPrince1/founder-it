@@ -54,7 +54,7 @@ const Day1Part1 = () => {
       return;
     }
 
-    // ✅ Build payload only from fully valid rows
+    //  Build payload only from fully valid rows
     const filteredSkills = skills
       .filter((s) => s.activity.trim() !== "" && s.score !== null)
       .map((s) => ({ description: s.activity, score: s.score }));
@@ -73,7 +73,7 @@ const Day1Part1 = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("https://founderfit-backend.onrender.com/api/day1/save", {
+      const res = await fetch("https://backend.thefounderfit.com/api/day1/save", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,14 +85,14 @@ const Day1Part1 = () => {
       const result = await res.json();
 
       if (!res.ok) {
-        message.error(result.error || "❌ Error saving data");
+        message.error(result.error || "Error saving data");
         return;
       }
 
-      message.success("✅ Your skills and passions have been saved. Click ‘Next’ to continue.");
+      message.success("✅Your skills and passions have been saved. Click ‘Next’ to continue.");
     } catch (err) {
       console.error(err);
-      message.error("❌ Server error");
+      message.error("Server error");
     } finally {
       setLoading(false);
     }

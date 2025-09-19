@@ -27,7 +27,7 @@ const WelcomePageCom = () => {
             while (attempts < 5 && !token) {
                 try {
                     const res = await fetch(
-                        `${process.env.REACT_APP_BACKEND || "https://founderfit-backend.onrender.com"}/api/payment/get-token/${sessionId}`
+                        `${process.env.REACT_APP_BACKEND || "https://backend.thefounderfit.com.com"}/api/payment/get-token/${sessionId}`
                     );
                     const data = await res.json();
 

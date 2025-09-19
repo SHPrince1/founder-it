@@ -151,7 +151,7 @@ const RankingSkills = () => {
     if (movedItem) {
       try {
         await fetch(
-          `https://founderfit-backend.onrender.com/api/day1/update/${movedItem.key}`,
+          `https://backend.thefounderfit.com/api/day1/update/${movedItem.key}`,
           {
             method: "PUT",
             headers: {

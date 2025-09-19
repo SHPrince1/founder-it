@@ -13,11 +13,12 @@ import Footer from "../components/footer";
 
 const Day26 = () => {
   const navigate = useNavigate();
-  const [tableData, setTableData] = useState({});
+  const [ setTableData] = useState({});
+  // const [tableData, setTableData] = useState({});
 
   const handlePrev = () => navigate("/day3-16");
 
-  // 🔑 Handles both save & submit (local only)
+  //  Handles both save & submit (local only)
   const handleAction = (action) => {
     try {
       if (action === "save") {

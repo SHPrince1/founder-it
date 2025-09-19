@@ -26,7 +26,7 @@ const LoginComponent = () => {
 
     try {
       const res = await fetch(
-        "https://founderfit-backend.onrender.com/api/auth/login",
+        "https://backend.thefounderfit.com/api/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

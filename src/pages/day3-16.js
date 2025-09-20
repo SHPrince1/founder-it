@@ -24,25 +24,25 @@ const Day316 = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://backend.thefounderfit.com/api/day3/save",
+        "https://94.136.170.163:26918/api/day3/save",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // ✅ Fixed template literal
+            Authorization: `Bearer ${token}`, // Fixed template literal
           },
           body: JSON.stringify(payload),
         }
       );
 
       if (!response.ok) {
-        throw new Error(`Server responded with ${response.status}`); // ✅ Fixed template literal
+        throw new Error(`Server responded with ${response.status}`); //  Fixed template literal
       }
 
       message.success("Day3–16 responses saved successfully!");
       navigate("/day17-25");
     } catch (err) {
-      console.error("❌ Failed to save Day3–16 responses:", err);
+      console.error(" Failed to save Day3–16 responses:", err);
       message.error("Failed to save your responses. Try again.");
     }
   };

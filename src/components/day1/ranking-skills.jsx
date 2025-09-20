@@ -61,7 +61,7 @@ const RankingSkills = () => {
         }
 
         const res = await fetch(
-          "https://backend.thefounderfit.com/api/day1/get",
+          "https://94.136.170.163:26918/api/day1/get",
           {
             method: "GET",
             headers: {
@@ -109,7 +109,7 @@ const RankingSkills = () => {
 
     try {
       await fetch(
-        `https://backend.thefounderfit.com/api/day1/update/${item.key}`,
+        `https://94.136.170.163:26918/api/day1/update/${item.key}`,
         {
           method: "PUT",
           headers: {
@@ -151,7 +151,7 @@ const RankingSkills = () => {
     if (movedItem) {
       try {
         await fetch(
-          `https://backend.thefounderfit.com/api/day1/update/${movedItem.key}`,
+          `https://94.136.170.163:26918/api/day1/update/${movedItem.key}`,
           {
             method: "PUT",
             headers: {

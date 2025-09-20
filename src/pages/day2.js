@@ -44,7 +44,7 @@ const Day2 = () => {
       }
 
       const response = await fetch(
-        "https://backend.thefounderfit.com/api/day2/save",
+        "https://94.136.170.163:26918/api/day2/save",
         {
           method: "POST",
           headers: {

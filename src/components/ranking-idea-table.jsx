@@ -10,7 +10,7 @@ const RankinkIdeaList = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await fetch(
-          "https://backend.thefounderfit.com/api/day3/get",
+          "https://94.136.170.163:26918/api/day3/get",
           {
             headers: { Authorization: `Bearer ${token}` }, // ✅ fixed
           }

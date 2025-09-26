@@ -10,12 +10,12 @@ const RankinkIdeaList = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await fetch(
-          "https://backend.thefounderfit.com:26918api/day3/get",
+          "https://backend.thefounderfit.com:26918/api/day3/get",
           {
-            headers: { Authorization: `Bearer ${token}` }, // fixed
+            headers: { Authorization: `Bearer ${token}` }, // ✅ fixed
           }
         );
-        if (!res.ok) throw new Error(`Server responded with ${res.status}`); //  fixed
+        if (!res.ok) throw new Error(`Server responded with ${res.status}`); // ✅ fixed
         const data = await res.json();
 
         //  backend now returns { data: [ ... ] }

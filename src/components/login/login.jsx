@@ -26,7 +26,7 @@ const LoginComponent = () => {
 
     try {
       const res = await fetch(
-        "https://94.136.170.163:26918/api/auth/login",
+        "https://backend.thefounderfit.com:26918/api/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

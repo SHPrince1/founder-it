@@ -40,7 +40,7 @@ const SignUp = () => {
     try {
       // Step 1: Register user
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com"}/api/auth/signup`,
+        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com:26918"}/api/auth/signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ const SignUp = () => {
 
       // Step 2: Create Stripe checkout session
       const paymentRes = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || "https://94.136.170.163:26918"}/api/payment/create-checkout-session`,
+        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com:26918"}/api/payment/create-checkout-session`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

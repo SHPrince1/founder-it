@@ -24,7 +24,7 @@ const Day316 = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://94.136.170.163:26918/api/day3/save",
+        "https://backend.thefounderfit.com:26918/api/day3/save",
         {
           method: "POST",
           headers: {

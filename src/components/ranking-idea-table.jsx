@@ -10,18 +10,18 @@ const RankinkIdeaList = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await fetch(
-          "https://94.136.170.163:26918/api/day3/get",
+          "https://backend.thefounderfit.com:26918api/day3/get",
           {
-            headers: { Authorization: `Bearer ${token}` }, // ✅ fixed
+            headers: { Authorization: `Bearer ${token}` }, // fixed
           }
         );
-        if (!res.ok) throw new Error(`Server responded with ${res.status}`); // ✅ fixed
+        if (!res.ok) throw new Error(`Server responded with ${res.status}`); //  fixed
         const data = await res.json();
 
-        // ✅ backend now returns { data: [ ... ] }
+        //  backend now returns { data: [ ... ] }
         setIdeas(data.data || []);
       } catch (err) {
-        console.error("❌ Failed to fetch ideas:", err);
+        console.error(" Failed to fetch ideas:", err);
         message.error("Failed to load your saved ideas.");
       }
     };

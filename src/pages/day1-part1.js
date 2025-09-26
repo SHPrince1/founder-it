@@ -73,7 +73,7 @@ const Day1Part1 = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("https://94.136.170.163:26918/api/day1/save", {
+      const res = await fetch("https://backend.thefounderfit.com:26918/api/day1/save", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

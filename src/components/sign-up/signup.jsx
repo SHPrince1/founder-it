@@ -185,7 +185,7 @@ const SignUp = () => {
               {/* Submit */}
               <div className={style.signUpBtnDiv}>
                 <button onClick={handleSignup} disabled={loading}>
-                  {loading ? "Signing up..." : "SIGN UP"}
+                  {loading ? "Signing up..." : "SIGN UP - ONLY $5.99"}
                 </button>
               </div>
             </div>

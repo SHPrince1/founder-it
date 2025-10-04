@@ -127,7 +127,7 @@ const SignUp = () => {
                 <label>Email</label>
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Enter your same Email used for payment"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />

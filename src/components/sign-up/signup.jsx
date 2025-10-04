@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "../../styles/signup.module.css";
 import Google from "../../assets/google.png";
 import Fb from "../../assets/fb.png";
@@ -18,11 +18,24 @@ const SignUp = () => {
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
+  // Control when to show Stripe button
+  const [showStripeButton, setShowStripeButton] = useState(false);
+
   const showPopupMessage = (message) => {
     setPopupMessage(message);
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
   };
+
+  // Load Stripe Buy Button script dynamically
+  useEffect(() => {
+    if (showStripeButton) {
+      const script = document.createElement("script");
+      script.src = "https://js.stripe.com/v3/buy-button.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, [showStripeButton]);
 
   const handleSignup = async () => {
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
@@ -40,7 +53,10 @@ const SignUp = () => {
     try {
       // Step 1: Register user
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com:26918"}/api/auth/signup`,
+        `${
+          process.env.REACT_APP_BACKEND_URL ||
+          "https://backend.thefounderfit.com:26918"
+        }/api/auth/complete-signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -61,25 +77,11 @@ const SignUp = () => {
       }
 
       showPopupMessage(
-        data.message || "Account created successfully! Redirecting to payment..."
+        data.message || "Account created successfully! Continue to payment..."
       );
 
-      // Step 2: Create Stripe checkout session
-      const paymentRes = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL || "https://backend.thefounderfit.com:26918"}/api/payment/create-checkout-session`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        }
-      );
-
-      const paymentData = await paymentRes.json();
-      if (paymentData.url) {
-        setTimeout(() => {
-          window.location.href = paymentData.url;
-        }, 1500); // short delay so popup shows before redirect
-      }
+      // Step 2: Show Stripe Buy Button instead of redirect
+      setShowStripeButton(true);
     } catch (err) {
       showPopupMessage(err.message);
     } finally {
@@ -183,11 +185,23 @@ const SignUp = () => {
               </div>
 
               {/* Submit */}
-              <div className={style.signUpBtnDiv}>
-                <button onClick={handleSignup} disabled={loading}>
-                  {loading ? "Signing up..." : "SIGN UP - ONLY $5.99"}
-                </button>
-              </div>
+              {!showStripeButton && (
+                <div className={style.signUpBtnDiv}>
+                  <button onClick={handleSignup} disabled={loading}>
+                    {loading ? "Signing up..." : "SIGN UP - ONLY $5.99"}
+                  </button>
+                </div>
+              )}
+
+              {/* Stripe Buy Button after signup */}
+              {showStripeButton && (
+                <div className={style.signUpBtnDiv}>
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1SDtnQA8fxnp6AqQd7JZD6ne"
+                    publishable-key="pk_live_51NG1DQA8fxnp6AqQ6pVG43ySwUTqV4jFRT5zfzU4u82j9GoF9cZFpWYl8t2NZHbP8YeMZhLqoqSwVwVtxWhLpBs700MJzLDrW2"
+                  ></stripe-buy-button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ const WhatToExpect = () => {
                 </p>
               </div>
             </div>
-            <a href="/signup-page">
+            <a href="https://js.stripe.com/v3/buy-button.js">
               <button>
                 Join the 28 Day Challenge{" "}
                 <img src={Arrow} alt="" size={5} className={style.arrow} />
@@ -110,7 +110,7 @@ const WhatToExpect = () => {
               <div className={style.want}>
                 <h4>WANT MORE INSIGHT FROM IKE?</h4>
 
-                <a href="/signup-page">
+                <a href="https://js.stripe.com/v3/buy-button.js">
                   <button>
                     JOIN IKE'S SUBSTACK NEWSLETTER{" "}
                     <img src={Arrow} alt="" size={2} />
@@ -154,7 +154,7 @@ const WhatToExpect = () => {
               <div className={style.want}>
                 {/* <h4>WANT MORE INSIGHT FROM IKE?</h4> */}
 
-                <a href="/signup-page">
+                <a href="https://js.stripe.com/v3/buy-button.js">
                   <button>
                     JOIN IKE'S SUBSTACK NEWSLETTER{" "}
                     <img src={Arrow} alt="" size={2} />
@@ -172,7 +172,7 @@ const WhatToExpect = () => {
           <div className={style.rightText}>
             <h1>DON'T WAIT-START YOUR BUSINESS NOW</h1>
             <p>Your business won't start itself</p>
-            <a href="/signup-page">
+            <a href="https://js.stripe.com/v3/buy-button.js">
               <button>
                 Join the 28 Day Challenge <img src={Arrow} alt="" size={5} />
               </button>

@@ -29,7 +29,7 @@ const Banner = () => {
           </div>
 
           <div className={style.buttonDiv}>
-            <a href="/signup-page">
+            <a href="https://js.stripe.com/v3/buy-button.js">
               <button className={style.amazon}>
                 <p>JOIN THE CHALLENGE</p>
                 <img src={Arrow} width={20} alt="" />

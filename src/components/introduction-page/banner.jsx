@@ -1,28 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "../../styles/banner.module.css";
 
 // imported images
 import Man from "../../assets/author.jpg";
-// import Arrow from "../../assets/arrow-right-02.png";
+import Arrow from "../../assets/arrow-right-02.png";
 
 const Banner = () => {
-  useEffect(() => {
-    // Load Stripe Buy Button script once
-    const script = document.createElement("script");
-    script.src = "https://js.stripe.com/v3/buy-button.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
   return (
     <div>
       <div className={style.container}>
         <div className={style.box1}>
+          {/* <div className={style.availableDiv}>
+            <div className={style.dash}></div>
+            <p>AVAILABLE FOR PRE-ORDER NOW</p>
+          </div> */}
           <div className={style.turn}>
-            <h2>TURN YOUR BUSINESS DREAM INTO REALITY—IN JUST 28 DAYS?</h2>
+            <h2>TURN YOUR BUSINESS DREAM INTO REALITY-IN JUST 28 DAYS?</h2>
           </div>
+          {/* <div className={style.ready}></div> */}
           <div className={style.discover}>
-            <h5>Ready to launch a business but stuck on the right idea?</h5>
+            <h5>Ready to launch a business but stock on the right idea?</h5>
             <p>
               The 28-Day Business Launch Challenge is your fast-track, hands-on
               journey from uncertainty to a validated, launch-ready
@@ -32,10 +29,12 @@ const Banner = () => {
           </div>
 
           <div className={style.buttonDiv}>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1SJrL3KU9qoTreLwoAXrfA7A"
-              publishable-key="pk_test_51RxoZiKU9qoTreLwwd3256lQuvkyx2cE6nr5In32cqIFD86s7iTMWFxEFRdBsHVu6akDgNs7bDunPmv5Y7nR08w4002l87oX1j">
-            </stripe-buy-button>
+            <a href="/signup-page">
+              <button className={style.amazon}>
+                <p>JOIN THE CHALLENGE</p>
+                <img src={Arrow} width={20} alt="" />
+              </button>
+            </a>
           </div>
         </div>
 

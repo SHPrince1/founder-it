@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import style from "../../styles/signup.module.css";
 import Google from "../../assets/google.png";
 import Fb from "../../assets/fb.png";
 import Link from "../../assets/linkdln.png";
-
 import SignupIntro from "./signup-intro";
 
 const SignUp = () => {
@@ -18,24 +17,11 @@ const SignUp = () => {
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
-  // Control when to show Stripe button
-  const [showStripeButton, setShowStripeButton] = useState(false);
-
   const showPopupMessage = (message) => {
     setPopupMessage(message);
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
   };
-
-  // Load Stripe Buy Button script dynamically
-  useEffect(() => {
-    if (showStripeButton) {
-      const script = document.createElement("script");
-      script.src = "https://js.stripe.com/v3/buy-button.js";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, [showStripeButton]);
 
   const handleSignup = async () => {
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
@@ -77,11 +63,16 @@ const SignUp = () => {
       }
 
       showPopupMessage(
-        data.message || "Account created successfully! Continue to payment..."
+        data.message ||
+          "Account created successfully! Redirecting to payment..."
       );
 
-      // Step 2: Show Stripe Buy Button instead of redirect
-      setShowStripeButton(true);
+      // Step 2: Redirect to Stripe payment page after a short delay
+      setTimeout(() => {
+        window.location.href = `https://buy.stripe.com/fZufZg4J2dGe0VT1DC5kk03?prefilled_email=${encodeURIComponent(
+          email
+        )}`;
+      }, 1500);
     } catch (err) {
       showPopupMessage(err.message);
     } finally {
@@ -185,23 +176,11 @@ const SignUp = () => {
               </div>
 
               {/* Submit */}
-              {!showStripeButton && (
-                <div className={style.signUpBtnDiv}>
-                  <button onClick={handleSignup} disabled={loading}>
-                    {loading ? "Signing up..." : "SIGN UP - ONLY $5.99"}
-                  </button>
-                </div>
-              )}
-
-              {/* Stripe Buy Button after signup */}
-              {showStripeButton && (
-                <div className={style.signUpBtnDiv}>
-                  <stripe-buy-button
-                    buy-button-id="buy_btn_1SDtnQA8fxnp6AqQd7JZD6ne"
-                    publishable-key="pk_live_51NG1DQA8fxnp6AqQ6pVG43ySwUTqV4jFRT5zfzU4u82j9GoF9cZFpWYl8t2NZHbP8YeMZhLqoqSwVwVtxWhLpBs700MJzLDrW2"
-                  ></stripe-buy-button>
-                </div>
-              )}
+              <div className={style.signUpBtnDiv}>
+                <button onClick={handleSignup} disabled={loading}>
+                  {loading ? "Signing up..." : "SIGN UP - ONLY $5.99"}
+                </button>
+              </div>
             </div>
           </div>
         </div>

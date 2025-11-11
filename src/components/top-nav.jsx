@@ -14,7 +14,7 @@ const TopNav = () => {
           </a>
         </div>
         <div className={style.order}>
-            <a href='/'>Order Now</a>
+            <a href='/signup-page'>Order Now</a>
         </div>
         </div>
       </div>

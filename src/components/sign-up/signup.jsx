@@ -42,7 +42,7 @@ const SignUp = () => {
         `${
           process.env.REACT_APP_BACKEND_URL ||
           "https://backend.thefounderfit.com:26918"
-        }/api/auth/complete-signup`,
+        }/api/auth/signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -118,7 +118,7 @@ const SignUp = () => {
                 <label>Email</label>
                 <input
                   type="email"
-                  placeholder="Enter your same Email used for payment"
+                  placeholder="Enter your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />

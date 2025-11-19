@@ -89,8 +89,15 @@
     font-size: 14px;
   }
   .buttonDiv {
-    width: 90%;
+    /* width: 90%; */
     margin: -60px auto;
+
+
+
+ width: 23%;
+    font-size: 18px;
+    gap: 50px;
+
   }
   .buttonDiv button {
   text-transform: uppercase;
@@ -213,7 +220,7 @@
   .buttonDiv{
     /* border: 1px solid red;  */
     text-transform: uppercase;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     gap: 15px;
     /* width: 20%; */
@@ -222,7 +229,8 @@
     justify-content: center;
     /* height: 100px; */
     /* justify-content: space-evenly; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    width: 23%;
     font-size: 18px;
     gap: 50px;
   }

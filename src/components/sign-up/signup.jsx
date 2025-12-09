@@ -67,7 +67,7 @@ const SignUp = () => {
           "Account created successfully! Redirecting to payment..."
       );
 
-      // Step 2: Redirect to Stripe payment page after a short delay
+      // Step 2: Redirect to Stripe payment page after a short delay real
       setTimeout(() => {
         window.location.href = `https://buy.stripe.com/fZufZg4J2dGe0VT1DC5kk03?prefilled_email=${encodeURIComponent(
           email

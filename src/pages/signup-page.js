@@ -1,7 +1,7 @@
 import React from 'react';
 import TopNav from '../components/top-nav';
 import Footer from '../components/footer';
-import SignUp from '../components/sign-up/signup';
+import SignUp from '../components/sign-up/signup-test';
 
 const SignupPage = () => {
   return (

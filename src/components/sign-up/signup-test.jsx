@@ -13,7 +13,6 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Popup state
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
@@ -37,7 +36,6 @@ const SignUp = () => {
     setLoading(true);
 
     try {
-      // ⭐ STEP 1: Register user with backend
       const res = await fetch(
         `${
           process.env.REACT_APP_BACKEND_URL ||
@@ -63,38 +61,16 @@ const SignUp = () => {
       }
 
       showPopupMessage(
-        data.message || "Account created successfully! Preparing payment..."
+        data.message ||
+          "Account created successfully! Redirecting to payment..."
       );
 
-      // ⭐ STEP 2: Instead of redirecting to Stripe, we now load the Stripe Buy Button on the page.
-
-      /*  
-      ----------------------------------------------------------------------
-      ORIGINAL REDIRECT - COMMENTED OUT FOR TESTING
-      ----------------------------------------------------------------------
-      setTimeout(() => {
-        window.location.href = `https://buy.stripe.com/fZufZg4J2dGe0VT1DC5kk03?prefilled_email=${encodeURIComponent(
+      // ✅ FIX 1: Remove timeout to avoid navigation race condition
+      window.location.assign(
+        `https://buy.stripe.com/fZufZg4J2dGe0VT1DC5kk03?prefilled_email=${encodeURIComponent(
           email
-        )}`;
-      }, 1500);
-      ----------------------------------------------------------------------
-      */
-
-      // ⭐ NEW TEST MODE: Dynamically inject Stripe Buy Button
-      setTimeout(() => {
-        const container = document.getElementById("stripeButtonContainer");
-
-        if (container) {
-          container.innerHTML = `
-            <script src="https://js.stripe.com/v3/buy-button.js"></script>
-            <stripe-buy-button
-              buy-button-id="buy_btn_1SJrL3KU9qoTreLwoAXrfA7A"
-              publishable-key="pk_test_51RxoZiKU9qoTreLwwd3256lQuvkyx2cE6nr5In32cqIFD86s7iTMWFxEFRdBsHVu6akDgNs7bDunPmv5Y7nR08w4002l87oX1j"
-            ></stripe-buy-button>
-          `;
-        }
-      }, 1000);
-
+        )}`
+      );
     } catch (err) {
       showPopupMessage(err.message);
     } finally {
@@ -115,7 +91,6 @@ const SignUp = () => {
             </div>
 
             <div className={style.inputDiv}>
-              {/* First + Last Name */}
               <div className={style.inputGroup}>
                 <label>FIRST NAME</label>
                 <input
@@ -125,6 +100,7 @@ const SignUp = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
+
               <div className={style.inputGroup}>
                 <label>LAST NAME</label>
                 <input
@@ -135,7 +111,6 @@ const SignUp = () => {
                 />
               </div>
 
-              {/* Email */}
               <div className={style.inputEmailDiv}>
                 <label>Email</label>
                 <input
@@ -146,7 +121,6 @@ const SignUp = () => {
                 />
               </div>
 
-              {/* Password */}
               <div className={style.inputGroup}>
                 <label>PASSWORD</label>
                 <input
@@ -156,6 +130,7 @@ const SignUp = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+
               <div className={style.inputGroup}>
                 <label>RE-ENTER PASSWORD</label>
                 <input
@@ -167,7 +142,6 @@ const SignUp = () => {
               </div>
             </div>
 
-            {/* Social sign-up UI */}
             <div className={style.signUpWith}>
               <div className={style.signUpWithBox1}>
                 <div className={style.emptyDiv}></div>
@@ -179,15 +153,24 @@ const SignUp = () => {
 
               <div className={style.signUpWithBox2}>
                 <div className={style.signUpWithBox2Buttton}>
-                  <button className={style.signUpWithBox2ButttonFb}>
+                  {/* ✅ FIX 2: prevent accidental navigation */}
+                  <button type="button" className={style.signUpWithBox2ButttonFb}>
                     <img src={Fb} alt="Facebook" />
                     Facebook
                   </button>
-                  <button className={style.signUpWithBox2ButttonGg}>
+
+                  <button
+                    type="button"
+                    className={style.signUpWithBox2ButttonGg}
+                  >
                     <img src={Google} alt="Google" />
                     Google
                   </button>
-                  <button className={style.signUpWithBox2Butttonld}>
+
+                  <button
+                    type="button"
+                    className={style.signUpWithBox2Butttonld}
+                  >
                     <img src={Link} alt="LinkedIn" /> LinkedIn
                   </button>
                 </div>
@@ -197,9 +180,13 @@ const SignUp = () => {
                 </div>
               </div>
 
-              {/* Submit */}
               <div className={style.signUpBtnDiv}>
-                <button onClick={handleSignup} disabled={loading}>
+                {/* ✅ FIX 3: type="button" prevents form submission */}
+                <button
+                  type="button"
+                  onClick={handleSignup}
+                  disabled={loading}
+                >
                   {loading ? "Signing up..." : "SIGN UP - ONLY $5.99"}
                 </button>
               </div>
@@ -208,13 +195,6 @@ const SignUp = () => {
         </div>
       </div>
 
-      {/* ⭐ Stripe Buy Button will be injected here after signup */}
-      <div
-        id="stripeButtonContainer"
-        style={{ marginTop: "40px", textAlign: "center" }}
-      ></div>
-
-      {/* Popup message */}
       {showPopup && (
         <div
           style={{
